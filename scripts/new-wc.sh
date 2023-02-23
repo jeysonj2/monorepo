@@ -28,10 +28,10 @@ fi
 mkdir -p "$WC_ATOMIC_TYPE_PATH"
 
 # Change directory to the atomic type directory
-cd "$WC_ATOMIC_TYPE_PATH"
+# cd "$WC_ATOMIC_TYPE_PATH"
 
 # Run the open-wc command with the arguments passed to this script
-npm init @open-wc -- --type scaffold --scaffoldType wc --features linting testing demoing --typescript $WC_TYPESCRIPT --tagName "$WC_TAG" --writeToDisk true --installDependencies npm
+npm init -w packages/$WC_ATOMIC_TYPE @open-wc -- --type scaffold --scaffoldType wc --features linting testing demoing --typescript $WC_TYPESCRIPT --tagName "$WC_TAG" --writeToDisk true --installDependencies npm
 
 # Change back to the root directory
 cd "$CURRENT_DIRECTORY"

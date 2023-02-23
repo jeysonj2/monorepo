@@ -1,5 +1,5 @@
 {
-  "name": "izwc",
+  "name": "@izwc/root",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -13,6 +13,7 @@
     "prompts": "^2.4.2"
   },
   "workspaces": [
-    "packages/**/*"
+    "packages/**/*",
+    "initializer"
   ]
 }

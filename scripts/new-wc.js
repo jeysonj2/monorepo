@@ -97,7 +97,11 @@ function isValidName(name) {
 
 (async () => {
   // Ask the questions
-  const response = await prompts(questions);
+  const response = await prompts(questions, {
+    onCancel: () => {
+      process.exit();
+    },
+  });
 
   // Format the response
   response.name = response.name.replace(/\s/g, '-').toLowerCase();
@@ -131,6 +135,10 @@ function isValidName(name) {
     name: 'value',
     message: 'Is this correct?',
     initial: true,
+  }, {
+    onCancel: () => {
+      process.exit();
+    },
   });
 
   // If the user doesn't confirm, exit the script
