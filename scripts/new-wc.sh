@@ -20,18 +20,12 @@ VARS_FILE="${CURRENT_DIRECTORY}/.new-wc-env.sh"
 if [ -f $VARS_FILE ]; then
   . $VARS_FILE
 else
-  echo "Error: .new-wc-env.sh file not found"
+  printf "Error: $VARS_FILE file not found"
   exit 1
 fi
 
-# Create the atomic type directory if it doesn't exist
-mkdir -p "$WC_ATOMIC_TYPE_PATH"
-
-# Change directory to the atomic type directory
-# cd "$WC_ATOMIC_TYPE_PATH"
-
 # Run the open-wc command with the arguments passed to this script
-npm init -w packages/$WC_ATOMIC_TYPE @open-wc -- --type scaffold --scaffoldType wc --features linting testing demoing --typescript $WC_TYPESCRIPT --tagName "$WC_TAG" --writeToDisk true --installDependencies npm
+npm init @izwc@latest -- --destinationPath $WC_PATH --type scaffold --scaffoldType wc --features linting testing demoing --typescript $WC_TYPESCRIPT --tagName $WC_TAG --writeToDisk true --installDependencies npm
 
-# Change back to the root directory
-cd "$CURRENT_DIRECTORY"
+# Delete the .new-wc-env.sh file
+rm -f $VARS_FILE

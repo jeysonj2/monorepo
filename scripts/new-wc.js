@@ -1,4 +1,6 @@
 const prompts = require('prompts');
+const path = require('path');
+const fs = require('fs');
 
 const TAG_PREFIX = 'izwc-';
 const ATOMIC_TYPES = ['atoms', 'molecules', 'organisms', 'templates', 'pages'];
@@ -108,23 +110,22 @@ function isValidName(name) {
   response.tag = TAG_PREFIX + response.name;
   response.atomicType = response.atomicType;
 
-  // Getting the new web component's path
-  const path = require('path');
-  const fs = require('fs');
+  // Check if the path already exists in any of the atomic types
+  ATOMIC_TYPES.forEach(type => {
+    const relativePath = `${PACKAGE_PATH}/${type}/${response.name}`;
+    const absolutePath = path.resolve(__dirname, relativePath);
 
+    if (fs.existsSync(absolutePath)) {
+      console.error(`The package '${response.name}' already exists.\nPath: ${absolutePath}`);
+      process.exit(1);
+    }
+  });
+
+  // Getting the new web component's path
   const atomicTypePath = `${PACKAGE_PATH}/${response.atomicType}`;
   const atomicTypeAbsolutePath = path.resolve(__dirname, atomicTypePath);
-
-  const wcPath = `${atomicTypePath}/${response.tag}`;
-
+  const wcPath = `${atomicTypePath}/${response.name}`;
   const wcAbsolutePath = path.resolve(__dirname, wcPath);
-  const wcPathExists = fs.existsSync(wcAbsolutePath);
-
-  // If the path already exists, exit the script
-  if (wcPathExists) {
-    console.error(`The path '${wcPath}' already exists.`);
-    process.exit(1);
-  }
 
   // Showing a summary of the new component
   console.log(`\nNew web component:\n- Tag: ${response.tag}\n- Path: ${wcAbsolutePath}\n- Typescript: ${response.useTypescript ? 'yes' : 'no'}\n`);
