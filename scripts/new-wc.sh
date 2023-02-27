@@ -25,7 +25,7 @@ else
 fi
 
 # Run the open-wc command with the arguments passed to this script
-npm init @izwc@latest -- --destinationPath $WC_PATH --type scaffold --scaffoldType wc --features linting testing demoing --typescript $WC_TYPESCRIPT --tagName $WC_TAG --writeToDisk true --installDependencies npm
+npm init -w packages/$WC_ATOMIC_TYPE @izwc@latest -- --destinationPath $WC_PATH --type scaffold --scaffoldType wc --features linting testing demoing --typescript $WC_TYPESCRIPT --tagName $WC_TAG --writeToDisk true --installDependencies npm
 
 # Delete the .new-wc-env.sh file
 rm -f $VARS_FILE
