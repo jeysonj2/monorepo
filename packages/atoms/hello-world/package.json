@@ -3,7 +3,7 @@
   "description": "Webcomponent izwc-hello-world following open-wc recommendations",
   "license": "MIT",
   "author": "izwc-hello-world",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
