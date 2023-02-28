@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <h4>Regular</h4>
+  <iz-menu onchange="alert(event.detail.value)">
+    <p slot="text">MENU</p>
+    <iz-menu-item value="A">Item A</iz-menu-item>
+    <iz-menu-item value="B">Item B</iz-menu-item>
+    <iz-menu-item value="C">Item C</iz-menu-item>
+    <iz-menu-item value="D">Item D</iz-menu-item>
+  </iz-menu>
+
+  <h4>Icon</h4>
+  <iz-menu onchange="alert(event.detail.value)">
+    <iz-icon-mail slot="text"></iz-icon-mail>
+    <iz-menu-item value="A">Item A</iz-menu-item>
+    <iz-menu-item value="B">Item B</iz-menu-item>
+    <iz-menu-item value="C">Item C</iz-menu-item>
+    <iz-menu-item value="D">Item D</iz-menu-item>
+  </iz-menu>
+
+  <hr />
+  <h4>Text</h4>
+  <iz-menu variant="text" onchange="alert(event.detail.value)">
+    <p slot="text">MENU</p>
+    <iz-menu-item value="A">Item A</iz-menu-item>
+    <iz-menu-item value="B">Item B</iz-menu-item>
+    <iz-menu-item value="C">Item C</iz-menu-item>
+    <iz-menu-item value="D">Item D</iz-menu-item>
+  </iz-menu>
+
+  <h4>Icon (Text)</h4>
+  <iz-menu variant="text" onchange="alert(event.detail.value)">
+    <iz-icon-mail slot="text"></iz-icon-mail>
+    <iz-menu-item value="A">Item A</iz-menu-item>
+    <iz-menu-item value="B">Item B</iz-menu-item>
+    <iz-menu-item value="C">Item C</iz-menu-item>
+    <iz-menu-item value="D">Item D</iz-menu-item>
+  </iz-menu>
+</body>
+</html>

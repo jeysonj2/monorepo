@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <fieldset>
+    <legend>Parent</legend>
+    <div class="parent" headerTitle="Parent Popup">
+      <h1>Im a parent</h1>
+      <iz-button id="showparent">Show</iz-button>
+      <iz-popup hideonoutsideclick id="parentpopup" variant="parent">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati iusto illum quos quo quas. Fugit pariatur facilis in, eaque quaerat, aperiam doloremque sunt esse dolor ratione inventore numquam labore veritatis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex, animi enim? Odio reiciendis officiis quaerat, obcaecati omnis facilis eos impedit inventore veniam, neque cum voluptates nostrum ea similique optio harum?</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati iusto illum quos quo quas. Fugit pariatur facilis in, eaque quaerat, aperiam doloremque sunt esse dolor ratione inventore numquam labore veritatis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex, animi enim? Odio reiciendis officiis quaerat, obcaecati omnis facilis eos impedit inventore veniam, neque cum voluptates nostrum ea similique optio harum?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A debitis, beatae natus tempora eveniet animi autem ratione vel veniam aut! Omnis, similique maxime. Eveniet molestiae neque repellendus nisi non eligendi?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi expedita voluptates, officia animi non esse, iusto corporis nobis eius adipisci harum. Nam eius harum voluptatem totam animi? Ipsa, illo laborum?</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam deserunt ut, accusamus nobis, et ea harum, unde reprehenderit eaque alias aliquid optio eum pariatur doloribus amet. Adipisci voluptatem nam hic.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quo ut voluptate? Maiores, officiis at suscipit perspiciatis eligendi veritatis et dolorum. Nostrum ut tempore dolorum molestias recusandae corrupti eveniet hic!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+
+
+        <div slot="footer">
+          <iz-button>confirm</iz-button>
+          <iz-button>cancel</iz-button>
+        </div>
+        <p slot="footer">do something else</p>
+      </iz-popup>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Global</legend>
+    <div>
+      <h1>Im a global</h1>
+      <iz-button id="showglobal">Show</iz-button>
+      <iz-popup hideonoutsideclick id="globalpopup" variant="global" headerTitle="Global Popup">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati iusto illum quos quo quas. Fugit pariatur facilis in, eaque quaerat, aperiam doloremque sunt esse dolor ratione inventore numquam labore veritatis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex, animi enim? Odio reiciendis officiis quaerat, obcaecati omnis facilis eos impedit inventore veniam, neque cum voluptates nostrum ea similique optio harum?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A debitis, beatae natus tempora eveniet animi autem ratione vel veniam aut! Omnis, similique maxime. Eveniet molestiae neque repellendus nisi non eligendi?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi expedita voluptates, officia animi non esse, iusto corporis nobis eius adipisci harum. Nam eius harum voluptatem totam animi? Ipsa, illo laborum?</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam deserunt ut, accusamus nobis, et ea harum, unde reprehenderit eaque alias aliquid optio eum pariatur doloribus amet. Adipisci voluptatem nam hic.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quo ut voluptate? Maiores, officiis at suscipit perspiciatis eligendi veritatis et dolorum. Nostrum ut tempore dolorum molestias recusandae corrupti eveniet hic!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nostrum harum omnis possimus quam iste hic. Consequuntur ipsum cum voluptatum, minus, architecto incidunt ducimus delectus nemo voluptate saepe reprehenderit laboriosam?</p>
+        <div slot="footer">
+          <iz-button>confirm</iz-button>
+          <iz-button>cancel</iz-button>
+        </div>
+        <p slot="footer">do something else</p>
+      </iz-popup>
+    </div>
+  </fieldset>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <h4>Regular</h4>
+  <iz-field label="Label">
+    <div class="box"></div>
+    <div slot="right">R</div>
+    <iz-icon-mail slot="left"></iz-icon-mail>
+  </iz-field>
+
+  <h4>Full</h4>
+  <iz-field label="Label (full)" help="Help Text" counter>
+    <div class="box"></div>
+    <div slot="left">L</div>
+    <div slot="right">R</div>
+  </iz-field>
+
+  <h4>With Counter</h4>
+  <iz-field id="counter" counter label="Label (counter)">
+    <div class="box"></div>
+  </iz-field>
+
+  <h4>With Help Text</h4>
+  <iz-field id="help" label="Label (help)">
+    <div class="box"></div>
+  </iz-field>
+
+  <h4>With Error</h4>
+  <iz-field id="error" label="Label (error)">
+    <div class="box"></div>
+
+  </iz-field>
+
+  <h4>With Warning</h4>
+  <iz-field id="warning" label="Label (warning)">
+    <div class="box"></div>
+  </iz-field>
+
+  <h4>With Success</h4>
+  <iz-field id="success" label="Label (success)">
+    <div class="box"></div>
+  </iz-field>
+
+  <h3>Real Example</h3>
+  <iz-field label="Label (full)" help="Help Text" counter>
+    <iz-input maxLength="30"></iz-input>
+    <div slot="left">L</div>
+    <div slot="right">R</div>
+  </iz-field>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "name": "@interzero/main",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "new-wc": "cd ./scripts && ./new-wc.sh",
+    "storybook": "wds -c .storybook/server.mjs",
+    "storybook:build": "rm -rf ./storybook-static && build-storybook",
+    "storybook:build:all": "lerna run storybook:build",
+    "storybook:publish": "",
+    "format:all": "npm run build:all && lerna run format",
+    "lint:all": "lerna run lint",
+    "build:all": "lerna run build",
+    "lint-build": "npm run format:all && npm run lint:all && npm run build:all",
+    "version:all": "lerna version",
+    "publish:all": "lerna publish",
+    "force-publish": "lerna publish --force-publish --ignore-changes --ignore-scripts --no-commit-hooks --no-git-tag-version",
+    "nx-graph": "nx graph"
+  },
+  "private": true,
+  "author": {
+    "name": "Interzero Dev Team",
+    "email": "henry.pap@interzero.de"
+  },
+  "keywords": [
+    "web-components",
+    "typescript",
+    "open-wc"
+  ],
+  "type": "module",
+  "devDependencies": {
+    "@nrwl/cli": "^15.8.6",
+    "dotenv": "^16.0.3",
+    "lerna": "^6.5.1",
+    "nx": "15.7.1",
+    "prettier": "^2.6.2",
+    "prompts": "^2.4.2"
+  },
+  "workspaces": [
+    "packages/**/*"
+  ]
+}

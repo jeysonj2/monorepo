@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <h1>Checkbox Demo</h1>
+
+  <h4>Regular:</h4>
+  <iz-checkbox label="Labeled"></iz-checkbox>
+
+  <h4>Plain:</h4>
+  <iz-checkbox variant="plain" label="Plain"></iz-checkbox>
+
+  <h4>Unlabeled:</h4>
+  <iz-checkbox></iz-checkbox>
+  <iz-checkbox variant="plain"></iz-checkbox>
+
+  <h4>Disabled:</h4>
+  <iz-checkbox disabled="true" label="Disabled"></iz-checkbox>
+
+  <h4>Checked:</h4>
+  <iz-checkbox checked="true"></iz-checkbox>
+
+  <h4>Form:</h4>
+  <form>
+    <iz-checkbox name="foo"></iz-checkbox>
+    <iz-checkbox name="foo" disabled></iz-checkbox>
+    <button type="submit">submit</button>
+  </form>
+</body>
+</html>

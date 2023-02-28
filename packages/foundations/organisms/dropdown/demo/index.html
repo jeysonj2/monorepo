@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <section>
+    <fieldset>
+      <legend>Normal</legend>
+      <h4>Regular</h4>
+      <iz-dropdown>
+        <iz-option value="A">Item A</iz-option>
+        <iz-option value="B">Item B</iz-option>
+        <iz-option value="C">Item C</iz-option>
+        <iz-option value="D">Item D</iz-option>
+        <iz-option value="E">Item E</iz-option>
+        <iz-option value="F">Item F</iz-option>
+        <iz-option value="G">Item G</iz-option>
+        <iz-option value="H">Item H</iz-option>
+        <iz-option value="I">Item I</iz-option>
+        <iz-option value="J">Item J</iz-option>
+        <iz-option value="K">Item K</iz-option>
+        <iz-option value="L">Item L</iz-option>
+        <iz-option value="M">Item M</iz-option>
+        <iz-option value="N">Item N</iz-option>
+        <iz-option value="O">Item O</iz-option>
+      </iz-dropdown>
+
+      <h4>Multiple</h4>
+      <iz-dropdown multiple>
+        <iz-option value="A">Item A</iz-option>
+        <iz-option value="B">Item B</iz-option>
+        <iz-option value="C">Item C</iz-option>
+        <iz-option value="D">Item D</iz-option>
+        <iz-option value="E">Item E</iz-option>
+        <iz-option value="F">Item F</iz-option>
+        <iz-option value="G">Item G</iz-option>
+      </iz-dropdown>
+
+      <h4>Text</h4>
+      <iz-dropdown variant="text" multiple>
+        <iz-option value="A">Item A</iz-option>
+        <iz-option value="B">Item B</iz-option>
+        <iz-option value="C">Item C</iz-option>
+        <iz-option value="D">Item D</iz-option>
+        <iz-option value="E">Item E</iz-option>
+        <iz-option value="F">Item F</iz-option>
+        <iz-option value="G">Item G</iz-option>
+      </iz-dropdown>
+
+      <h4>Input</h4>
+      <iz-dropdown variant="input">
+        <iz-option value="A">Item A</iz-option>
+        <iz-option value="B">Item B</iz-option>
+        <iz-option value="C">Item C</iz-option>
+        <iz-option value="D">Item D</iz-option>
+        <iz-option value="E">Item E</iz-option>
+        <iz-option value="F">Item F</iz-option>
+        <iz-option value="G">Item G</iz-option>
+      </iz-dropdown>
+    </fieldset>
+    <fieldset>
+      <legend>Texts</legend>
+      <h4>Placeholder</h4>
+      <iz-dropdown variant="plain" placeholder="select something" multiple>
+        <iz-option value="A">Item A</iz-option>
+        <iz-option value="B">Item B</iz-option>
+        <iz-option value="C">Item C</iz-option>
+        <iz-option value="D">Item D</iz-option>
+        <iz-option value="E">Item E</iz-option>
+        <iz-option value="F">Item F</iz-option>
+        <iz-option value="G">Item G</iz-option>
+      </iz-dropdown>
+
+      <h4>FixedText</h4>
+      <iz-dropdown variant="plain" fixedText="IM FIXED" multiple>
+        <iz-option value="A">Item A</iz-option>
+        <iz-option value="B">Item B</iz-option>
+        <iz-option value="C">Item C</iz-option>
+        <iz-option value="D">Item D</iz-option>
+        <iz-option value="E">Item E</iz-option>
+        <iz-option value="F">Item F</iz-option>
+        <iz-option value="G">Item G</iz-option>
+      </iz-dropdown>
+    </fieldset>
+    <fieldset>
+      <legend>With default values</legend>
+      <h4>Regular</h4>
+      <iz-dropdown value="A">
+        <iz-option value="A">Item A</iz-option>
+        <iz-option value="B">Item B</iz-option>
+        <iz-option value="C">Item C</iz-option>
+        <iz-option value="D">Item D</iz-option>
+        <iz-option value="E">Item E</iz-option>
+        <iz-option value="F">Item F</iz-option>
+        <iz-option value="G">Item G</iz-option>
+        <iz-option value="H">Item H</iz-option>
+        <iz-option value="I">Item I</iz-option>
+        <iz-option value="J">Item J</iz-option>
+        <iz-option value="K">Item K</iz-option>
+        <iz-option value="L">Item L</iz-option>
+        <iz-option value="M">Item M</iz-option>
+        <iz-option value="N">Item N</iz-option>
+        <iz-option value="O">Item O</iz-option>
+      </iz-dropdown>
+
+      <h4>Multiple</h4>
+      <iz-dropdown multiple value="E,D,C">
+        <iz-option value="A">Item A</iz-option>
+        <iz-option value="B">Item B</iz-option>
+        <iz-option value="C">Item C</iz-option>
+        <iz-option value="D">Item D</iz-option>
+        <iz-option value="E">Item E</iz-option>
+        <iz-option value="F">Item F</iz-option>
+        <iz-option value="G">Item G</iz-option>
+      </iz-dropdown>
+    </fieldset>
+  </section>
+
+  <h4>Placement</h4>
+  <div class="center">
+    <iz-dropdown id="bottom-left" name="foo" multiple value="E,D,C" placement="bottom-left">
+      <iz-option value="A">Item A</iz-option>
+      <iz-option value="B">Item B</iz-option>
+      <iz-option value="C">Item C</iz-option>
+      <iz-option value="D">Item D</iz-option>
+      <iz-option value="E">Item E</iz-option>
+      <iz-option value="F">Item F</iz-option>
+      <iz-option value="G">Item G</iz-option>
+    </iz-dropdown>
+  </div>
+
+  <form>
+    <iz-dropdown name="foo" multiple value="E,D,C" placement="top-right">
+      <iz-option value="A">Item A</iz-option>
+      <iz-option value="B">Item B</iz-option>
+      <iz-option value="C">Item C</iz-option>
+      <iz-option value="D">Item D</iz-option>
+      <iz-option value="E">Item E</iz-option>
+      <iz-option value="F">Item F</iz-option>
+      <iz-option value="G">Item G</iz-option>
+    </iz-dropdown>
+
+    <iz-dropdown name="bar" multiple value="P,K,E" placement="top-right">
+      <iz-option value="A">Item A</iz-option>
+      <iz-option value="B">Item B</iz-option>
+      <iz-option value="C">Item C</iz-option>
+      <iz-option value="D">Item D</iz-option>
+      <iz-option value="E">Item E</iz-option>
+      <iz-option value="F">Item F</iz-option>
+      <iz-option value="G">Item G</iz-option>
+    </iz-dropdown>
+  </form>
+</body>
+</html>

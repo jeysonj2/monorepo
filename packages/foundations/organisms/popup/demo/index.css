@@ -1,0 +1,14 @@
+fieldset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div {
+  position: relative;
+}
+.parent {
+  width: 600px;
+  height: 600px;
+  outline: 2px solid cornflowerblue;
+}
