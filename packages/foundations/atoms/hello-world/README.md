@@ -1,21 +1,21 @@
-# \<@izwc/izwc-hello-world>
+# \<@interzero/hello-world>
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
 
 ```bash
-npm i @izwc/izwc-hello-world
+npm i @interzero/hello-world
 ```
 
 ## Usage
 
 ```html
 <script type="module">
-  import '@izwc/izwc-hello-world/izwc-hello-world.js';
+  import '@interzero/hello-world';
 </script>
 
-<izwc-hello-world></izwc-hello-world>
+<iz-hello-world></iz-hello-world>
 ```
 
 ## Linting and formatting

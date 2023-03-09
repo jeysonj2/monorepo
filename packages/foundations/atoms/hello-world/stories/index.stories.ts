@@ -1,9 +1,9 @@
 import { html, TemplateResult } from 'lit';
-import '../src/izwc-hello-world.js';
+import '../src/hello-world.js';
 
 export default {
-  title: 'IzwcHelloWorld',
-  component: 'izwc-hello-world',
+  title: 'HelloWorld',
+  component: 'iz-hello-world',
   argTypes: {
     header: { control: 'text' },
     counter: { control: 'number' },
@@ -30,13 +30,13 @@ const Template: Story<ArgTypes> = ({
   textColor,
   slot,
 }: ArgTypes) => html`
-  <izwc-hello-world
-    style="--izwc-hello-world-text-color: ${textColor || 'black'}"
+  <iz-hello-world
+    style="--hello-world-text-color: ${textColor || 'black'}"
     .header=${header}
     .counter=${counter}
   >
     ${slot}
-  </izwc-hello-world>
+  </iz-hello-world>
 `;
 
 export const Regular = Template.bind({});

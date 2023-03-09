@@ -1,39 +1,149 @@
-const prompts = require('prompts');
-const path = require('path');
-const fs = require('fs');
+import prompts from 'prompts';
+import { resolve } from 'path';
+import { mkdirSync, existsSync, writeFileSync } from 'fs';
+import {
+  DEFAULT_TAG_PREFIX,
+  DEFAULT_ORGANIZATION,
+  ATOMIC_TYPES,
+  VARS_TO_EXPORT,
+  PACKAGES_PATH,
+  PACKAGES_GROUPS,
+  PACKAGES_GROUPS_CONFIG,
+  PACKAGES_GROUPS_CHOICES,
+  onCancel,
+  savePackagesGroupsConfig,
+  isPackagesGroupsTagPrefixUsed,
+  isPackagesGroupsOrganizationUsed,
+  getFilenameDirname,
+  trimRightDashes,
+} from './new-wc-globals.js';
 
-const TAG_PREFIX = 'izwc-';
-const ATOMIC_TYPES = ['atoms', 'molecules', 'organisms', 'templates', 'pages'];
+const { __dirname } = getFilenameDirname(import.meta);
 
-const VARS_TO_EXPORT = new Map([
-  ['WC_NAME', ''],
-  ['WC_TAG', TAG_PREFIX],
-  ['WC_PATH', ''],
-  ['WC_ATOMIC_TYPE', ATOMIC_TYPES[0]],
-  ['WC_ATOMIC_TYPE_PATH', ''],
-  ['WC_TYPESCRIPT', 'true'],
-]);
+let finalTagPrefix = `${trimRightDashes(DEFAULT_TAG_PREFIX)}-`;
 
-const PACKAGE_PATH = '../packages';
+let finalOrganization = trimRightDashes(DEFAULT_ORGANIZATION);
 
+const atomicTypesChoices = ATOMIC_TYPES.map(atomicType => ({
+  title: atomicType,
+  value: atomicType,
+}));
+
+// Regex to check if a string is valid with following conditions: it must be lowercase, alphanumeric, can contain hyphen, can't start with a number and can't finish with a hyphen
+// Thanks to ChatGPT
+const VALID_TAG_NAME_REGEX = /^(?!^[0-9])[\da-z]+(?:-[\da-z]+)*[^\W_](?<!-)$/g;
+const VALID_TAG_NAME_TEXT = 'It must be lowercase, alphanumeric, can contain hyphen, can\'t start with a number or hyphen and can\'t finish with a hyphen';
+
+// The questions to ask related to the package group
+const packageGroupQuestions = [
+  // Select the package group
+  {
+    type: 'select',
+    name: 'packageGroup',
+    message: 'Which package group do you want to add the new component to?',
+    choices: PACKAGES_GROUPS_CHOICES,
+  },
+  // If the user wants to create a new package group, the user selected 'new' in the previous question
+  {
+    type: 'text',
+    name: 'newPackageGroup',
+    message: 'Enter the name of the new package group (e.g. my-package-group) (leave empty to cancel):',
+    validate: value => {
+      if (!value) {
+        return true;
+      }
+
+      // Checking the value is valid
+      if (!value.match(VALID_TAG_NAME_REGEX)) {
+        return `Please enter a valid package group name (e.g. my-package-group). ${VALID_TAG_NAME_TEXT}`;
+      }
+
+      // Check if the package group already exists
+      if (PACKAGES_GROUPS.includes(value)) {
+        return 'The package group already exists';
+      }
+
+      return true;
+    },
+  },
+  // Choose the tag prefix for the new package group
+  {
+    type: 'text',
+    name: 'newPackageGroupTagPrefix',
+    message: '',
+    onRender(color) {
+      // Trimming the last hyphens from the default tag prefix
+      const defaultTagPrefixColor = color.cyan(finalTagPrefix);
+      this.msg = `Enter the tag prefix for the new package group, the default prefix will be added, e.g. my -> ${defaultTagPrefixColor}my (leave empty to use the default: ${defaultTagPrefixColor}):`;
+    },
+    validate: value => {
+      if (!value) {
+        return true;
+      }
+
+      // Checking the value is valid
+      if (!value.match(VALID_TAG_NAME_REGEX)) {
+        return `Please enter a valid tag prefix (e.g. my). ${VALID_TAG_NAME_TEXT}`;
+      }
+
+      // Check if the tag prefix already exists
+      if (isPackagesGroupsTagPrefixUsed(value)) {
+        return 'The tag prefix already exists';
+      }
+
+      return true;
+    },
+  },
+  // Choose the organization for the new package group
+  {
+    type: 'text',
+    name: 'newPackageGroupOrganization',
+    message: '',
+    onRender(color) {
+      const defaultOrganization = trimRightDashes(finalOrganization);
+      const defaultOrganizationColor = color.cyan(`${defaultOrganization}-`);
+      const defaultOrganizationColorNoDash = color.cyan(defaultOrganization);
+      this.msg = `Enter the organization for the new package group, the default organization will be added, e.g. foundations -> ${defaultOrganizationColor}foundations (leave empty to use the default: ${defaultOrganizationColorNoDash}):`;
+    },
+    validate: value => {
+      if (!value) {
+        return true;
+      }
+
+      // Checking the value is valid
+      if (!value.match(VALID_TAG_NAME_REGEX)) {
+        return `Please enter a valid organization (e.g. foundations). ${VALID_TAG_NAME_TEXT}`;
+      }
+
+      // Check if the organization already exists
+      if (isPackagesGroupsOrganizationUsed(value)) {
+        return 'The organization already exists';
+      }
+
+      return true;
+    },
+  },
+];
+
+// The questions to ask related to the new web component
 const questions = [
   {
     type: 'select',
     name: 'atomicType',
     message: 'What is the atomic type of the new component?',
-    choices: ATOMIC_TYPES.map(type => ({ title: type, value: type })),
+    choices: atomicTypesChoices,
   },
   {
     type: 'text',
     name: 'name',
     message: '',
     onRender(color) {
-      const prefix = color.cyan(TAG_PREFIX);
+      const prefix = color.cyan(finalTagPrefix);
       const spaces = color.red('Spaces');
       const hyphens = color.cyan('hyphens');
       const lowercase = color.cyan('lowercase');
 
-      msg = `\n- ${prefix} will be used as the tag prefix (e.g. my-component -> ${prefix}my-component)`;
+      let msg = `\n- ${prefix} will be used as the tag prefix (e.g. my-component -> ${prefix}my-component)`;
       msg += `\n- ${spaces} will be replaced by ${hyphens}`;
       msg += `\n- The name will be forced to ${lowercase}`;
       msg += `\n-\n- Enter your new web component\'s name?`;
@@ -98,37 +208,117 @@ function isValidName(name) {
 }
 
 (async () => {
+  // Ask the questions related to the package group
+  let finalPackageGroup = '';
+  let finalPackageGroupTagPrefix = '';
+  let finalPackageGroupOrganization = '';
+
+  // Ask for the package group
+  while (!finalPackageGroup) {
+    const { packageGroup } = await prompts([packageGroupQuestions[0]], { onCancel });
+
+    // If the user selected 'new', ask for the name of the new package group
+    if (packageGroup === 'new') {
+      const { newPackageGroup } = await prompts([packageGroupQuestions[1]], { onCancel });
+
+      if (newPackageGroup) {
+        finalPackageGroup = newPackageGroup;
+
+        // Ask for the tag prefix and organization
+        const { newPackageGroupTagPrefix, newPackageGroupOrganization } = await prompts(packageGroupQuestions.slice(2), { onCancel });
+        finalPackageGroupTagPrefix = newPackageGroupTagPrefix;
+        finalPackageGroupOrganization = newPackageGroupOrganization;
+
+        // Adding the package group tag prefix to the final tag prefix
+        if (finalPackageGroupTagPrefix) {
+          finalTagPrefix += `${trimRightDashes(finalPackageGroupTagPrefix)}-`;
+        }
+
+        // Adding the package group organization to the final organization
+        if (finalPackageGroupOrganization) {
+          finalOrganization += `-${finalPackageGroupOrganization}`;
+        }
+      }
+    }
+    else {
+      finalPackageGroup = packageGroup;
+
+      // Get the tag prefix and organization from the selected package group
+      const selectedPackageGroup = PACKAGES_GROUPS_CONFIG[packageGroup] || {};
+      finalPackageGroupTagPrefix = selectedPackageGroup.tagPrefix || finalTagPrefix;
+      finalPackageGroupOrganization = selectedPackageGroup.organization || finalOrganization;
+
+      finalTagPrefix = `${trimRightDashes(finalPackageGroupTagPrefix)}-`;
+      finalOrganization = trimRightDashes(finalPackageGroupOrganization);
+    }
+  }
+
+  let packageGroupPath = `${PACKAGES_PATH}`;
+
+  // If the selected package group is not empty, and it doesn't exist, create it, ask for confirmation
+  if (finalPackageGroup !== 'empty') {
+    // Create the package group
+    packageGroupPath = `${PACKAGES_PATH}/${finalPackageGroup}`;
+
+    // Check if the package group exists, otherwise create it
+    if (!PACKAGES_GROUPS.includes(finalPackageGroup)) {
+      const response = await prompts({
+        type: 'confirm',
+        name: 'createPackageGroup',
+        message: `The package group '${finalPackageGroup}' doesn't exist. Do you want to create it?`,
+        initial: true,
+      }, { onCancel });
+
+      if (!response.createPackageGroup) {
+        onCancel();
+      }
+
+      const packageGroupAbsolutePath = resolve(__dirname, packageGroupPath);
+      mkdirSync(packageGroupAbsolutePath);
+      console.log(`\n✅ Created package group '${finalPackageGroup}' at '${packageGroupAbsolutePath}'\n`);
+
+      // Save the new package group in the config file
+      const packagesGroupsConfig = {
+        ...PACKAGES_GROUPS_CONFIG,
+        [finalPackageGroup]: {
+          tagPrefix: finalTagPrefix,
+          organization: finalOrganization,
+        },
+      };
+      savePackagesGroupsConfig(packagesGroupsConfig);
+    }
+  }
+
   // Ask the questions
-  const response = await prompts(questions, {
-    onCancel: () => {
-      process.exit();
-    },
-  });
+  const response = await prompts(questions, { onCancel });
 
   // Format the response
   response.name = response.name.replace(/\s/g, '-').toLowerCase();
-  response.tag = TAG_PREFIX + response.name;
+  response.organization = finalOrganization;
+  response.tagPrefix = finalTagPrefix;
+  response.tag = response.name;
   response.atomicType = response.atomicType;
 
   // Check if the path already exists in any of the atomic types
   ATOMIC_TYPES.forEach(type => {
-    const relativePath = `${PACKAGE_PATH}/${type}/${response.name}`;
-    const absolutePath = path.resolve(__dirname, relativePath);
+    const relativePath = `${packageGroupPath}/${type}/${response.name}`;
+    const absolutePath = resolve(__dirname, relativePath);
 
-    if (fs.existsSync(absolutePath)) {
+    if (existsSync(absolutePath)) {
       console.error(`The package '${response.name}' already exists.\nPath: ${absolutePath}`);
       process.exit(1);
     }
   });
 
   // Getting the new web component's path
-  const atomicTypePath = `${PACKAGE_PATH}/${response.atomicType}`;
-  const atomicTypeAbsolutePath = path.resolve(__dirname, atomicTypePath);
-  const wcPath = `${atomicTypePath}/${response.name}`;
-  const wcAbsolutePath = path.resolve(__dirname, wcPath);
+  const IZWC_PACKAGE_ATOMIC_PATH = `${packageGroupPath}/${response.atomicType}`;
+  const IZWC_ATOMIC_TYPE_PATH = resolve(__dirname, IZWC_PACKAGE_ATOMIC_PATH);
+  const wcPath = `${IZWC_PACKAGE_ATOMIC_PATH}/${response.name}`;
+  const IZWC_PATH = resolve(__dirname, wcPath);
+  const IZWC_PACKAGE_GROUP = finalPackageGroup === 'empty' ? '' : finalPackageGroup;
 
   // Showing a summary of the new component
-  console.log(`\nNew web component:\n- Tag: ${response.tag}\n- Path: ${wcAbsolutePath}\n- Typescript: ${response.useTypescript ? 'yes' : 'no'}\n`);
+  console.log(`\nNew web component:\n- Organization: ${response.organization}\n- Name: ${response.name}\n- Tag: ${response.tagPrefix}${response.tag}\n- Path: ${IZWC_PATH}\n- Typescript: ${response.useTypescript ? 'yes' : 'no'}\n`);
 
   // Ask for confirmation
   const confirmation = await prompts({
@@ -136,11 +326,7 @@ function isValidName(name) {
     name: 'value',
     message: 'Is this correct?',
     initial: true,
-  }, {
-    onCancel: () => {
-      process.exit();
-    },
-  });
+  }, { onCancel });
 
   // If the user doesn't confirm, exit the script
   if (!confirmation.value) {
@@ -148,12 +334,16 @@ function isValidName(name) {
   }
 
   // Set the variables to export
-  VARS_TO_EXPORT.set('WC_NAME', response.name);
-  VARS_TO_EXPORT.set('WC_TAG', response.tag);
-  VARS_TO_EXPORT.set('WC_PATH', wcAbsolutePath);
-  VARS_TO_EXPORT.set('WC_ATOMIC_TYPE', response.atomicType);
-  VARS_TO_EXPORT.set('WC_ATOMIC_TYPE_PATH', atomicTypeAbsolutePath);
-  VARS_TO_EXPORT.set('WC_TYPESCRIPT', response.useTypescript);
+  VARS_TO_EXPORT.set('IZWC_ORGANIZATION', response.organization);
+  VARS_TO_EXPORT.set('IZWC_NAME', response.name);
+  VARS_TO_EXPORT.set('IZWC_TAG_PREFIX', response.tagPrefix);
+  VARS_TO_EXPORT.set('IZWC_TAG', response.tag);
+  VARS_TO_EXPORT.set('IZWC_PATH', IZWC_PATH);
+  VARS_TO_EXPORT.set('IZWC_ATOMIC_TYPE', response.atomicType);
+  VARS_TO_EXPORT.set('IZWC_ATOMIC_TYPE_PATH', IZWC_ATOMIC_TYPE_PATH);
+  VARS_TO_EXPORT.set('IZWC_TYPESCRIPT', response.useTypescript);
+  VARS_TO_EXPORT.set('IZWC_PACKAGE_GROUP', IZWC_PACKAGE_GROUP);
+  VARS_TO_EXPORT.set('IZWC_PACKAGE_ATOMIC_PATH', IZWC_PACKAGE_ATOMIC_PATH);
 
   // Export the variables to the .new-wc-env.sh file
   const envFile = './.new-wc-env.sh';
@@ -161,7 +351,7 @@ function isValidName(name) {
     .map(([key, value]) => `export ${key}="${value}"`)
     .join('\n');
 
-  fs.writeFileSync(envFile, envFileContent);
+  writeFileSync(envFile, envFileContent);
 
   // Exit the script
   process.exit(0);

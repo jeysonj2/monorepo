@@ -1,12 +1,12 @@
 import { html } from 'lit';
 import { fixture, expect } from '@open-wc/testing';
-import { IzwcHelloWorld } from '../src/IzwcHelloWorld.js';
-import '../src/izwc-hello-world.js';
+import { HelloWorld } from '../src/HelloWorld.js';
+import '../src/hello-world.js';
 
-describe('IzwcHelloWorld', () => {
+describe('HelloWorld', () => {
   it('has a default header "Hey there" and counter 1', async () => {
-    const el = await fixture<IzwcHelloWorld>(
-      html`<izwc-hello-world></izwc-hello-world>`
+    const el = await fixture<HelloWorld>(
+      html`<iz-hello-world></iz-hello-world>`
     );
 
     expect(el.header).to.equal('Hey there');
@@ -14,8 +14,8 @@ describe('IzwcHelloWorld', () => {
   });
 
   it('increases the counter on button click', async () => {
-    const el = await fixture<IzwcHelloWorld>(
-      html`<izwc-hello-world></izwc-hello-world>`
+    const el = await fixture<HelloWorld>(
+      html`<iz-hello-world></iz-hello-world>`
     );
     el.shadowRoot!.querySelector('button')!.click();
 
@@ -23,16 +23,16 @@ describe('IzwcHelloWorld', () => {
   });
 
   it('can override the header via attribute', async () => {
-    const el = await fixture<IzwcHelloWorld>(
-      html`<izwc-hello-world header="attribute header"></izwc-hello-world>`
+    const el = await fixture<HelloWorld>(
+      html`<iz-hello-world header="attribute header"></iz-hello-world>`
     );
 
     expect(el.header).to.equal('attribute header');
   });
 
   it('passes the a11y audit', async () => {
-    const el = await fixture<IzwcHelloWorld>(
-      html`<izwc-hello-world></izwc-hello-world>`
+    const el = await fixture<HelloWorld>(
+      html`<iz-hello-world></iz-hello-world>`
     );
 
     await expect(el).shadowDom.to.be.accessible();

@@ -6,7 +6,9 @@
     "new-wc": "cd ./scripts && ./new-wc.sh"
   },
   "private": true,
+  "type": "module",
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "lerna": "^6.5.1",
     "nx": "15.7.1",
     "prettier": "^2.6.2",

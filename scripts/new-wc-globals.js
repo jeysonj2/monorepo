@@ -1,0 +1,180 @@
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { readdirSync, statSync, existsSync, readFileSync, writeFileSync } from 'fs';
+
+function getFilenameDirname(meta) {
+  const __filename = fileURLToPath(meta.url);
+
+  const __dirname = dirname(__filename);
+
+  return { __dirname, __filename };
+}
+
+const { __dirname } = getFilenameDirname(import.meta);
+
+// Load the .env file
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+// Trim right dashes from a string
+const trimRightDashes = (str) => str.replace(/-+$/, '');
+
+const ON_CANCEL_EXIT_CODE = 89;
+
+const onCancel = () => {
+  console.log('\nThanks for using the script!  👋\n');
+  process.exit(ON_CANCEL_EXIT_CODE);
+};
+
+const DEFAULT_ORGANIZATION = process.env.DEFAULT_ORGANIZATION || '@interzero';
+
+const DEFAULT_TAG_PREFIX = process.env.DEFAULT_TAG_PREFIX || 'iz';
+
+const ATOMIC_TYPES = process.env.ATOMIC_TYPES ? process.env.ATOMIC_TYPES.split(',').map(t => t.trim()) : ['atoms', 'molecules', 'organisms', 'templates', 'pages'];
+
+const PACKAGES_PATH = process.env.PACKAGES_PATH || '../packages';
+
+const VARS_TO_EXPORT = new Map([
+  ['IZWC_ORGANIZATION', DEFAULT_ORGANIZATION],
+  ['IZWC_NAME', ''],
+  ['IZWC_TAG_PREFIX', DEFAULT_TAG_PREFIX],
+  ['IZWC_TAG', ''],
+  ['IZWC_PATH', PACKAGES_PATH],
+  ['IZWC_ATOMIC_TYPE', ATOMIC_TYPES[0]],
+  ['IZWC_ATOMIC_TYPE_PATH', ''],
+  ['IZWC_TYPESCRIPT', 'true'],
+  ['IZWC_PACKAGE_GROUP', ''],
+  ['IZWC_PACKAGE_ATOMIC_PATH', ATOMIC_TYPES[0]],
+]);
+
+// Get the existing package groups
+const getPackagesGroups = () => {
+  // Reading the subdirectories of PACKAGE_PATH
+  const packagesContent = readdirSync(resolve(__dirname, PACKAGES_PATH));
+  // Filter out files and only keep directories
+  let packagesGroups = packagesContent.filter(file => statSync(resolve(__dirname, `${PACKAGES_PATH}/${file}`)).isDirectory());
+  // Filter out the directories that are atomic types
+  packagesGroups = packagesGroups.filter(dir => !ATOMIC_TYPES.includes(dir));
+
+  return packagesGroups;
+};
+
+const PACKAGES_GROUPS_CONFIG_FILE = '.new-wc-package-group.json';
+
+// Get the existing package groups config
+const getPackagesGroupsConfig = () => {
+  // Reading file PACKAGES_GROUPS_CONFIG_FILE, if it exists
+  /**
+   * File example:
+   * {
+   *   "my-package-group": {
+   *     "tagPrefix": "my",
+   *     "organization": "@my-organization"
+   *   },
+   *   "my-other-package-group": {
+   *     "tagPrefix": "myo",
+   *     "organization": "@my-other-organization"
+   *   }
+   * }
+   */
+  const filePath = resolve(__dirname, PACKAGES_GROUPS_CONFIG_FILE);
+  let packagesGroupsConfig = {};
+
+  if (existsSync(filePath)) {
+    const packageGroupFile = readFileSync(filePath, 'utf8');
+    packagesGroupsConfig = JSON.parse(packageGroupFile || '{}');
+  }
+
+  return packagesGroupsConfig;
+};
+
+const PACKAGES_GROUPS = getPackagesGroups();
+let PACKAGES_GROUPS_CONFIG = getPackagesGroupsConfig();
+
+// Save the packages groups config
+const savePackagesGroupsConfig = (packagesGroupsConfig) => {
+  const filePath = resolve(__dirname, PACKAGES_GROUPS_CONFIG_FILE);
+  const fileContent = JSON.stringify(packagesGroupsConfig, null, 2);
+
+  writeFileSync(filePath, fileContent);
+
+  console.log(`\n✅ Saved the packages groups config in ${filePath}\n`);
+};
+
+// Syncronize the packages groups config with the existing packages groups
+let syncPackagesGroupsConfig = {};
+let hasPackagesGroupsConfigChanged = false;
+// Loop through the existing packages groups
+PACKAGES_GROUPS.forEach((group) => {
+  if (!PACKAGES_GROUPS_CONFIG[group]) {
+    hasPackagesGroupsConfigChanged = true;
+  }
+
+  // Check if the group is already in the packages groups config, if not add it
+  syncPackagesGroupsConfig[group] = PACKAGES_GROUPS_CONFIG[group] || {
+    tagPrefix: `${trimRightDashes(DEFAULT_TAG_PREFIX)}-${trimRightDashes(group)}-`,
+    organization: `${trimRightDashes(DEFAULT_ORGANIZATION)}-${trimRightDashes(group)}`,
+  };
+});
+
+// Save the packages groups config if it has changed or if the lengths are different
+if (hasPackagesGroupsConfigChanged || Object.keys(syncPackagesGroupsConfig).length !== Object.keys(PACKAGES_GROUPS_CONFIG).length) {
+  savePackagesGroupsConfig(syncPackagesGroupsConfig);
+  PACKAGES_GROUPS_CONFIG = syncPackagesGroupsConfig;
+}
+
+// Get the packages groups choices for prompts
+const getPackagesGroupsChoices = () => {
+  const packagesGroupsChoices = PACKAGES_GROUPS.map(group => ({ title: group, value: group }));
+  // Add the option to create a new package group
+  packagesGroupsChoices.push({ title: 'Create a new package group', value: 'new' });
+  // Add the option to leave the package group empty
+  packagesGroupsChoices.push({ title: 'Leave empty', value: 'empty' });
+
+  return packagesGroupsChoices;
+};
+
+const PACKAGES_GROUPS_CHOICES = getPackagesGroupsChoices();
+
+// Check if a tag prefix is already used in the package groups config
+const isPackagesGroupsTagPrefixUsed = (tagPrefix) => {
+  const packagesGroupsConfig = PACKAGES_GROUPS_CONFIG || getPackagesGroupsConfig();
+  const packagesGroups = Object.keys(packagesGroupsConfig);
+
+  return packagesGroups.some(group => packagesGroupsConfig[group].tagPrefix === tagPrefix);
+};
+
+// Check if an organization is already used in the package groups config
+const isPackagesGroupsOrganizationUsed = (organization) => {
+  const packagesGroupsConfig = PACKAGES_GROUPS_CONFIG || getPackagesGroupsConfig();
+  const packagesGroups = Object.keys(packagesGroupsConfig);
+
+  return packagesGroups.some(group => packagesGroupsConfig[group].organization === organization);
+};
+
+const arePackagesGroupsConfigUsed = ({ tagPrefix, organization }) => {
+  return isPackagesGroupsTagPrefixUsed(tagPrefix) || isPackagesGroupsOrganizationUsed(organization);
+};
+
+// Export the variables
+export {
+  ON_CANCEL_EXIT_CODE,
+  DEFAULT_TAG_PREFIX,
+  DEFAULT_ORGANIZATION,
+  ATOMIC_TYPES,
+  VARS_TO_EXPORT,
+  PACKAGES_PATH,
+  PACKAGES_GROUPS,
+  PACKAGES_GROUPS_CONFIG,
+  PACKAGES_GROUPS_CHOICES,
+  onCancel,
+  getPackagesGroups,
+  getPackagesGroupsConfig,
+  savePackagesGroupsConfig,
+  isPackagesGroupsTagPrefixUsed,
+  isPackagesGroupsOrganizationUsed,
+  arePackagesGroupsConfigUsed,
+  getPackagesGroupsChoices,
+  getFilenameDirname,
+  trimRightDashes,
+};

@@ -1,15 +1,15 @@
 {
-  "name": "@izwc/izwc-hello-world",
-  "description": "Webcomponent izwc-hello-world following open-wc recommendations",
+  "name": "@interzero/hello-world",
+  "description": "Webcomponent iz-hello-world following open-wc recommendations",
   "license": "MIT",
-  "author": "izwc-hello-world",
-  "version": "0.1.2",
+  "author": "@interzero/hello-world",
+  "version": "0.0.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "exports": {
-    ".": "./dist/src/index.js",
-    "./izwc-hello-world.js": "./dist/src/izwc-hello-world.js"
+    "./HelloWorld.js": "./dist/src/index.js",
+    ".": "./dist/src/hello-world.js"
   },
   "scripts": {
     "analyze": "cem analyze --litelement",
