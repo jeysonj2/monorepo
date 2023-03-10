@@ -29,7 +29,7 @@ else
 fi
 
 # Run the open-wc command with the arguments passed to this script
-npm init -w packages/$IZWC_PACKAGE_ATOMIC_PATH @izwc@latest -- --organization $IZWC_ORGANIZATION --destinationPath $IZWC_PATH \
+npm init -w packages/$IZWC_PACKAGE_ATOMIC_PATH @interzero@latest -- --organization $IZWC_ORGANIZATION --destinationPath $IZWC_PATH \
   --type scaffold --scaffoldType wc --features linting testing demoing --typescript $IZWC_TYPESCRIPT \
   --tagPrefix $IZWC_TAG_PREFIX --tagName $IZWC_TAG --writeToDisk true --installDependencies npm
 
