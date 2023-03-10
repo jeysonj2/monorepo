@@ -1,11 +1,12 @@
-import { resolve, dirname } from 'path';
+import fs from 'fs';
+import path from 'path';
 import { fileURLToPath } from 'url';
 import { readdirSync, statSync, existsSync, readFileSync, writeFileSync } from 'fs';
 
 function getFilenameDirname(meta) {
   const __filename = fileURLToPath(meta.url);
 
-  const __dirname = dirname(__filename);
+  const __dirname = path.dirname(__filename);
 
   return { __dirname, __filename };
 }
@@ -50,9 +51,9 @@ const VARS_TO_EXPORT = new Map([
 // Get the existing package groups
 const getPackagesGroups = () => {
   // Reading the subdirectories of PACKAGE_PATH
-  const packagesContent = readdirSync(resolve(__dirname, PACKAGES_PATH));
+  const packagesContent = readdirSync(path.resolve(__dirname, PACKAGES_PATH));
   // Filter out files and only keep directories
-  let packagesGroups = packagesContent.filter(file => statSync(resolve(__dirname, `${PACKAGES_PATH}/${file}`)).isDirectory());
+  let packagesGroups = packagesContent.filter(file => statSync(path.resolve(__dirname, `${PACKAGES_PATH}/${file}`)).isDirectory());
   // Filter out the directories that are atomic types
   packagesGroups = packagesGroups.filter(dir => !ATOMIC_TYPES.includes(dir));
 
@@ -77,7 +78,7 @@ const getPackagesGroupsConfig = () => {
    *   }
    * }
    */
-  const filePath = resolve(__dirname, PACKAGES_GROUPS_CONFIG_FILE);
+  const filePath = path.resolve(__dirname, PACKAGES_GROUPS_CONFIG_FILE);
   let packagesGroupsConfig = {};
 
   if (existsSync(filePath)) {
@@ -93,7 +94,7 @@ let PACKAGES_GROUPS_CONFIG = getPackagesGroupsConfig();
 
 // Save the packages groups config
 const savePackagesGroupsConfig = (packagesGroupsConfig) => {
-  const filePath = resolve(__dirname, PACKAGES_GROUPS_CONFIG_FILE);
+  const filePath = path.resolve(__dirname, PACKAGES_GROUPS_CONFIG_FILE);
   const fileContent = JSON.stringify(packagesGroupsConfig, null, 2);
 
   writeFileSync(filePath, fileContent);
@@ -156,6 +157,42 @@ const arePackagesGroupsConfigUsed = ({ tagPrefix, organization }) => {
   return isPackagesGroupsTagPrefixUsed(tagPrefix) || isPackagesGroupsOrganizationUsed(organization);
 };
 
+// Find package.json files in the packages directory which contain a search string
+const findPackageJsonFiles = (searchName, dir = PACKAGES_PATH, depth = 0) => {
+  if (!dir || !searchName || depth > 3 || !fs.existsSync(dir)) {
+    return [];
+  }
+
+  let results = [];
+  const toIgnore = ['node_modules', 'coverage', 'dist', 'src', 'test', 'storybook-static'];
+
+  fs.readdirSync(dir).forEach(file => {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+
+    // Ignorar directorios del sistema
+    if (file.startsWith('.') || toIgnore.includes(file)) {
+      return;
+    }
+
+    if (stat && stat.isDirectory()) {
+      results = [...results, ...findPackageJsonFiles(searchName, filePath, depth + 1)];
+    } else {
+      if (file === 'package.json') {
+        const content = fs.readFileSync(filePath);
+        const json = JSON.parse(content);
+        const name = json.name || '';
+
+        if (name === searchName) {
+          results.push(filePath);
+        }
+      }
+    }
+  });
+
+  return results;
+};
+
 // Export the variables
 export {
   ON_CANCEL_EXIT_CODE,
@@ -177,4 +214,5 @@ export {
   getPackagesGroupsChoices,
   getFilenameDirname,
   trimRightDashes,
+  findPackageJsonFiles,
 };

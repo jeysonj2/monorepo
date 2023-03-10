@@ -1,6 +1,6 @@
 import prompts from 'prompts';
 import { resolve } from 'path';
-import { mkdirSync, existsSync, writeFileSync } from 'fs';
+import { mkdirSync, writeFileSync } from 'fs';
 import {
   DEFAULT_TAG_PREFIX,
   DEFAULT_ORGANIZATION,
@@ -16,6 +16,7 @@ import {
   isPackagesGroupsOrganizationUsed,
   getFilenameDirname,
   trimRightDashes,
+  findPackageJsonFiles,
 } from './new-wc-globals.js';
 
 const { __dirname } = getFilenameDirname(import.meta);
@@ -299,16 +300,13 @@ function isValidName(name) {
   response.tag = response.name;
   response.atomicType = response.atomicType;
 
-  // Check if the path already exists in any of the atomic types
-  ATOMIC_TYPES.forEach(type => {
-    const relativePath = `${packageGroupPath}/${type}/${response.name}`;
-    const absolutePath = resolve(__dirname, relativePath);
-
-    if (existsSync(absolutePath)) {
-      console.error(`The package '${response.name}' already exists.\nPath: ${absolutePath}`);
-      process.exit(1);
-    }
-  });
+  // Check if the package already exists
+  const searchName = `${response.organization}/${response.tag}`;
+  const packagesFound = findPackageJsonFiles(searchName);
+  if (packagesFound.length) {
+    console.error(`\n❌💥 The package '${searchName}' already exists.\nPath: ${packagesFound.reduce((acc, curr) => `${acc}\n${curr}`)}\n`);
+    process.exit(1);
+  }
 
   // Getting the new web component's path
   const IZWC_PACKAGE_ATOMIC_PATH = `${packageGroupPath}/${response.atomicType}`;
