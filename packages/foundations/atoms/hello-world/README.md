@@ -5,7 +5,7 @@ This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) reco
 ## Installation
 
 ```bash
-npm i @interzero/hello-world
+npm install @interzero/hello-world
 ```
 
 ## Usage
