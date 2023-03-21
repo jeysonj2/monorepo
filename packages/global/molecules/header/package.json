@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-global/header following open-wc recommendations. HTML Tag: iz-global-header",
   "license": "MIT",
   "author": "@interzero-global/header",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -24,14 +24,14 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-global/language-select": "^1.1.2",
-    "@interzero-global/logo": "^1.1.2",
-    "@interzero-global/user-menu": "^1.1.2",
-    "@interzero-icons/icon-home": "^1.1.2",
-    "@interzero-tools/translate": "^1.1.2",
-    "@interzero/button": "^1.1.2",
-    "@interzero/menu": "^1.1.2",
-    "@interzero/menu-item": "^1.1.2",
+    "@interzero-global/language-select": "^1.2.0",
+    "@interzero-global/logo": "^1.2.0",
+    "@interzero-global/user-menu": "^1.2.0",
+    "@interzero-icons/icon-home": "^1.2.0",
+    "@interzero-tools/translate": "^1.2.0",
+    "@interzero/button": "^1.2.0",
+    "@interzero/menu": "^1.2.0",
+    "@interzero/menu-item": "^1.2.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

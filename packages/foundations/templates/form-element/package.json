@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero/form-element following open-wc recommendations. HTML Tag: iz-form-element",
   "license": "MIT",
   "author": "@interzero/form-element",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",

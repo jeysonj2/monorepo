@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero/dropdown-button following open-wc recommendations. HTML Tag: iz-dropdown-button",
   "license": "MIT",
   "author": "@interzero/dropdown-button",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -24,8 +24,8 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-icons/icon-caret": "^1.1.2",
-    "@interzero/button": "^1.1.2",
+    "@interzero-icons/icon-caret": "^1.2.0",
+    "@interzero/button": "^1.2.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {
