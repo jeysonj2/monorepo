@@ -1,0 +1,22 @@
+{
+  "foundations": {
+    "tagPrefix": "iz-",
+    "organization": "@interzero"
+  },
+  "global": {
+    "tagPrefix": "iz-global-",
+    "organization": "@interzero-global"
+  },
+  "icons": {
+    "tagPrefix": "iz-",
+    "organization": "@interzero-icons"
+  },
+  "pmp": {
+    "tagPrefix": "iz-pmp-",
+    "organization": "@interzero-pmp"
+  },
+  "tools": {
+    "tagPrefix": "iz-",
+    "organization": "@interzero-tools"
+  }
+}

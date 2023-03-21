@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <button id="popover1">Regular</button>
+  <!-- <iz-popover target="#popover1">
+    Popover body content
+  </iz-popover> -->
+
+  <iz-button id="popover1b">Full</iz-button>
+  <iz-popover target="#popover1b">
+    <div class="card">
+      <header>
+        <h5>Im the header!</h5>
+        <button>X</button>
+      </header>
+      <div>
+        <p>Some body content with some "fruits"!</p>
+        <ul>
+          <li>bananas (actually a berry)</li>
+          <li>apples</li>
+          <li>pears</li>
+        </ul>
+      </div>
+      <footer>
+        Im a footer yay!
+      </footer>
+    </div>
+  </iz-popover>
+
+  <hr />
+  <h3>Placements</h3>
+  <div class="center">
+    <button id="placement">Positioned</button>
+    <iz-popover target="#placement" placement="bottom-center" revealby="click" id="placement-target">
+      <div class="card">
+        <p>A long paragraph to make the width wider</p>
+        <p>Paraf 2</p>
+      </div>
+    </iz-popover>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum enim, libero dolorem temporibus excepturi, esse voluptatibus optio in quaerat neque eligendi sapiente cumque, fugiat illum dignissimos praesentium quo perferendis eum.</p>
+  </div>
+  <fieldset class="controls">
+    <legend>Select a placement:</legend>
+    <div>
+      <label for="top-left">top-left</label>
+      <input type="radio" id="top-left" value="top-left" name="control"/>
+      <br />
+      <label for="top-center">top-center</label>
+      <input type="radio" id="top-center" value="top-center" name="control"/>
+      <br />
+      <label for="top-right">top-right</label>
+      <input type="radio" id="top-right" value="top-right" name="control"/>
+    </div>
+    <div>
+      <label for="bottom-left">bottom-left</label>
+      <input type="radio" id="bottom-left" value="bottom-left" name="control"/>
+      <br />
+      <label for="bottom-center">bottom-center</label>
+      <input type="radio" id="bottom-center" value="bottom-center" name="control" checked/>
+      <br />
+      <label for="bottom-right">bottom-right</label>
+      <input type="radio" id="bottom-right" value="bottom-right" name="control"/>
+    </div>
+    <div>
+      <label for="left-top">left-top</label>
+      <input type="radio" id="left-top" value="left-top" name="control"/>
+      <br />
+      <label for="left-center">left-center</label>
+      <input type="radio" id="left-center" value="left-center" name="control"/>
+      <br />
+      <label for="left-bottom">left-bottom</label>
+      <input type="radio" id="left-bottom" value="left-bottom" name="control"/>
+    </div>
+    <div>
+      <label for="right-top">right-top</label>
+      <input type="radio" id="right-top" value="right-top" name="control"/>
+      <br />
+      <label for="right-center">right-center</label>
+      <input type="radio" id="right-center" value="right-center" name="control"/>
+      <br />
+      <label for="right-bottom">right-bottom</label>
+      <input type="radio" id="right-bottom" value="right-bottom" name="control"/>
+    </div>
+  </fieldset>
+
+</body>
+</html>

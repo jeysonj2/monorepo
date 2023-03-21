@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <h1>Button Demo</h1>
+
+  <h4>Default:</h4>
+  <iz-button onclick="alert(event)">Button</iz-button>
+
+  <h4>Text:</h4>
+  <iz-button variant="text">Button</iz-button>
+
+  <h4>Disabled:</h4>
+  <iz-button onclick="alert(event)" disabled>Button</iz-button>
+
+  <hr />
+  <h4>Icon:</h4>
+  <iz-button variant="icon" onclick="alert(event)">
+    <iz-icon-mail></iz-icon-mail>
+  </iz-button>
+
+  <h4>Icon (disabled):</h4>
+  <iz-button disabled variant="icon" onclick="alert(event)">
+    <iz-icon-mail></iz-icon-mail>
+  </iz-button>
+
+</body>
+</html>

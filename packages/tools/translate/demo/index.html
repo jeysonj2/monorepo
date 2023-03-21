@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+
+  <button>Change Translation</button>
+  <br />
+  <br />
+  <fieldset>
+    <legend>Normal Translations</legend>
+    <iz-translate>translated demo test</iz-translate><br/>
+    <iz-translate>translated demo test 2</iz-translate><br/>
+    <iz-translate>translated demo test not found</iz-translate><br/>
+  </fieldset>
+  <br />
+  <br />
+  <fieldset>
+    <legend>Used in other components (typography)</legend>
+    <iz-typography><iz-translate>translated demo test</iz-translate></iz-typography>
+    <iz-typography variant="label"><iz-translate>translated demo test 2</iz-translate></iz-typography>
+    <iz-typography variant="help"><iz-translate>translated demo test not found</iz-translate></iz-typography>
+  </fieldset>
+  <br />
+  <br />
+  <fieldset>
+    <legend>With Variables</legend>
+    <iz-translate name="Håkan">Variable {name} Text</iz-translate>
+    <br />
+    <iz-translate name="Sjögren">Variable Text {name}</iz-translate>
+  </fieldset>
+  <br />
+  <br />
+  <fieldset>
+    <legend>Update inner Text Test</legend>
+    <iz-translate id="target">Im Text</iz-translate>
+    <br />
+    <br />
+    <button id="updateinnerhtml">Update Text (innerHTML)</button>
+    <button id="updateinnertext">Update Text (innerText)</button>
+  </fieldset>
+  <br />
+  <br />
+  <fieldset>
+    <legend>Update to False Values</legend>
+    <iz-translate id="nullify"></iz-translate>
+    <br />
+    <iz-translate id="undefinify"></iz-translate>
+    <br />
+    <br />
+    <button id="nullifybtn">Nullify</button>
+    <button id="undefinifybtn">Undefinify</button>
+  </fieldset>
+
+</body>
+</html>

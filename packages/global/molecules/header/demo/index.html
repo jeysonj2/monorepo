@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <h4>Regular</h4>
+  <iz-global-header onclick="window.handleClick(event)"></iz-global-header>
+
+  <h4>Custom Menus</h4>
+  <iz-global-header>
+    <iz-menu>
+      <span slot="text">Menu 1</span>
+      <iz-menu-item value="1">item 1</iz-menu-item>
+      <iz-menu-item value="2">item 2</iz-menu-item>
+      <iz-menu-item value="3">item 3</iz-menu-item>
+      <iz-menu-item value="4">item 4</iz-menu-item>
+      <iz-menu-item value="5">item 5</iz-menu-item>
+    </iz-menu>
+
+    <iz-menu>
+      <span slot="text">Menu 2</span>
+      <iz-menu-item value="1">item 1</iz-menu-item>
+      <iz-menu-item value="2">item 2</iz-menu-item>
+      <iz-menu-item value="3">item 3</iz-menu-item>
+      <iz-menu-item value="4">item 4</iz-menu-item>
+      <iz-menu-item value="5">item 5</iz-menu-item>
+    </iz-menu>
+
+    <iz-menu>
+      <span slot="text">Menu 3</span>
+      <iz-menu-item value="1">item 1</iz-menu-item>
+      <iz-menu-item value="2">item 2</iz-menu-item>
+      <iz-menu-item value="3">item 3</iz-menu-item>
+      <iz-menu-item value="4">item 4</iz-menu-item>
+      <iz-menu-item value="5">item 5</iz-menu-item>
+    </iz-menu>
+  </iz-global-header>
+</body>
+</html>
