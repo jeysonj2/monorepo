@@ -6,11 +6,13 @@ import '@interzero/popover/wc';
 import '@interzero/menu-button/wc';
 
 // classes
-import type { Placement } from '@interzero/popover';
-import { Variants } from '@interzero/button';
 import { MenuItem } from '@interzero/menu-item';
-import type { ChangeEvent } from '@interzero/menu-item';
 import { MenuButton } from '@interzero/menu-button';
+
+// types
+import type { Placement } from '@interzero/popover';
+import type { Variant } from '@interzero/button';
+import type { ChangeEvent } from '@interzero/menu-item';
 
 // style import
 import { style } from './style.css';
@@ -20,7 +22,7 @@ export class Menu extends LitElement {
 
   @property() placement: Placement = 'bottom-right';
 
-  @property() variant: Variants = Variants.default;
+  @property() variant: Variant = 'default';
 
   private handlePopoverClose = () => {
     const button = this.shadowRoot?.querySelector('iz-menu-button');

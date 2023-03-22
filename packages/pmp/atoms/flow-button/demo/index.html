@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <fieldset>
+    <legend>Regular</legend>
+    <iz-pmp-flow-button value="1" onchange="console.log(event.detail)">
+      Regular
+    </iz-pmp-flow-button>
+  </fieldset>
+
+  <fieldset>
+    <legend>Create</legend>
+    <iz-pmp-flow-button mode="create" value="1" onchange="console.log(event.detail)">
+      Create Button
+    </iz-pmp-flow-button>
+  </fieldset>
+</body>
+</html>

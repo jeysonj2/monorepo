@@ -1,0 +1,24 @@
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+fieldset {
+  width: 100%;
+}
+
+#target {
+  width: 160px;
+  color: darkred;
+  padding: 2rem;
+  background-color: cornflowerblue;
+}
+
+#target:hover {
+  color: cornflowerblue;
+  background-color: darkred;
+}
+
+#target:active {
+  color: black;
+  background-color: orange;
+}

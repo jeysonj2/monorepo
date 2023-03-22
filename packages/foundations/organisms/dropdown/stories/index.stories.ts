@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 
 // web-components
 import '@interzero/option/wc';
-import { Variants } from '@interzero/button';
+import type { Variant } from '@interzero/button';
 import type { Placement } from '@interzero/popover';
 
 import '../src/dropdown.js';
@@ -48,7 +48,7 @@ interface ArgTypes {
   placement: Placement;
   fixedText?: string;
   placeholder?: string;
-  variant: Variants;
+  variant: Variant;
   slot?: TemplateResult;
 }
 
@@ -58,7 +58,7 @@ const Template: Story<ArgTypes> = ({
   placement = 'bottom-right',
   fixedText,
   placeholder = 'placeholder',
-  variant = Variants.default,
+  variant = 'default',
 }: ArgTypes) => html`
   <iz-dropdown
     .multiple=${multiple}

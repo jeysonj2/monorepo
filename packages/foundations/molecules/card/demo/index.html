@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <fieldset>
+    <legend>Blank</legend>
+    <iz-card>
+      Blank Card
+    </iz-card>
+  </fieldset>
+
+  <fieldset>
+    <legend>Header</legend>
+    <iz-card header headerTitle="Custom Title">
+      Header Card
+    </iz-card>
+    <br />
+    <br />
+    <iz-card header headerTitle="Custom Title">
+      Header Card
+      <p slot="header">Some more header content</p>
+    </iz-card>
+  </fieldset>
+
+  <fieldset>
+    <legend>Footer</legend>
+    <iz-card footer>
+      Footer Card
+      <p slot="footer">Some footer content</p>
+    </iz-card>
+    <br />
+    <br />
+    <iz-card footer header headerTitle="Full Scope">
+      Full Card
+      <p slot="header">LALA</p>
+      <p slot="footer">Some footer content</p>
+    </iz-card>
+  </fieldset>
+</body>
+</html>

@@ -10,12 +10,9 @@ import { style } from './style.css';
 
 // types & interfaces
 export type ChangeEvent = { checked: boolean; value: string; text: string };
-export enum Variant {
-  plain = 'plain',
-  default = 'default',
-  empty = 'empty',
-}
+export type Variant = 'plain' | 'default' | 'empty';
 
+type DropdownSearchEvent = { value: string };
 type DropdownValueChangeEvent = {
   value: string | null;
   values: string[] | undefined;
@@ -24,7 +21,7 @@ type DropdownValueChangeEvent = {
 export class Option extends LitElement {
   static styles = style;
 
-  @property() variant: Variant = Variant.default;
+  @property() variant: Variant = 'default';
 
   @property() value!: string;
 
@@ -36,6 +33,8 @@ export class Option extends LitElement {
   checked: boolean = false;
 
   private text!: string;
+
+  private hide: boolean = false;
 
   constructor() {
     super();
@@ -71,9 +70,11 @@ export class Option extends LitElement {
     const dvalue = (dropdown.value || dropdown.defaultValue || '').split(',');
     if (dvalue.includes(this.value)) {
       this.checked = true;
-      if (this.text) {
-        this.dispatchChange();
-      }
+
+      // NOTE this feels uncessesary
+      // if (this.text) {
+      //   this.dispatchChange();
+      // }
 
       setTimeout(() => this.dispatchChange(), 1);
     }
@@ -90,6 +91,25 @@ export class Option extends LitElement {
         this.dispatchChange();
       }
     });
+
+    dropdown.addEventListener('search', (_event: Event) => {
+      const event = _event as CustomEvent<DropdownSearchEvent>;
+      if (event.detail.value === '') {
+        // show
+        this.hide = false;
+      } else if (
+        this.text.match(event.detail.value) ||
+        event.detail.value.match(this.text)
+      ) {
+        // show
+        this.hide = false;
+      } else {
+        // hide
+        this.hide = true;
+      }
+
+      this.requestUpdate();
+    });
   };
 
   attributeChangedCallback(
@@ -105,6 +125,8 @@ export class Option extends LitElement {
   }
 
   render() {
+    if (this.hide) return null;
+
     return html`
       <iz-button variant="text">
         <div>

@@ -1,7 +1,8 @@
-import { Variants } from '@interzero/button';
 import { html, TemplateResult } from 'lit';
 import '../src/dropdown-button.js';
-import { Direction } from '../src/DropdownButtonExports.js';
+
+import type { Variant } from '@interzero/button';
+import type { Direction } from '../src/DropdownButtonExports.js';
 
 export default {
   title: 'foundations/molecules/DropdownButton',
@@ -22,15 +23,15 @@ interface Story<T> {
 
 interface ArgTypes {
   direction: Direction;
-  variant: Variants;
+  variant: Variant;
   disabled: boolean;
   open: boolean;
   slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
-  direction = Direction.down,
-  variant = Variants.default,
+  direction = 'down',
+  variant = 'default',
   disabled = false,
   open = false,
   slot = html`My Dropdown`,
@@ -48,5 +49,5 @@ export const Regular = Template.bind({});
 
 export const TextVariant = Template.bind({});
 TextVariant.args = {
-  variant: Variants.text,
+  variant: 'text',
 };

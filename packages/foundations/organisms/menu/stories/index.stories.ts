@@ -3,7 +3,8 @@ import { html, TemplateResult } from 'lit';
 // web-components
 import '@interzero-icons/icon-mail/wc';
 import '@interzero/menu-item/wc';
-import { Variants } from '@interzero/button';
+
+import type { Variant } from '@interzero/button';
 import type { Placement } from '@interzero/popover';
 
 import '../src/menu.js';
@@ -41,13 +42,13 @@ interface Story<T> {
 
 interface ArgTypes {
   placement: Placement;
-  variant: Variants;
+  variant: Variant;
   slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
   placement = 'bottom-right',
-  variant = Variants.default,
+  variant = 'default',
   slot = html`<p slot="text">MENU</p>`,
 }: ArgTypes) => html`
   <iz-menu .placement=${placement} .variant=${variant}>

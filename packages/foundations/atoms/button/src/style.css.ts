@@ -2,78 +2,92 @@ import { css } from 'lit';
 
 export const style = css`
   :host {
-    height: var(--button-height, 40px);
-    min-width: var(--button-width, 160px);
-    background-color: var(--button-background-color, buttonface);
     display: inline-block;
-  }
-
-  :host([variant='icon']) {
-    height: var(--button-icon-diameter, 40px);
-    width: var(--button-icon-diameter, 40px);
-    min-width: var(--button-icon-diameter, 40px);
-    border-radius: 50%;
-    --icon-base-color: var(--button-disabled-color, #2830be);
-  }
-
-  button {
-    width: 100%;
-    height: 100%;
-    padding: var(--button-padding, 0);
-    font-weight: var(--button-font-weight, 400);
-    font-size: var(--button-font-size, 12px);
-    line-height: var(--button-line-height, 15px);
-    font-family: var(--button-font-family, 'Inter');
-    color: var(--button-color, #000);
-    background-color: inherit;
     cursor: var(--button-cursor, pointer);
+    min-width: var(--button-min-width, 160px);
+    /* padding: 1rem; */
+    box-sizing: border-box;
 
-    border: none;
+    /* without specifing size will be large */
   }
 
-  button.icon {
-    height: var(--button-icon-diameter, 40px);
-    width: var(--button-icon-diameter, 40px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /** properties *****************/
+  /** small size */
+  :host([size='small']) {
+    height: var(--button-height-small, 25px);
+  }
+  :host([size='small']:is([variant='circle'], [variant='square'])) {
+    min-width: var(--button-height-small, 25px);
+  }
+  /** medium size */
+  :host([size='medium']) {
+    height: var(--button-height-medium, 30px);
+  }
+  :host([size='medium']:is([variant='circle'], [variant='square'])) {
+    min-width: var(--button-height-medium, 30px);
+  }
+  /** large size */
+  :host([size='large']) {
+    height: var(--button-height-large, 40px);
+  }
+  :host([size='large']:is([variant='circle'], [variant='square'])) {
+    min-width: var(--button-height-large, 40px);
+  }
+
+  :host([variant='default']) {
+    background-color: var(--button-background-color, buttonface);
+    padding: var(--button-padding, 0 1rem);
+  }
+  :host([variant='text']) {
+    background-color: var(--button-text-background-color, transparant);
+    padding: var(--button-padding, 0 1rem);
+  }
+  :host([variant='circle']) {
+    background-color: var(--button-circle-background-color, transparant);
     border-radius: 50%;
   }
+  :host([variant='square']) {
+    background-color: var(--button-square-background-color, transparant);
+  }
 
-  button:not([disabled]):hover {
+  /** user interaction *****************/
+  :host(:not([disabled]):hover) {
     background-color: var(--button-hover-background-color, #c7c7c7);
   }
-
-  button:not([disabled]):active {
-    background-color: var(--button-pressed-background-color, #555555);
-    color: var(--button-pressed-color, #fff);
-  }
-
-  button.icon:not([disabled]),
-  button.text:not([disabled]) {
-    background-color: var(--button-text-background-color, transparant);
-  }
-  button.icon:not([disabled]):hover,
-  button.text:not([disabled]):hover {
+  :host(:not([disabled], [variant='default']):hover) {
     background-color: var(
-      --button-text-hover-background-color,
+      --button-transparant-hover-background-color,
       rgba(232, 232, 232, 0.2)
     );
   }
-  button.icon:not([disabled]):active,
-  button.text:not([disabled]):active {
+  :host(:not([disabled]):active) {
+    background-color: var(--button-pressed-background-color, #555555);
+    color: var(--button-pressed-color, #fff);
+  }
+  :host(:not([disabled], [variant='default']):active) {
     background-color: var(
-      --button-text-pressed-background-color,
+      --button-transparant-pressed-background-color,
       rgba(205, 205, 205, 0.4)
     );
     color: var(--button-color, #000);
   }
 
-  button[disabled] {
+  /** disabled *****************/
+  :host([disabled]) {
     cursor: var(--button-disabled-cursor, not-allowed);
     color: var(--button-disabled-color, #333);
   }
-  button[disabled]:not(.icon) {
+  :host([disabled]:is([variant='default'])) {
     background-color: var(--button-disabled-background-color, #d2d2d2);
+  }
+
+  /** in house components *****************/
+  div {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

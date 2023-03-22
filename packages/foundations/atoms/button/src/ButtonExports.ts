@@ -8,23 +8,18 @@ import { FormElement } from '@interzero/form-element';
 import { style } from './style.css';
 
 // types & interfaces
-export enum Types {
-  button = 'button',
-  reset = 'reset',
-  submit = 'submit',
-}
-export enum Variants {
-  text = 'text',
-  default = 'default',
-  icon = 'icon',
-}
+export type Types = 'button' | 'reset' | 'submit';
+export type Variant = 'text' | 'default' | 'circle' | 'square';
+export type Size = 'small' | 'medium' | 'large';
 
 export class Button extends FormElement {
   static styles = style;
 
   @property() type?: Types;
 
-  @property() variant: Variants = Variants.default;
+  @property() variant: Variant = 'default';
+
+  @property() size: Size = 'large';
 
   @property({
     type: Boolean,
@@ -43,6 +38,11 @@ export class Button extends FormElement {
 
   override connectedCallback() {
     super.connectedCallback();
+
+    if (!this.hasAttribute('variant'))
+      this.setAttribute('variant', this.variant);
+    if (!this.hasAttribute('size')) this.setAttribute('size', this.size);
+
     if (this.type === 'submit') {
       this.formelement = this.findFormElement('form', this);
     }
@@ -63,9 +63,11 @@ export class Button extends FormElement {
   render() {
     // NOTE the text is the same as typography.body
     return html`
-      <button ?disabled=${this.disabled} class=${this.variant || ''}>
+      <div>
+        <slot name="left"></slot>
         <slot></slot>
-      </button>
+        <slot name="right"></slot>
+      </div>
     `;
   }
 }

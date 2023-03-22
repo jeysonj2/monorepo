@@ -5,24 +5,21 @@ import { property } from 'lit/decorators.js';
 import '@interzero/button/wc';
 import '@interzero-icons/icon-caret/wc';
 
-// classes
-import { Variants } from '@interzero/button';
+// types
+import type { Variant } from '@interzero/button';
 
 // local imports
 import { style } from './style.css';
 
 // types & interfaces
-export enum Direction {
-  up = 'up',
-  down = 'down',
-}
+export type Direction = 'up' | 'down';
 
 export class MenuButton extends LitElement {
   static styles = style;
 
-  @property() variant: Variants = Variants.default;
+  @property() variant: Variant = 'default';
 
-  @property() direction: Direction = Direction.down;
+  @property() direction: Direction = 'down';
 
   @property({
     type: Boolean,

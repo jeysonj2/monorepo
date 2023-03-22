@@ -7,13 +7,16 @@ import '@interzero/popover/wc';
 import '@interzero-tools/translate/wc';
 
 // classes
-import type { Placement } from '@interzero/popover';
 import { Option } from '@interzero/option';
-import type { ChangeEvent as OptionChangeEvent } from '@interzero/option';
 import { InputTemplate } from '@interzero/input-template';
-import { Variants } from '@interzero/button';
 import { DropdownButton } from '@interzero/dropdown-button';
 import { Translate } from '@interzero-tools/translate';
+
+// types
+import type { Placement } from '@interzero/popover';
+import type { Variant } from '@interzero/dropdown-button';
+import type { ChangeEvent as OptionChangeEvent } from '@interzero/option';
+import type { InputEventChangeInfo } from '@interzero/input-template';
 
 // style import
 import { style } from './style.css';
@@ -21,6 +24,8 @@ import { style } from './style.css';
 const TEXT_THRESHOLD = 22;
 
 // types & interfaces
+export type DropdownMode = 'strict' | 'loose';
+export type SearchEvent = { value: string };
 export type ChangeEvent = { value: string; name?: string };
 type OptionItem = { checked: boolean; text: string };
 
@@ -38,7 +43,9 @@ export class Dropdown extends InputTemplate {
 
   @property() placeholder?: string;
 
-  @property() variant: Variants = Variants.default;
+  @property() variant: Variant = 'default';
+
+  @property() dropdownMode: DropdownMode = 'strict';
 
   // queries
   @query('iz-translate') translateElement!: Translate;
@@ -73,6 +80,13 @@ export class Dropdown extends InputTemplate {
     }
   }
 
+  firstUpdated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.firstUpdated(_changedProperties);
+    this.updateText();
+  }
+
   public updateValue(value: string | null) {
     const values = value?.split(',');
     this.dispatchEvent(
@@ -80,6 +94,7 @@ export class Dropdown extends InputTemplate {
     );
   }
 
+  // event handlers
   private handleItemToggle = (_event: Event) => {
     const event = _event as CustomEvent<OptionChangeEvent>;
     event.preventDefault();
@@ -145,6 +160,26 @@ export class Dropdown extends InputTemplate {
     }
   };
 
+  private handleInputChange(_event: Event) {
+    const event = _event as CustomEvent<InputEventChangeInfo>;
+    this.dispatchEvent(new CustomEvent<SearchEvent>('search', event));
+
+    if (this.dropdownMode === 'loose') {
+      // choose value
+      this.updateHidden(event.detail.value);
+      this.dispatchEvent(
+        new CustomEvent<ChangeEvent>('change', {
+          detail: { value: event.detail.value, name: this.name },
+        })
+      );
+    }
+
+    // else
+    // {
+    //   // do something
+    // }
+  }
+
   // helper functions
   private async updateText() {
     if (!(this.translateElement instanceof Translate)) return;
@@ -175,20 +210,15 @@ export class Dropdown extends InputTemplate {
     this.translateElement.innerText = text;
   }
 
-  protected firstUpdated(
-    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ): void {
-    super.firstUpdated(_changedProperties);
-    this.updateText();
-  }
-
   render() {
     // TODO remove text slot ? maybe it can be useful later..
     return html`
       <iz-dropdown-button
-        variant=${this.variant}
         id="target"
-        direction=${this.placement.startsWith('top') ? 'up' : 'down'}
+        ?disabled=${this.disabled}
+        .variant=${this.variant}
+        .direction=${this.placement.startsWith('top') ? 'up' : 'down'}
+        @input-change=${this.handleInputChange}
       >
         <iz-translate></iz-translate>
         <slot name="text" @slotchange=${this.handleSlotChange}></slot>

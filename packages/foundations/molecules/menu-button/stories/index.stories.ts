@@ -4,8 +4,8 @@ import { html, TemplateResult } from 'lit';
 import '@interzero-icons/icon-mail/wc';
 
 import '../src/menu-button.js';
-import { Variants } from '@interzero/button';
-import { Direction } from '../src/MenuButtonExports.js';
+import type { Variant } from '@interzero/button';
+import type { Direction } from '../src/MenuButtonExports.js';
 
 export default {
   title: 'foundations/molecules/MenuButton',
@@ -24,15 +24,15 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  variant: Variants;
+  variant: Variant;
   direction: Direction;
   open?: boolean;
   slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
-  variant = Variants.default,
-  direction = Direction.down,
+  variant = 'default',
+  direction = 'down',
   open = false,
   slot = html`Menu Button`,
 }: ArgTypes) => html`
@@ -45,11 +45,11 @@ export const Regular = Template.bind({});
 
 export const TextVariant = Template.bind({});
 TextVariant.args = {
-  variant: Variants.text,
+  variant: 'text',
 };
 
 export const Icon = Template.bind({});
 Icon.args = {
-  variant: Variants.text,
+  variant: 'text',
   slot: html`<iz-icon-mail></iz-icon-mail>`,
 };

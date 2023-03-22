@@ -3,7 +3,7 @@ import { html, TemplateResult } from 'lit';
 // web components
 import '@interzero-icons/icon-mail/wc';
 
-import { Types, Variants } from '../src/ButtonExports.js';
+import type { Types, Variant } from '../src/ButtonExports.js';
 import '../src/button.js';
 
 export default {
@@ -11,14 +11,17 @@ export default {
   component: 'iz-button',
   argTypes: {
     type: { control: 'select', options: ['button', 'reset', 'submit'] },
-    variant: { control: 'select', options: ['text', 'default', 'icon'] },
+    variant: {
+      control: 'select',
+      options: ['text', 'default', 'square', 'circle'],
+    },
     disabled: { control: 'boolean' },
   },
 };
 
 interface ArgTypes {
   type?: Types;
-  variant?: Variants;
+  variant?: Variant;
   disabled?: boolean;
   slot?: TemplateResult;
 }
@@ -30,9 +33,9 @@ interface Story<T> {
 }
 
 const Template: Story<ArgTypes> = ({
-  type = Types.button,
+  type = 'button',
   disabled = false,
-  variant = Variants.default,
+  variant = 'default',
   slot = html`Button`,
 }: ArgTypes) => html`
   <iz-button .type=${type} .disabled=${disabled} .variant=${variant}>
@@ -44,11 +47,17 @@ export const Regular = Template.bind({});
 
 export const TextVariant = Template.bind({});
 TextVariant.args = {
-  variant: Variants.text,
+  variant: 'text',
 };
 
-export const IconVariant = Template.bind({});
-IconVariant.args = {
-  variant: Variants.icon,
+export const CircleVariant = Template.bind({});
+CircleVariant.args = {
+  variant: 'circle',
+  slot: html`<iz-icon-mail></iz-icon-mail>`,
+};
+
+export const SquareVariant = Template.bind({});
+CircleVariant.args = {
+  variant: 'square',
   slot: html`<iz-icon-mail></iz-icon-mail>`,
 };

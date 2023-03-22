@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 import '../src/option.js';
-import { Variant } from '../src/OptionExports.js';
+import type { Variant } from '../src/OptionExports';
 
 export default {
   title: 'foundations/molecules/Option',
@@ -26,7 +26,7 @@ interface ArgTypes {
 
 const Template: Story<ArgTypes> = ({
   value = 'value',
-  variant = Variant.default,
+  variant = 'default',
   checked = false,
   slot = html`Option`,
 }: ArgTypes) => html`
