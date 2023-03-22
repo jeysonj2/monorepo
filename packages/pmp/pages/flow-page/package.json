@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-pmp/flow-page following open-wc recommendations. HTML Tag: iz-pmp-flow-page",
   "license": "MIT",
   "author": "@interzero-pmp/flow-page",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -24,9 +24,9 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero/button": "^1.2.0",
+    "@interzero-pmp/flow-question": "^1.3.0",
+    "@interzero/button": "^1.3.0",
     "@interzero/typography": "^1.2.0",
-    "@interzero-pmp/flow-question": "^1.2.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

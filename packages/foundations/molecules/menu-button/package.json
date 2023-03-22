@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero/menu-button following open-wc recommendations. HTML Tag: iz-menu-button",
   "license": "MIT",
   "author": "@interzero/menu-button",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@interzero-icons/icon-caret": "^1.2.0",
-    "@interzero/button": "^1.2.0",
+    "@interzero/button": "^1.3.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

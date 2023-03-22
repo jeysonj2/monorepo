@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-global/logo following open-wc recommendations. HTML Tag: iz-global-logo",
   "license": "MIT",
   "author": "@interzero-global/logo",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -24,7 +24,7 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-tools/translate": "^1.2.0",
+    "@interzero-tools/translate": "^1.3.0",
     "@interzero/typography": "^1.2.0",
     "lit": "^2.0.2"
   },
