@@ -9,7 +9,7 @@ import '@interzero/typography/wc';
 import type { ChangeEvent } from '@interzero-pmp/flow-button';
 
 // locale
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types and interfaces
 export type ContinueEvent = { selected: string };

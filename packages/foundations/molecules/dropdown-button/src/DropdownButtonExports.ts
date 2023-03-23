@@ -12,7 +12,7 @@ import '@interzero-icons/icon-caret/wc';
 import type { InputEventChangeInfo } from '@interzero/input-template';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 type BaseVariant = 'default' | 'text';

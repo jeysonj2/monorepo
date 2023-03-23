@@ -4,7 +4,7 @@ import { property } from 'lit/decorators.js';
 import { InputTemplate } from '@interzero/input-template';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export type Types = 'text' | 'number' | 'password' | 'email' | 'url' | 'tel';

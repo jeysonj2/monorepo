@@ -3,7 +3,7 @@ import { property } from 'lit/decorators.js';
 import { IconBase } from '@interzero-icons/icon-base';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class IconCheckoutlined extends IconBase {
   static styles = style;

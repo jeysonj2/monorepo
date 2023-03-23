@@ -16,7 +16,7 @@ import '@interzero/dropdown/wc';
 import '@interzero-tools/translate/wc';
 
 // local
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export interface SubmitEvent {

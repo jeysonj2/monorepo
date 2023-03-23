@@ -13,7 +13,7 @@ import type { ChangeEvent } from '@interzero/menu-item';
 import type { Placement } from '@interzero/popover';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class LanguageSelect extends LitElement {
   static styles = style;

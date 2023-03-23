@@ -6,7 +6,7 @@ import '@interzero/input/wc';
 import '@interzero-icons/icon-lock/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class FieldPassword extends LitElement {
   static styles = style;

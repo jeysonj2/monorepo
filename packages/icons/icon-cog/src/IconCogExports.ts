@@ -2,7 +2,7 @@ import { html } from 'lit';
 import { IconBase } from '@interzero-icons/icon-base';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class IconCog extends IconBase {
   static styles = style;

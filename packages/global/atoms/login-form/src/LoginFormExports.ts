@@ -16,7 +16,7 @@ import '@interzero-icons/icon-mail/wc';
 import '@interzero-tools/translate';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 type BaseVariants = 'login' | 'register';

@@ -12,7 +12,7 @@ import type { ChangeEvent as MIChangeEvent } from '@interzero/menu-item';
 import '@interzero-tools/translate';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export interface ChangeEvent {

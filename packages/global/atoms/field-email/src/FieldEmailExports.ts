@@ -5,7 +5,7 @@ import '@interzero/input/wc';
 import '@interzero-icons/icon-mail/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class FieldEmail extends LitElement {
   static styles = style;

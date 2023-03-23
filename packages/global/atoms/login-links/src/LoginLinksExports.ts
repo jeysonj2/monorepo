@@ -7,7 +7,7 @@ import '@interzero/typography/wc';
 import '@interzero-tools/translate/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class LoginLinks extends LitElement {
   static styles = style;

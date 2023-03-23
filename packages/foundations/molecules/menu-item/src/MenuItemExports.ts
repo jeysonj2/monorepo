@@ -5,7 +5,7 @@ import { property } from 'lit/decorators.js';
 import '@interzero/button/wc';
 
 // style imports
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export type ChangeEvent = { value: string };

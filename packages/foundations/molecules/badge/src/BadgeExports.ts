@@ -2,7 +2,7 @@ import { html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export type Variant = 'success' | 'error' | 'info' | 'warning';

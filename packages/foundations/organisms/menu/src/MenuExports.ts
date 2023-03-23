@@ -15,7 +15,7 @@ import type { Variant } from '@interzero/button';
 import type { ChangeEvent } from '@interzero/menu-item';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class Menu extends LitElement {
   static styles = style;

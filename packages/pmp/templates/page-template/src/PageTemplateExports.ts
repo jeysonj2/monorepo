@@ -13,7 +13,7 @@ import '@interzero-tools/translate/wc';
 import type { ChangeEvent } from '@interzero-global/header';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export type { ChangeEvent } from '@interzero-global/header';
 

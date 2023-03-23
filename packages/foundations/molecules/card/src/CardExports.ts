@@ -6,7 +6,7 @@ import '@interzero-tools/translate/wc';
 import '@interzero/typography/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class Card extends LitElement {
   static styles = style;

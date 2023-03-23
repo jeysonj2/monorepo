@@ -2,7 +2,7 @@ import { LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export type Size = 'small' | 'medium' | 'large';

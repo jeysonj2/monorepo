@@ -17,7 +17,7 @@ import type { SubmitEvent } from '@interzero-pmp/profile-form';
 import type { ChangeEvent } from '@interzero-pmp/page-template';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class UserProfile extends LitElement {
   static styles = style;

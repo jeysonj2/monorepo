@@ -10,7 +10,7 @@ import '@interzero/typography/wc';
 import type { ContinueEvent } from '@interzero-pmp/flow-question';
 
 // locale
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 interface Node {

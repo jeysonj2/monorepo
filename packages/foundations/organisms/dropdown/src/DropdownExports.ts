@@ -19,7 +19,7 @@ import type { ChangeEvent as OptionChangeEvent } from '@interzero/option';
 import type { InputEventChangeInfo } from '@interzero/input-template';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 const TEXT_THRESHOLD = 22;
 

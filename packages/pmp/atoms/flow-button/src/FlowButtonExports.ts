@@ -6,7 +6,7 @@ import '@interzero/button/wc';
 import '@interzero/checkbox/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export type ChangeEvent = { value: string };

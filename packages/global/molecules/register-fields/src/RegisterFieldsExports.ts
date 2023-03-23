@@ -10,7 +10,7 @@ import '@interzero-global/field-email/wc';
 import '@interzero-global/field-password/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class RegisterFields extends LitElement {
   static styles = style;

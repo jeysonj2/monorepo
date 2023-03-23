@@ -9,7 +9,7 @@ import '@interzero/card/wc';
 import '@interzero-icons/icon-close/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // type & interfaces
 export type State = 'show' | 'hide';

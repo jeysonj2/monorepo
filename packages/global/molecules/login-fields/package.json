@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-global/login-fields following open-wc recommendations. HTML Tag: iz-global-login-fields",
   "license": "MIT",
   "author": "@interzero-global/login-fields",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -24,11 +24,11 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-global/field-email": "^1.3.0",
-    "@interzero-global/field-password": "^1.3.0",
-    "@interzero-tools/translate": "^1.3.0",
-    "@interzero/button": "^1.3.0",
-    "@interzero/link": "^1.2.0",
+    "@interzero-global/field-email": "^1.3.1",
+    "@interzero-global/field-password": "^1.3.1",
+    "@interzero-tools/translate": "^1.3.1",
+    "@interzero/button": "^1.3.1",
+    "@interzero/link": "^1.3.1",
     "lit": "^2.0.2"
   },
   "devDependencies": {

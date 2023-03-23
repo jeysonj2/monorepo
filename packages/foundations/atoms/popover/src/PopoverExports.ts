@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 type TB = 'top' | 'bottom';

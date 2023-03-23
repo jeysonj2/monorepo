@@ -8,7 +8,7 @@ import '@interzero-global/login-links/wc';
 import type { SubmitEvent, Variant } from '@interzero-global/login-form';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export type { Variant } from '@interzero-global/login-form';
 

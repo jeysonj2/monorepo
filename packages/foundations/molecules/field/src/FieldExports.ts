@@ -14,7 +14,7 @@ import type {
   InputEventChangeInfo,
 } from '@interzero/input-template';
 
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 type InputState = 'warning' | 'error' | 'success'; // |"info"; // NOTE info is not used now

@@ -9,7 +9,7 @@ import '@interzero-icons/icon-check/wc';
 import '@interzero-icons/icon-checkoutlined/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export type Variant = 'plain' | 'default';

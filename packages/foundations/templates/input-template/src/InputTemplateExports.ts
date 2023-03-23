@@ -3,7 +3,7 @@ import { property } from 'lit/decorators.js';
 import { FormElement } from '@interzero/form-element';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 type BaseErrorTypes =
   | 'badInput'

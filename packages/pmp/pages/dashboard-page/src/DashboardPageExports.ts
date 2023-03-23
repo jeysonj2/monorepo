@@ -11,7 +11,7 @@ import '@interzero-tools/translate/wc';
 import type { ChangeEvent } from '@interzero-pmp/page-template';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 export class DashboardPage extends LitElement {
   static styles = style;

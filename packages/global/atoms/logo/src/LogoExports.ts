@@ -4,7 +4,7 @@ import { property } from 'lit/decorators.js';
 import '@interzero/typography/wc';
 
 // style import
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export type Size = 'small' | 'medium' | 'large';

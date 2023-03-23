@@ -9,7 +9,7 @@ import '@interzero-icons/icon-caret/wc';
 import type { Variant } from '@interzero/button';
 
 // local imports
-import { style } from './style.css';
+import { style } from './style.css.js';
 
 // types & interfaces
 export type Direction = 'up' | 'down';
