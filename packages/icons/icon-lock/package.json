@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-icons/icon-lock following open-wc recommendations. HTML Tag: iz-icon-lock",
   "license": "MIT",
   "author": "@interzero-icons/icon-lock",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -24,7 +24,7 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-icons/icon-base": "^1.3.1",
+    "@interzero-icons/icon-base": "^1.4.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

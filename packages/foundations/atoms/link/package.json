@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero/link following open-wc recommendations. HTML Tag: iz-link",
   "license": "MIT",
   "author": "@interzero/link",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",

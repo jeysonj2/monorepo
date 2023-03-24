@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero/hello-world following open-wc recommendations. HTML Tag: iz-hello-world",
   "license": "MIT",
   "author": "@interzero/hello-world",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",

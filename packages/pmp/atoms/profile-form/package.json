@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-pmp/profile-form following open-wc recommendations. HTML Tag: iz-pmp-profile-form",
   "license": "MIT",
   "author": "@interzero-pmp/profile-form",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -24,14 +24,14 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-tools/translate": "^1.3.1",
-    "@interzero/badge": "^1.3.1",
-    "@interzero/button": "^1.3.1",
-    "@interzero/dropdown": "^1.3.1",
-    "@interzero/field": "^1.3.1",
-    "@interzero/input": "^1.3.1",
-    "@interzero/option": "^1.3.1",
-    "@interzero/typography": "^1.3.1",
+    "@interzero-tools/translate": "^1.4.0",
+    "@interzero/badge": "^1.4.0",
+    "@interzero/button": "^1.4.0",
+    "@interzero/dropdown": "^1.4.0",
+    "@interzero/field": "^1.4.0",
+    "@interzero/input": "^1.4.0",
+    "@interzero/option": "^1.4.0",
+    "@interzero/typography": "^1.4.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {
