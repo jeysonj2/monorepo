@@ -1,0 +1,17 @@
+body {
+  background: #fafafa;
+}
+
+fieldset {
+  margin-bottom: 1rem;
+}
+
+iz-pmp-flow-roadmap {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+iz-pmp-flow-roadmap#final {
+  --flow-roadmap-line-left: calc(50% - 1px);
+}
