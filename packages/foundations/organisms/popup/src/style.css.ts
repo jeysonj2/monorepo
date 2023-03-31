@@ -1,6 +1,7 @@
 import { css } from 'lit';
 
 export const style = css`
+
   div.wrapper {
     display: none;
     position: absolute;
@@ -8,6 +9,8 @@ export const style = css`
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 700;
+    isolation: isolate;
   }
   div.wrapper.global {
     position: fixed;

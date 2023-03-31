@@ -33,26 +33,45 @@ export class Option extends LitElement {
   checked: boolean = false;
 
   private text!: string;
-
-  private hide: boolean = false;
+  private hide = false;
+  
+  // to not set checked = false on clear
+  private internalTrigger = false; 
 
   constructor() {
     super();
     this.addEventListener('click', this.handleClick);
   }
 
-  private handleClick(event: Event) {
+  private handleClick = (event: Event) => {
     event.stopPropagation();
+    this.internalTrigger = true;
     this.checked = !this.checked;
     this.dispatchChange();
   }
 
   private handleSlotChange = (event: Event) => {
     const slot = event.currentTarget as HTMLSlotElement;
-    const nodetext = slot.assignedNodes()?.[0].textContent;
-    if (nodetext != null) {
-      // checks also undefined
-      this.text = nodetext;
+    const nodes = slot.assignedNodes();
+    if (nodes.length === 1)
+    {
+      const nodetext = nodes[0].textContent;
+      if (nodetext != null) {
+        // checks also undefined
+        this.text = nodetext;
+      }
+    }
+    else 
+    { // we assume its with translate ()
+      // TODO extractor function that could extract any text any levels deep? (useful for many cases)
+      for (let node of nodes)
+      {
+        if (node.nodeName.toUpperCase() === 'IZ-TRANSLATE')
+        {
+          this.text = (node as HTMLElement).innerText;
+          break;
+        }
+      }
     }
   };
 
@@ -80,8 +99,8 @@ export class Option extends LitElement {
     }
 
     dropdown.addEventListener('clear-options', (event: Event) => {
-      const cevent = event as CustomEvent<ChangeEvent>;
-      if (cevent.detail.value !== this.value) this.checked = false;
+      if (!this.internalTrigger) this.checked = false;
+      this.internalTrigger = false;
     });
 
     dropdown.addEventListener('value-changed', (event: Event) => {

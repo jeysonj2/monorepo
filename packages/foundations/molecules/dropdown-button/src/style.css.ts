@@ -4,7 +4,7 @@ export const style = css`
   :host {
     height: var(--button-height-large, 40px);
     /* width: var(--button-width, 160px); */
-    padding: var(--button-padding, 0);
+    --button-min-width: var(--dropdown-button-min-width, 170px); /* fixing width-issue with text selection on multiple */
     display: inline-block;
   }
   :host([variant='text']) {
@@ -27,13 +27,18 @@ export const style = css`
     transform: translate(-50%, -50%);
   }
   iz-input {
-    height: 100%;
+    --input-height: 100%;
+  }
+  iz-button {
+    --button-padding: 0;
   }
 
   div {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: var(--dropdown-button-padding, 0 0.2rem);
     /* position: relative; */
   }
 
@@ -46,10 +51,10 @@ export const style = css`
     /* position: absolute; */
     /* right: 0; */
     line-height: 1px;
-    padding-right: 0.2rem;
+    /* padding-right: 0.2rem; */
   }
 
   iz-button:not(.text):not(.disabled):active iz-icon-caret {
-    color: var(--button-pressed-color, #fff);
+    color: var(--button-pressed-color, #FFF);
   }
 `;

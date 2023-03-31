@@ -27,8 +27,11 @@ export class Popup extends LitElement {
   @property() variant: Variant = 'global';
 
   @property() state: State = 'hide';
+  
+  @property() minWidth?:string;
 
   private showDelay = false;
+  private documentElementOverflow:string|null = null;
 
   connectedCallback() {
     super.connectedCallback();
@@ -53,9 +56,24 @@ export class Popup extends LitElement {
     value: string | null
   ): void {
     super.attributeChangedCallback(name, _old, value);
+    
+    if (name === "state")
+    {
+      if (value === "show")
+      {
+        this.show();
+      }
+      else 
+      {
+        this.hide();
+      }
+    }
 
-    if (name === 'state' && value === 'show') {
-      this.show();
+    if (name === "minwidth" && value !== null)
+    {
+      // TODO should this be implemented ? 
+      // console.log("minWidth",value)
+      // this.style["--card-width"] = value;
     }
   }
 
@@ -63,14 +81,30 @@ export class Popup extends LitElement {
   public show() {
     this.state = 'show';
     this.showDelay = true;
+
+    if (this.variant === "global")
+    {
+      if (!this.documentElementOverflow)
+      {
+        const computedStyle = window.getComputedStyle(document.documentElement);
+        this.documentElementOverflow = computedStyle.getPropertyValue("overflow");
+      }
+      document.documentElement.style.overflow = "hidden";
+    }
+
     setTimeout(() => {
       this.showDelay = false;
-    }, 1);
+      this.dispatchEvent(new Event("popup-show"));
+    }, 2);
   }
-
   public hide = () => {
-    this.state = 'hide';
-  };
+    if (this.variant === "global")
+    {
+      document.documentElement.style.overflow = this.documentElementOverflow || "auto";
+    }
+    this.state = "hide";
+    this.dispatchEvent(new Event("popup-hide"));
+  }
 
   // private functions
   private handleOutsideClick = (event: MouseEvent) => {

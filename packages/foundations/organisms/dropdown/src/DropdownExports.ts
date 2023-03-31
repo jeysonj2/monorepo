@@ -34,13 +34,9 @@ export class Dropdown extends InputTemplate {
 
   // properties
   @property({ type: Boolean }) multiple = false;
-
   @property({ type: Boolean }) dontshowselected = false;
-
   @property() placement: Placement = 'bottom-right';
-
   @property() fixedText?: string;
-
   @property() placeholder?: string;
 
   @property() variant: Variant = 'default';
@@ -51,14 +47,11 @@ export class Dropdown extends InputTemplate {
   @query('iz-translate') translateElement!: Translate;
 
   // states
-  @state() text!: string;
-
+  @state() inputtext?: string;
   @state() count!: string;
 
   private fixedtextslot: boolean = false;
-
   private valueMap: Map<string, OptionItem> = new Map();
-
   private size: number = 0;
 
   get Size() {
@@ -89,9 +82,15 @@ export class Dropdown extends InputTemplate {
 
   public updateValue(value: string | null) {
     const values = value?.split(',');
+    if (!this.multiple) {
+      this.size = 0;
+      this.valueMap.clear();
+      this.dispatchEvent(new Event('clear-options'));
+    }
     this.dispatchEvent(
       new CustomEvent('value-changed', { detail: { value, values } })
     );
+    this.updateText();
   }
 
   // event handlers
@@ -106,7 +105,7 @@ export class Dropdown extends InputTemplate {
 
     if (!this.multiple) {
       this.valueMap.clear();
-      this.dispatchEvent(new CustomEvent('clear-options', event));
+      this.dispatchEvent(new Event('clear-options'));
     }
     this.valueMap.set(event.detail.value, item);
 
@@ -129,6 +128,7 @@ export class Dropdown extends InputTemplate {
         detail: { value: joinedValues, name: this.name },
       })
     );
+
     this.updateHidden(joinedValues);
   };
 
@@ -140,14 +140,13 @@ export class Dropdown extends InputTemplate {
       return;
     }
     slot.assignedNodes().forEach(node => {
-      if (node.nodeName.toLowerCase() === 'iz-option') {
-        const option = node as Option;
-        if (!option.hasAttribute('dropdown-registered')) {
-          option.setAttribute('dropdown-registered', 'true');
-          // option.setAttribute("variant", this.variant); // this is set from outside
-          option.addEventListener('change', this.handleItemToggle);
+      if (node instanceof Option) {
+        if (!node.hasAttribute('dropdown-registered')) {
+          node.setAttribute('dropdown-registered', 'true');
+          // node.setAttribute("variant", this.variant); // this is set from outside
+          node.addEventListener('change', this.handleItemToggle);
           // NOTE this has to be set last so the events are registered!
-          option.ConnectDropdown(this);
+          node.ConnectDropdown(this);
         }
       }
     });
@@ -158,11 +157,18 @@ export class Dropdown extends InputTemplate {
     if (button instanceof DropdownButton) {
       button.open = false;
     }
+
+    // if (this.dropdownMode === 'strict')
+    // {
+    //   // this.inputtext = '';
+    // }
   };
 
   private handleInputChange(_event: Event) {
     const event = _event as CustomEvent<InputEventChangeInfo>;
-    this.dispatchEvent(new CustomEvent<SearchEvent>('search', event));
+    this.size = 0;
+    this.valueMap.clear();
+    this.dispatchEvent(new Event('clear-options'));
 
     if (this.dropdownMode === 'loose') {
       // choose value
@@ -173,11 +179,13 @@ export class Dropdown extends InputTemplate {
         })
       );
     }
-
-    // else
+    // else 
     // {
-    //   // do something
     // }
+
+    // FIXME make sure the popover stays open!! 
+
+    this.dispatchEvent(new CustomEvent<SearchEvent>('search', event));
   }
 
   // helper functions
@@ -189,10 +197,10 @@ export class Dropdown extends InputTemplate {
     }
 
     let text = this.placeholder || 'Dropdown';
-    let count = '';
     if (this.fixedText) text = this.fixedText;
     else if (!this.dontshowselected && this.size > 0) {
       const texts = [];
+      let count = '';
       for (const item of this.valueMap.values()) {
         if (item.checked) {
           texts.push(item.text);
@@ -204,10 +212,15 @@ export class Dropdown extends InputTemplate {
         count = texts.length.toString();
         text = '{count} selected items';
       } else text = joinedTexts;
-    }
 
-    this.translateElement.setAttribute('count', count);
+      this.translateElement.setAttribute('count', count);
+      this.translateElement.innerText = text;
+      this.inputtext = this.translateElement.innerText;
+      return;
+    }
+    
     this.translateElement.innerText = text;
+    this.inputtext = '';
   }
 
   render() {
@@ -216,7 +229,8 @@ export class Dropdown extends InputTemplate {
       <iz-dropdown-button
         id="target"
         ?disabled=${this.disabled}
-        .variant=${this.variant}
+        variant=${this.variant}
+        .inputvalue=${this.inputtext}
         .direction=${this.placement.startsWith('top') ? 'up' : 'down'}
         @input-change=${this.handleInputChange}
       >
@@ -228,6 +242,7 @@ export class Dropdown extends InputTemplate {
         hideonoutsideclick
         revealBy="click"
         target="#target"
+        matchwidth
         placement=${this.placement}
       >
         <div class="card" @change=${this.handleItemToggle}>

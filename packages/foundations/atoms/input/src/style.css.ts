@@ -48,8 +48,8 @@ export const style = css`
     outline: none;
   }
 
-  input:invalid,
+  /* input:invalid,
   textarea:invalid {
     border-color: var(--colors-semantic-error, red);
-  }
+  } */
 `;

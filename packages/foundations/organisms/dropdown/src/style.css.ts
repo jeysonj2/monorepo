@@ -3,12 +3,14 @@ import { css } from 'lit';
 export const style = css`
   :host {
     position: relative;
+    display: inline-block;
+  }
+  iz-dropdown-button {
+    width: 100%;
   }
   iz-popover {
     --popover-gap: var(--dropdown-gap, 0.2rem);
-  }
-  iz-dropdown-button {
-    --button-width: var(--dropdown-button-width);
+    --button-min-width: 100%;
   }
 
   .card {

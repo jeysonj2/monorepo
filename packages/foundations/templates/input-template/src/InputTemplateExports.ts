@@ -60,6 +60,8 @@ export class InputTemplate extends FormElement {
 
   private otherInput?: HTMLInputElement;
 
+  private suspenseTimer:number = -1;
+
   public INPUTTEMPLATE = true;
 
   @property({
@@ -96,6 +98,8 @@ export class InputTemplate extends FormElement {
   @property({ type: Object }) errors?: Errors; // TODO possibiliy to use string with JSON.parse(...)
 
   @property({ type: Object }) warnings?: Errors; // TODO possibiliy to use string with JSON.parse(...)
+
+  @property({ type: Number }) suspenseDelay: number = 500;
 
   connectedCallback() {
     super.connectedCallback();
@@ -149,8 +153,18 @@ export class InputTemplate extends FormElement {
     }
   }
 
+  attributeChangedCallback(name: string, _old: string | null, value: string | null): void {
+    super.attributeChangedCallback(name, _old, value);
+
+    if (name === "value" || name === "defaultValue")
+    {
+      this.updateHidden(value||'');
+    }
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
+    clearTimeout(this.suspenseTimer);
     if (this.__hiddeninput) {
       this.__hiddeninput.parentElement?.removeChild(this.__hiddeninput);
       this.__hiddeninput = undefined;
@@ -173,6 +187,15 @@ export class InputTemplate extends FormElement {
         detail: { value },
       })
     );
+
+    clearTimeout(this.suspenseTimer);
+    this.suspenseTimer = setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent<InputEventChangeInfo>('suspended-input-change', {
+          detail: { value },
+        })
+      );
+    }, this.suspenseDelay) as unknown as number;
   }
 
   private checkError = () => {

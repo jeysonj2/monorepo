@@ -31,13 +31,13 @@ export class DropdownButton extends LitElement {
   @property() direction: Direction = 'down';
 
   @property() placeholder?: string;
+  @property() inputvalue?: string;
 
   // class functions
   constructor() {
     super();
     this.addEventListener('click', this.handleClick);
   }
-
   attributeChangedCallback(
     name: string,
     _old: string | null,
@@ -79,6 +79,7 @@ export class DropdownButton extends LitElement {
         text = element.innerText;
       }
       this.placeholder = text ?? '';
+      console.log('placeholder',this.placeholder)
     }, 1);
   };
 
@@ -93,18 +94,19 @@ export class DropdownButton extends LitElement {
     if (this.variant === 'input') {
       return html`
         <span class="input">
-          <izwc-input
-            @input-change=${this.handleInput}
+          <iz-input
+            @suspended-input-change=${this.handleInput}
             placeholder=${this.placeholder ?? ''}
-          ></izwc-input>
+            .value=${this.inputvalue}
+          ></iz-input>
           <slot
             style="display:none;"
             @slotchange=${this.handleSlotChange}
           ></slot>
           <span class="icon"
-            ><izwc-icon-caret
+            ><iz-icon-caret
               rotate=${this.open ? directionValue : 90}
-            ></izwc-icon-caret
+            ></iz-icon-caret
           ></span>
         </span>
       `;
