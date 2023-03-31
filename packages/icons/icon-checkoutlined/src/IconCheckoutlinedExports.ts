@@ -6,7 +6,7 @@ import { IconBase } from '@interzero-icons/icon-base';
 import { style } from './style.css.js';
 
 export class IconCheckoutlined extends IconBase {
-  static styles = style;
+  static styles = [IconBase.style, style];
 
   @property({
     type: Boolean,

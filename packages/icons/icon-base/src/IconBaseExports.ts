@@ -8,7 +8,7 @@ import { style } from './style.css.js';
 export type Size = 'small' | 'medium' | 'large';
 
 export class IconBase extends LitElement {
-  static styles = style;
+  static style = style;
 
   @property() size?: Size = 'medium';
 
@@ -52,8 +52,8 @@ export class IconBase extends LitElement {
         break;
     }
 
-    this.style.width = `${width}px`;
-    this.style.height = `${height}px`;
+    // this.style.width = `${width}px`;
+    // this.style.height = `${height}px`;
 
     return { width, height };
   }

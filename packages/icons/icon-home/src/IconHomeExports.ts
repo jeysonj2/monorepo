@@ -5,7 +5,7 @@ import { IconBase } from '@interzero-icons/icon-base';
 import { style } from './style.css.js';
 
 export class IconHome extends IconBase {
-  static styles = style;
+  static styles = [IconBase.style, style];
 
   render() {
     const { width, height } = this.getSize();

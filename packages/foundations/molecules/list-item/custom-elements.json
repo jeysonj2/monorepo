@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "demo/index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/ListItemExports.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ListItem",
+          "members": [
+            {
+              "kind": "field",
+              "name": "deletable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "draggable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "'medium'"
+            },
+            {
+              "kind": "field",
+              "name": "dragged",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "handleClick",
+              "privacy": "private",
+              "default": "(event:Event) => {\n    if (!this.draggable) return;\n    this.dragged = true;\n  }"
+            },
+            {
+              "kind": "field",
+              "name": "handleClickUp",
+              "privacy": "private",
+              "default": "() => {\n    if (!this.draggable) return;\n    this.dragged = false;\n  }"
+            },
+            {
+              "kind": "method",
+              "name": "handleRemove",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "remove",
+              "type": {
+                "text": "Event"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ListItem",
+          "declaration": {
+            "name": "ListItem",
+            "module": "src/ListItemExports.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./ListItemExports.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/list-item.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/style.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "style",
+          "default": "css`\n:host, div.item {\n  display: flex;\n  /* justify-content: space-between; */\n  align-items: center;\n  cursor: pointer;\n  position: relative;\n}\n\n:host([size=\"small\"]) {\n  height: var(--button-height-small, 25px);\n}\n:host([size=\"medium\"]) {\n  height: var(--button-height-medium, 30px);\n}\n:host([size=\"large\"])  {\n  height: var(--button-height-large, 40px);\n}\n\niz-icon-list {\n  margin-right: var(--list-item-list-margin, 0.5rem);\n}\n  \ndiv.item {\n  /* width: 100%; */\n  height: 100%;\n}\ndiv.item > div {\n  padding: var(--list-item-padding, 0.5rem);\n}\n\ndiv.item.dragged {\n  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);\n}\n`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "style",
+          "declaration": {
+            "name": "style",
+            "module": "src/style.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "stories/index.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Regular"
+        },
+        {
+          "kind": "variable",
+          "name": "CustomHeader"
+        },
+        {
+          "kind": "variable",
+          "name": "CustomCounter"
+        },
+        {
+          "kind": "variable",
+          "name": "SlottedContent"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "stories/index.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Regular",
+          "declaration": {
+            "name": "Regular",
+            "module": "stories/index.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "CustomHeader",
+          "declaration": {
+            "name": "CustomHeader",
+            "module": "stories/index.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "CustomCounter",
+          "declaration": {
+            "name": "CustomCounter",
+            "module": "stories/index.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SlottedContent",
+          "declaration": {
+            "name": "SlottedContent",
+            "module": "stories/index.stories.ts"
+          }
+        }
+      ]
+    }
+  ]
+}
