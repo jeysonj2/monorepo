@@ -1,0 +1,17 @@
+body {
+  background: #fafafa;
+  height: 100vh;
+  margin: 0;
+}
+
+fieldset {
+  height: calc(100% - 4rem);
+  width: calc(100% - 4rem);
+  position: relative;
+}
+
+iz-confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
