@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <fieldset>
+    <legend>Regular</legend>
+    <iz-pmp-flow-question question="My Question" description="My Description"></iz-pmp-flow-question>
+  </fieldset>
+
+  <fieldset>
+    <legend>Edit Mode</legend>
+    <iz-pmp-flow-question onchange="console.log('hejsan', event.detail)" editMode question="My Question" description="My Description"></iz-pmp-flow-question>
+  </fieldset>
+</body>
+</html>
