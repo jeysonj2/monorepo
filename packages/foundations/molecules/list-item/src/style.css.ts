@@ -10,7 +10,6 @@ export const style = css`
     width: 100%;
     position: relative;
     background-color: var(--list-item-background-color, white);
-    z-index: 1;
   }
 
   :host([size='small']) {
@@ -30,9 +29,10 @@ export const style = css`
   div.item {
     /* width: 100%; */
     height: 100%;
+    /* z-index: 1; */
   }
   div.item > div {
-    padding: var(--list-item-padding, 0.5rem);
+    padding: var(--list-item-padding, 0);
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */

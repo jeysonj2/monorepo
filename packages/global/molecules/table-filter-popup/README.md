@@ -1,66 +1,62 @@
-# @interzero-global/table-filter
+# @interzero-global/table-filter-popup
 
 ## Properties
 | name | type | default-value | required | description |
 |------|------|---------------|----------|-------------|
-| `"columns"` | `Column[]` | `[]` | `false` | displayes the available columns to filter on | 
-| `"data"` | `Data` | - | `false` | used for preloading filter with values |
+| `"columns"` | `Column[]` | `[]` | `false` | contains the columns of the table (being passed to `TableFilter`) |
+| `"filters"` | `Partial<Filter>[]` | `[]` | `false`
 
 ## Events
 | name | type | description |
 |------|------|-------------|
-| `"change"` | `CustomEvent<ChangeEvent>` | triggered when all 3 inputs have value (column, filter & value) |
+| `"save"` | `CustomEvent<SaveEvent>` | triggered when save is pressed, includes the filters (that has values) and closes the popup |
 
 ## CSS variables
 | name | type | default-value | description |
 |------|------|---------------|-------------|
-| `"--table-filter-gap"` | `CSS unit` | `1rem` | controls the gap between inputs |
+| `"--tablefilterpopup-card-width"` | `CSS unit` | `512px` | as TableFilter has a width of 500 we add this so when empty set it should not shrink |
+| `"--tablefilterpopup-list-gap"` | `CSS unit` | `0.6rem` | controls verticle gap between the items + margin between list and link "+ Add Filter" |
 
 ## Types
-### HiddenInput 
-```typescript
-interface HiddenChangeEvent {
-  value: string;
-}
-```
 ### TableFilter
 ```typescript
-type FilterType = 'equal-to' | 'contains' | 'begins-with' | 'in-between' | 'not-equal-to' | 'greater-then' | 'less-then';
-type Data = { column: string; value: string; filter: FilterType; }
-type ChangeEvent = Data;
+type Filter = { column: string; value: string; filter: FilterType; }
+type ChangeEvent = Filter;
 type Column = { id: string; name: string };
-type InputType = 'column' | 'filter' | 'value';
 ```
+### TableFilterPopup
+```typescript
+type SaveEvent = { filters: Filter[] }
+```
+## Global Functions
+| name | return-type | parameters | description |
+|------|-------------|------------|-------------|
+| `show` | `void` | - | controls if the popup should be shown |
+| `hide` | `void` | - | controls if the popup should be hidden |
 
 ## Translations
 | key | description |
 |-----|-------------|
-| "equal to" | used in filter dropdown |
-| "contains" | used in filter dropdown |
-| "begins with" | used in filter dropdown |
-| "in between" | used in filter dropdown |
-| "not equal to" | used in filter dropdown |
-| "greater then" | used in filter dropdown |
-| "less then" | used in filter dropdown |
-| "Type value" | placeholder of value |
-
+| "Filter Columns" | popup title |
+| "+ Add Filter" | link text to add new filter items |
+| "Save" | save button text |
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
 
 ```bash
-npm i @interzero-global/table-filter
+npm i @interzero-global/table-filter-popup
 ```
 
 ## Usage
 
 ```html
 <script type="module">
-  import '@interzero-global/table-filter/wc';
+  import '@interzero-global/table-filter-popup/wc';
 </script>
 
-<iz-global-table-filter></iz-global-table-filter>
+<iz-global-table-filter-popup></iz-global-table-filter-popup>
 ```
 
 ## Linting and formatting

@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import { html, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 
 // web-components
@@ -10,6 +10,8 @@ import '@interzero/list-item/wc';
 // tools
 import '@interzero-tools/translate/wc';
 
+// classes
+import { ListItem } from '@interzero/list-item';
 // types
 import type { ChangeEvent as HiddenChangeEvent } from '@interzero/input-template';
 
@@ -25,20 +27,32 @@ export type FilterType =
   | 'not-equal-to'
   | 'greater-then'
   | 'less-then';
-export type ChangeEvent = { value: string; column: string; filter: FilterType };
+export type Data = { column: string; value: string; filter: FilterType; }
+export type ChangeEvent = Data;
 export type Column = { id: string; name: string };
 type InputType = 'column' | 'filter' | 'value';
 
-export class TableFilter extends LitElement {
+export class TableFilter extends ListItem {
   static styles = style;
 
   @property({ type: Array }) columns: Column[] = [];
+
+  @property({ type: Object }) data?: Data;
 
   private _column: string = '';
 
   private _filter: string = '';
 
   private _value: string = '';
+
+  protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(_changedProperties);
+    if (this.data) {
+      this._column = this.data.column;
+      this._filter = this.data.filter;
+      this._value = this.data.value;
+    }
+  }
 
   // event handlers
   private handleChange(type: InputType) {
@@ -59,12 +73,17 @@ export class TableFilter extends LitElement {
     };
   }
 
+  private handleItemRemove(event:Event) {
+    this.dispatchEvent(new Event("remove", event));
+  }
+
   render() {
     return html`
-      <iz-list-item .draggable=${false}>
+      <iz-list-item @remove=${this.handleItemRemove} .draggable=${false}>
         <div>
           <iz-dropdown
             variant="input"
+            .value=${this.data?.column}
             @suspended-input-change=${this.handleChange('column')}
           >
             ${this.columns.map(
@@ -74,6 +93,7 @@ export class TableFilter extends LitElement {
           </iz-dropdown>
           <iz-dropdown
             variant="input"
+            .value=${this.data?.filter}
             @suspended-input-change=${this.handleChange('filter')}
           >
             <iz-option value="equal-to">
@@ -101,6 +121,7 @@ export class TableFilter extends LitElement {
           <iz-input
             @suspended-input-change=${this.handleChange('value')}
             placeholder="Type value"
+            .value=${this.data?.value}
           ></iz-input>
         </div>
       </iz-list-item>

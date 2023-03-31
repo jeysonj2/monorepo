@@ -163,6 +163,18 @@ export class Dropdown extends InputTemplate {
         }
       }
     });
+
+    setTimeout(() => {
+
+      if (this.value) 
+      {
+        this.updateValue(this.value);
+      }
+      else if (this.defaultValue)
+      {
+        this.updateValue(this.defaultValue);
+      }
+    }, 1)
   };
 
   private handlePopoverClose = () => {

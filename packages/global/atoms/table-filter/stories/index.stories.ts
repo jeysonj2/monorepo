@@ -1,12 +1,13 @@
 import { html, TemplateResult } from 'lit';
 import '../src/table-filter.js';
-import { Column } from '../src/TableFilterExports.js';
+import { Column, Data } from '../src/TableFilterExports.js';
 
 export default {
   title: 'global/atoms/TableFilter',
   component: 'iz-global-table-filter',
   argTypes: {
     columns: { control: 'array' },
+    data: { control: 'object' },  
     cssGap: { control: 'text' },
   },
 };
@@ -19,16 +20,17 @@ interface Story<T> {
 
 interface ArgTypes {
   columns?: Column[];
+  data?: Data;
   cssGap?: string;
 }
 
-const Template: Story<ArgTypes> = ({ columns, cssGap }: ArgTypes) => html`
+const Template: Story<ArgTypes> = ({ columns, data, cssGap }: ArgTypes) => html`
   <style>
     iz-global-table-filter {
       --table-filter-gap: ${cssGap};
     }
   </style>
-  <iz-global-table-filter .columns=${columns}> </iz-global-table-filter>
+  <iz-global-table-filter .data=${data} .columns=${columns}> </iz-global-table-filter>
 `;
 
 export const Regular = Template.bind({});
@@ -42,3 +44,13 @@ Regular.args = {
   ],
   cssGap: '1rem',
 };
+
+export const Existing = Template.bind({});
+Existing.args = {
+  ...Regular.args,
+  data: {
+    column: '0',
+    value: 'hello',
+    filter: 'in-between'
+  }
+}

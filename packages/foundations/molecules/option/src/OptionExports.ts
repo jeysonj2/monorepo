@@ -83,17 +83,6 @@ export class Option extends LitElement {
   public ConnectDropdown = (element: Element) => {
     // check if it has
     const dropdown = element as HTMLInputElement;
-    const dvalue = (dropdown.value || dropdown.defaultValue || '').split(',');
-    if (dvalue.includes(this.value)) {
-      this.checked = true;
-
-      // NOTE this feels uncessesary
-      // if (this.text) {
-      //   this.dispatchChange();
-      // }
-
-      setTimeout(() => this.dispatchChange(), 1);
-    }
 
     dropdown.addEventListener('clear-options', () => {
       if (!this.internalTrigger) this.checked = false;
@@ -101,10 +90,13 @@ export class Option extends LitElement {
     });
 
     dropdown.addEventListener('value-changed', (event: Event) => {
-      const cevent = event as CustomEvent<DropdownValueChangeEvent>;
-      if (cevent.detail.values?.includes(this.value)) {
-        this.checked = true;
-        this.dispatchChange();
+      if (event instanceof CustomEvent<DropdownValueChangeEvent>)
+      {
+        if (event.detail.values?.includes(this.value)) {
+          this.internalTrigger = true;
+          this.checked = true;
+          this.dispatchChange();
+        }
       }
     });
 

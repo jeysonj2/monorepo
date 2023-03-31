@@ -19,7 +19,7 @@
 |------|------|---------------|-------------|
 | `"--list-item-background-color"` | `Color` | `white` | controls the background color of item | 
 | `"--list-item-list-icon-margin-right"` | `CSS unit` | `0.5rem` | `false` | controls the list-icon margin-right | 
-| `"--list-item-padding"` | `CSS padding` | `0.5rem` | `false` | controls the padding of the list-item | 
+| `"--list-item-padding"` | `CSS padding` | `0` | `false` | controls the padding of the list-item | 
 
 ## Types
 ### Button 
