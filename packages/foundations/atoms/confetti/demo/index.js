@@ -3,7 +3,7 @@ import '../dist/src/confetti.js';
 
 window.onload = () => {
   window.confetti.placements = [
-    'bottom-left', 
+    // 'bottom-left', 
     // 'bottom-center', 
     // 'bottom-right', 
     // 'center-right', 
@@ -11,10 +11,10 @@ window.onload = () => {
     // 'top-center', 
     // 'top-left', 
     // 'center-left',
-    // 'center-center'
+    'center-center'
   ];
   window.shoot.onclick = () => {
-    window.confetti.shoot(0);
+    window.confetti.shoot(0, 20, Math.PI*2);
   };
   // window.start.onclick = () => window.confetti.start();
   // window.stop.onclick = () => window.confetti.stop();

@@ -1,0 +1,8 @@
+body {
+  background: #fafafa;
+}
+fieldset {
+  display: flex;
+  justify-content: space-between;
+  margin: 2ch;
+}

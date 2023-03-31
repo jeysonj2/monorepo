@@ -14,11 +14,18 @@ import type { Size } from '@interzero/button';
 // style import
 import { style } from './style.css.js';
 
+// types 
+export type DragStartEvent = { target: ListItem, pageX: number, pageY: number; };
+
+// converter
+function booleanConvert(value:string|null) {
+  return !!['true', true, ''].includes((value || '').toLowerCase());
+}
 export class ListItem extends LitElement {
   static styles = style;
 
-  @property({ type: Boolean }) deletable = true;
-  @property({ type: Boolean }) draggable = true;
+  @property({ type: Boolean, converter: booleanConvert }) deletable = true;
+  @property({ type: Boolean, converter: booleanConvert }) draggable = true;
   @property() size:Size = 'medium';
 
   @state() dragged: boolean = false;
@@ -28,39 +35,29 @@ export class ListItem extends LitElement {
     super.connectedCallback();
 
     if (!this.hasAttribute('size')) this.setAttribute('size', this.size);
-
-    setTimeout(() => {
-      const divitem = this.shadowRoot?.querySelector("div.item");
-      if (divitem)
-      {
-        divitem.addEventListener("mousedown", this.handleClick);
-      }
-    }, 10);
-    window.addEventListener("mouseup", this.handleClickUp);
-
   }
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    window.removeEventListener("mouseup", this.handleClickUp);
   }
 
   // event functions
-  private handleClick = (event:Event) => {
+  private handleMouseDown(event:MouseEvent) {
     if (!this.draggable) return;
-    this.dragged = true;
-  }
-  private handleClickUp = () => {
-    if (!this.draggable) return;
-    this.dragged = false;
+    this.dispatchEvent(new CustomEvent<DragStartEvent>("drag-start", { detail: { target: this, pageX: event.pageX, pageY: event.pageY } }));
   }
   private handleRemove(event:Event) {
     event.preventDefault();
+    event.stopPropagation();
+    this.classList.remove('dragged');
     this.dispatchEvent(new Event("remove"));
   }
 
   render() {
     return html`
-      <div class=${["item", this.dragged ? "dragged" : ""].join(" ")}>
+      <div 
+        @mousedown=${this.handleMouseDown}
+        class=${["item", this.dragged ? "dragged" : ""].join(" ")}
+      >
         <div><slot></slot></div>
         ${this.dragged ? html`<iz-icon-list size="large" density="medium"></iz-icon-list>` : null}
       </div>

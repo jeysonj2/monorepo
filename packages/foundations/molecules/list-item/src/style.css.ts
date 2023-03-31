@@ -3,10 +3,22 @@ import { css } from 'lit';
 export const style = css`
 :host, div.item {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  width: 100%;
   position: relative;
+  background-color: var(--list-item-background-color, white);
+  z-index: 1;
+}
+
+:host([dragged]) {
+  transition: transform ease 200ms;
+}
+
+:host(.dragged) {
+  transition: none;
+  /* z-index: 2; */
 }
 
 :host([size="small"]) {
@@ -29,6 +41,9 @@ div.item {
 }
 div.item > div {
   padding: var(--list-item-padding, 0.5rem);
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 div.item.dragged {
