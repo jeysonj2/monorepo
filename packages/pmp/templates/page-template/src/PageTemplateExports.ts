@@ -17,8 +17,15 @@ import { style } from './style.css.js';
 
 export type { ChangeEvent } from '@interzero-global/header';
 
+// type Role = 1|2;
+// interface UserModel {
+//   role: Role;
+//   email: string;
+// }
 export class PageTemplate extends LitElement {
   static styles = style;
+
+  // @property({type:Object}) userData!: UserModel; 
 
   private handleChange = (event: CustomEvent<ChangeEvent>) => {
     this.dispatchEvent(
