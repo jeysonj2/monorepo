@@ -1,30 +1,22 @@
-# @interzero-global/login-links
+# @interzero-global/footer
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
 
 ```bash
-npm i @interzero-global/login-links
+npm i @interzero-global/footer
 ```
 
 ## Usage
 
 ```html
 <script type="module">
-  import '@interzero-global/login-links/wc';
+  import '@interzero-global/footer/wc';
 </script>
 
-<iz-global-login-links></iz-global-login-links>
+<iz-global-footer></iz-global-footer>
 ```
-
-## Translations
-
-| key | component | use-case |
-|-----|-----------|----------|
-| `"INTERZERO"` | LoginLinks | link text for interzero official website |
-| `"KONTAKT"` | LoginLinks | link text for interzero contact page |
-| `"© 2022 - Interzero Circular Solutions Germany GmbH"` | LoginLinks | trademark text |
 
 ## Linting and formatting
 

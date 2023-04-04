@@ -26,7 +26,7 @@ export class LoginLinks extends LitElement {
       </iz-link>
       <iz-typography>
         <iz-translate
-          >© 2022 - Interzero Circular Solutions Germany Gmbh</iz-translate
+          >© 2022 - Interzero Circular Solutions Germany GmbH</iz-translate
         >
       </iz-typography>
     `;

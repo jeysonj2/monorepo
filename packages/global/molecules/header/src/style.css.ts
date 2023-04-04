@@ -7,7 +7,7 @@ export const style = css`
     height: var(--header-height, 60px);
     align-items: center;
     position: relative;
-    background-color: var(--header-color, #fcfcfc);
+    background-color: var(--header-background-color, #fcfcfc);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
     padding: var(--header-padding, 1rem);

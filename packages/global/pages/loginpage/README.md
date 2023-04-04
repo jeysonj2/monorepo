@@ -21,7 +21,7 @@
 | `"Remembered it?"` | LoginForm | link text for login form (from reset variant) |
 | `"INTERZERO"` | LoginLinks | link text for interzero official website |
 | `"KONTAKT"` | LoginLinks | link text for interzero contact page |
-| `"© 2022 - Interzero Circular Solutions Germany Gmbh"` | LoginLinks | trademark text |
+| `"© 2022 - Interzero Circular Solutions Germany GmbH"` | LoginLinks | trademark text |
 
 ### Complete Use case (english)
 Retared use case:
@@ -49,7 +49,7 @@ window.izTranslations.load({
     "Remembered it?": "Remembered it?",
     "INTERZERO": "INTERZERO",
     "KONTAKT": "KONTAKT",
-    "© 2022 - Interzero Circular Solutions Germany Gmbh": "© 2022 - Interzero Circular Solutions Germany Gmbh",
+    "© 2022 - Interzero Circular Solutions Germany GmbH": "© 2022 - Interzero Circular Solutions Germany Gmbh",
   }
 });
 ```
