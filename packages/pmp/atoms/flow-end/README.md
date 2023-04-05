@@ -1,5 +1,22 @@
 # @interzero-pmp/flow-end
 
+## Properties
+--
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| done | `"Event"` | triggered when the done button is pressed |
+
+## CSS variables
+--
+
+## Types
+--
+
+## Translations
+- DONE
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

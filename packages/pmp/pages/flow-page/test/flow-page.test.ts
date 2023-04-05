@@ -5,7 +5,9 @@ import '../src/flow-page.js';
 
 describe('FlowPage', () => {
   it('passes the a11y audit', async () => {
-    const el = await fixture<FlowPage>(html`<iz-pmp-flow-page></iz-pmp-flow-page>`);
+    const el = await fixture<FlowPage>(
+      html`<iz-pmp-flow-page></iz-pmp-flow-page>`
+    );
 
     await expect(el).shadowDom.to.be.accessible();
   });

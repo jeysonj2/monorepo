@@ -24,6 +24,7 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
+    "@interzero-icons/icon-close": "^1.4.0",
     "@interzero-tools/translate": "^1.3.0",
     "@interzero/button": "^1.3.0",
     "@interzero/dropdown": "^1.3.0",

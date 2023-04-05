@@ -1,26 +1,36 @@
 # @interzero-pmp/flow-option
 
-## Properties 
-| name | type | default-value | description |
-|------|------|---------------|-------------|
-| `"variant"` | `Variant` | "default" | controls the variant of the `FlowOption` |
-| `"value"` | `string`| "Empty Descriiption" | the description-value |
-| `"checked"` | `boolean` | `false` | control if default-button is checked or not |
-| `"id"` | `HTMLAttribute` | - | This should always be present as all events will send this id-value when dispatched |
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"variant"` | `Variant` | "default" | `"false"` | controls the variant of the `FlowOption` |
+| `"value"` | `string`| "Empty Descriiption" | `"true"` | the description-value |
+| `"checked"` | `boolean` | `false` | `"false"` | control if default-button is checked or not |
+| `"id"` | `HTMLAttribute` | - | `"true"` | This should always be present as all events will send this id-value when dispatched |
 
 ## Events 
 | name | Type | description |
 |-------|------|-------------|
 | `"toggle"` | `CustomEvent<ClickEvent>` | dispatched when the default-button is pressed |
-| `"add"` | `CustomEvent<ClickEvent>` | dispatched when the add-button is pressed |
 | `"edit"` | `CustomEvent<ClickEvent>` | dispatched when the edit-button is pressed |
+| `"add"` | `Event` | dispatched when the add-button is pressed |
+| `"save"` | `Event` | dispatched when the save-button is pressed |
 
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--flow-option-height"` | `"CSS unit"` | `6rem` | height of the element | 
+| `"--flow-option-edit-gap"` | `"CSS unit"` | `0.2rem` | gap when variant is `"edit"` |
 
-## Types 
+## Types
 ```typescript
-type Variant = 'default' | 'edit' | 'add';
+type Variant = 'default' | 'edit' | 'add' | 'save';
 type ClickEvent = { id: string; };
 ```
+
+## Translations
+- save
+- edit 
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 

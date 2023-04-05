@@ -5,7 +5,9 @@ import '../src/flow-end.js';
 
 describe('FlowEnd', () => {
   it('passes the a11y audit', async () => {
-    const el = await fixture<FlowEnd>(html`<iz-pmp-flow-end></iz-pmp-flow-end>`);
+    const el = await fixture<FlowEnd>(
+      html`<iz-pmp-flow-end></iz-pmp-flow-end>`
+    );
 
     await expect(el).shadowDom.to.be.accessible();
   });

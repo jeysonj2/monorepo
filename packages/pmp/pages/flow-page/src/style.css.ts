@@ -18,6 +18,8 @@ export const style = css`
     position: absolute;
     top: 0;
     left: 0;
-    height: calc(100vh - calc(var(--footer-height, 35px) + var(--header-height, 60px)));
+    height: calc(
+      100vh - calc(var(--footer-height, 35px) + var(--header-height, 60px))
+    );
   }
 `;

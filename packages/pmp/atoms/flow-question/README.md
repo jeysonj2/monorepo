@@ -1,23 +1,29 @@
 # @interzero-pmp/flow-question
 
-## Properties 
-| name | type | default-value | description |
-|------|------|---------------|-------------|
-| `"question"` | `string` | "Empty Quesiton" | the question-value |
-| `"description"` | `string`| "Empty Descriiption" | the description-value |
-| `"editMode"` | `boolean` | `false` | control if edit mode or not, would display `inputs` or `typography` |
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"question"` | `string` | "Empty Quesiton" | `false` | the question-value |
+| `"description"` | `string`| "Empty Descriiption"| `false`  | the description-value |
+| `"editMode"` | `boolean` | `false`| `false`  | control if edit mode or not, would display `inputs` or `typography` |
 
-## Events 
-| name | Type | description |
-|-------|------|-------------|
+## Events
+| name | type | description |
+|------|------|-------------|
 | `"change"` | `CustomEvent<ChangeEvent>` | dispatched when `"editMode"` is set to true |
 
-
+## CSS variables
+--
 ## Types 
 ```typescript
 type NameType = 'question' | 'description';
 type ChangeEvent = { name:NameType; value:string; };
 ```
+
+## Translations
+- Empty Question
+- Empty Description
+
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 

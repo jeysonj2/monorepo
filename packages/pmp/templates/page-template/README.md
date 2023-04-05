@@ -1,5 +1,47 @@
 # @interzero-pmp/page-template
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"userData"` | `"UserModel"` | `false` | the user entity (from backend) |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"change"` | `"CustomEvent<ChangeEvent>"` | triggered whenever something from header is triggered or one of the menu-value are selected |
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--max-page-height"` | `"CSS unit"` | `100vh` | a "global" value for max heights of pages |
+
+## Types
+```typescript
+type Role = 'user' | 'admin';
+type MenuType = 'administration';
+type ChangeType = HeaderChangeType | MenuType;
+type ChangeEvent = {
+  type: ChangeType;
+  value: string;
+};
+interface UserModel {
+  role: Role;
+}
+```
+
+## Translations
+### Footer
+- © 2022 - Interzero Circular Solutions Germany GmbH
+### UserMenu 
+- Logout
+- User Profile
+### PageTemplate 
+- Administration
+- Users
+- List of Price List 
+- Price Flow
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

@@ -1,29 +1,55 @@
 # @interzero-pmp/flow-option-popup
 
-## Properties 
-| name | type | required | description |
-|------|------|----------|-------------|
-| `"data"` | `Data` | `false` | Contains all necessary data to disaplay the right contents |
 
-## Events 
-| name | Type | description |
-|-------|------|-------------|
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"data"` | `Data` | - | `false` | Contains all necessary data to disaplay the right contents |
+
+## Events
+| name | type | description |
+|------|------|-------------|
 | `"submit"` | `CustomEvent<SubmitEventType>` | dispatched when the either "add" or "save" button is pressed |
 | `"remove"` | `CustomEvent<RemoveEventType>` | dispatched when the "remove" button is pressed |
 
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--flow-option-popup-width"` | `"CSS unit"` | `25rem` | controls the popup `"min-width"` |
 
-## Types 
+## Types
 ```typescript
 type PriceAffectionType = 'multiplication' | 'addition';
-interface Data {
+type Data = Partial<{
   priceAffection: number;
   priceAffectionType: PriceAffectionType;
   value: string;
+  id: string;
+  parent: string;
+}>;
+// event types
+type SubmitEventType = {
   id?: string;
-}
-type SubmitEventType = { id?: string; value: string; priceAffection: string; priceAffectionType: PriceAffectionType; };
-type RemoveEventType = { id: string; };
+  parent?: string;
+  value: string;
+  priceAffection: string;
+  priceAffectionType: PriceAffectionType;
+};
+type RemoveEventType = { id: string; parent?: string };
 ```
+
+## Translations
+- multiplication
+- addition
+- add
+- save 
+- delete
+- Price Affection Type
+- Type a price-affection
+- Select a Price Affection Type
+- Price Affection
+- Type a value
+- Value
 
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.

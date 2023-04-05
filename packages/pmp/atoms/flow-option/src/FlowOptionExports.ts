@@ -24,19 +24,24 @@ export class FlowButton extends LitElement {
   static styles = style;
 
   @property() value!:string;
+
   @property() variant:Variant = 'default';
+
   @property({ type: Boolean }) checked: boolean = false;
 
   // events
   private handleClick() {
     this.dispatchEvent(new CustomEvent<ClickEvent>("toggle", { detail: { id: this.getAttribute("id") as string } }));
   }
+
   private handleEditClick() {
     this.dispatchEvent(new CustomEvent<ClickEvent>("edit", { detail: { id: this.getAttribute("id") as string } }));
   }
+
   private handleAddClick() {
     this.dispatchEvent(new Event("add"));
   }
+
   private handleSaveClick() {
     this.dispatchEvent(new Event("save"));
   }

@@ -1,5 +1,38 @@
 # @interzero-pmp/flow-roadmap
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"answers"` | `"Answer[]"` | `[]` | `false` | displayes the selected answers for navigation |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"select"` | `"CustomEvent<Answer>"` | triggered when a answer is selected (for navigation purpose) |
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--flow-roadmap-gap"` | `"CSS unit"` | `0.5rem` | controls the gap between the buttons |
+| `"--flow-roadmap-line-width"` | `"CSS unit"` | `2px` | controls the seperator line-width |
+| `"--flow-roadmap-line-color"` | `"Color"` | `gray` | controls the seperator line color |
+| `"--flow-roadmap-line-left"` | `"CSS unit"` | `3rem` | controls the position of the seperator line | 
+| `"--flow-roadmap-line-left-end"` | `"CSS unit"` | `50%` | controls the position of the seperator when class="end" |
+
+## Types
+```typescript
+type Answer = {
+  question: string;
+  option: string;
+  questionId: string | 'final-screen';
+  optionid: string;
+};
+```
+
+## Translations
+- Overview Screen
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

@@ -4181,6 +4181,85 @@ const FakeData = [
 ]
 
 window.onload = () => {
+  const tranlations = [
+    {
+        id: 'en',
+        name: 'english',
+        flag: 'E',
+        translations: {}
+    },
+    {
+        id: 'se',
+        name: 'svenska',
+        flag: 'S',
+        translations: {
+            "Logout": "[SE] Logout",
+            "User Profile": "[SE] User Profile",
+            "Administration": "[SE] Administration",
+            "Users": "[SE] Users",
+            "List of Price List": "[SE] List of Price List",
+            "Price Flow": "[SE] Price Flow",
+            "save": "[SE] save",
+            "edit ": "[SE] edit ",
+            "Empty Question": "[SE] Empty Question",
+            "Empty Description": "[SE] Empty Description",
+            "Overview Screen": "[SE] Overview Screen",
+            "multiplication": "[SE] multiplication",
+            "addition": "[SE] addition",
+            "add": "[SE] add",
+            "save ": "[SE] save ",
+            "delete": "[SE] delete",
+            "DONE": "[SE] DONE",
+            "Current Price: {price} €": "[SE] Current Price: {price} €",
+            "Normal View": "[SE] Normal View",
+            "Edit Mode": "[SE] Edit Mode",
+            "Price Affection Type": "[SE] Price Affection Type",
+            "Type a price-affection": "[SE] Type a price-affection",
+            "Select a Price Affection Type": "[SE] Select a Price Affection Type",
+            "Price Affection": "[SE] Price Affection",
+            "Type a value": "[SE] Type a value",
+            "Value": "[SE] Value",
+            "© 2022 - Interzero Circular Solutions Germany GmbH": "[SE] © 2022 - Interzero Circular Solutions Germany GmbH",
+        }
+    },
+    {
+        id: 'hu',
+        name: 'Magyar',
+        flag: 'M',
+        translations: {
+            "Logout": "[HU] Logout",
+            "User Profile": "[HU] User Profile",
+            "Administration": "[HU] Administration",
+            "Users": "[HU] Users",
+            "List of Price List": "[HU] List of Price List",
+            "Price Flow": "[HU] Price Flow",
+            "save": "[HU] save",
+            "edit ": "[HU] edit ",
+            "Empty Question": "[HU] Empty Question",
+            "Empty Description": "[HU] Empty Description",
+            "Overview Screen": "[HU] Overview Screen",
+            "multiplication": "[HU] multiplication",
+            "addition": "[HU] addition",
+            "add": "[HU] add",
+            "save ": "[HU] save ",
+            "delete": "[HU] delete",
+            "DONE": "[HU] DONE",
+            "Current Price: {price} €": "[HU] Current Price: {price} €",
+            "Normal View": "[HU] Normal View",
+            "Edit Mode": "[HU] Edit Mode",
+            "Price Affection Type": "[HU] Price Affection Type",
+            "Type a price-affection": "[HU] Type a price-affection",
+            "Select a Price Affection Type": "[HU] Select a Price Affection Type",
+            "Price Affection": "[HU] Price Affection",
+            "Type a value": "[HU] Type a value",
+            "Value": "[HU] Value",
+            "© 2022 - Interzero Circular Solutions Germany GmbH": "[HU] © 2022 - Interzero Circular Solutions Germany GmbH",
+        }
+    }
+  ]
+
+  window.izTranslation.loadAll(tranlations)
+
   const element = document.querySelector("iz-pmp-flow-page");
   element.addEventListener('viewport-change', e => console.log(e.detail));
   element.addEventListener('complete', e => console.log(e.detail));

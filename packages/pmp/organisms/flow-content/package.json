@@ -31,6 +31,7 @@
     "@interzero-pmp/flow-roadmap": "^0.0.0",
     "@interzero-pmp/flow-view": "^0.0.0",
     "@interzero-tools/translate": "^1.4.0",
+    "@interzero/button": "^1.4.0",
     "@interzero/typography": "^1.4.0",
     "lit": "^2.0.2"
   },

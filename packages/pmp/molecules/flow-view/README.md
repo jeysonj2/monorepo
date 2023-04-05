@@ -1,10 +1,10 @@
 # @interzero-pmp/flow-view
 
-## Properties 
-| name | type | default-value | description |
-|------|------|---------------|-------------|
-| `"variant"` | `Variant` | "default" | controls the variant of question-view |
-| `"data"` | `Data` | - | required field, contains all data to display question-view |
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"variant"` | `Variant` | "default" | `false` | controls the variant of question-view |
+| `"data"` | `Data` | - | `true` |required field, contains all data to display question-view |
 
 ## Events 
 | name | Type | description |
@@ -12,44 +12,49 @@
 | `"question-change"` | `CustomEvent<ChangeEvent>` | dispatches when `FlowQuestion` dispatches "change" event |
 | `"option-click"` | `CustomEvent<OptionEvent>` | dispatches when `FlowOption` is dispatching either `add`, `edit`, `toggle` event |
 
-
-## External Types 
-From **`FlowOption`**
-```typescript
-type OptionVariant = 'default' | 'edit' | 'add';
-type OptionClickEvent = { id: string; };
-```
-From **`FlowQuestion`**
-```typescript
-type NameType = 'question' | 'description';
-type QuestionChangeEvent = { name:NameType; value:string; };
-```
-
-```typescript
-type Variant = 'default' | 'edit';
-type Option = {id:string, value:string, checked: boolean};
-interface Data {
-  id: string;
-  question: string;
-  description: string;
-  options: Option[];
-}
-type OptionEvent = { optionId: string, id: string, variant: OptionVariant };
-type ChangeEvent = { id: string; } & QuestionChangeEvent;
-```
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--flow-view-grid-gap"` | `"CSS unit"` | `1rem` | controls the gap between the `"flow-options"` |
 
 ## Types 
+### FlowOption
+```typescript
+type OptionVariant = 'default' | 'edit' | 'add' | 'save';
+type OptionClickEvent = { id: string; };
+```
+### FlowQuestion
+```typescript
+type QuestionNameType = 'question' | 'description';
+type QuestionChangeEvent = { name:QuestionNameType; value:string; };
+```
+### FlowView
 ```typescript
 type Variant = 'default' | 'edit';
-type Option = {id:string, value:string, checked: boolean};
+type Option = { id: string; value: string; checked: boolean };
 interface Data {
   id: string;
   question: string;
   description: string;
   options: Option[];
 }
-type OptionEvent = { optionId: string, id: string, variant: OptionVariant };
+type OptionEvent = {
+  optionId: string;
+  id: string;
+  variant: OptionVariant;
+};
+type ChangeEvent = { id: string } & QuestionChangeEvent;
 ```
+
+## Translations
+### FlowOption
+- save
+- edit 
+### FlowQuestion
+- Empty Question
+- Empty Description
+### FlowView
+-
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 

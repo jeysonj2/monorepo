@@ -1,5 +1,23 @@
 # @interzero-global/footer
 
+## Properties
+-
+
+## Events
+-
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--footer-height"` | `"CSS unit"` | `35px` | controls the height of the footer |
+| `"--footer-background-color"` | `"Color"` | `#fcfcfc` | controls the background-color of the footer |
+
+## Types
+-
+
+## Translations
+- © 2022 - Interzero Circular Solutions Germany GmbH
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

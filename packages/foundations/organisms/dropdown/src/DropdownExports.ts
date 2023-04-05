@@ -11,6 +11,7 @@ import { Option } from '@interzero/option';
 import { InputTemplate } from '@interzero/input-template';
 import { DropdownButton } from '@interzero/dropdown-button';
 import { Translate } from '@interzero-tools/translate';
+import { Popover } from '@interzero/popover';
 
 // types
 import type { Placement } from '@interzero/popover';
@@ -35,6 +36,7 @@ export class Dropdown extends InputTemplate {
   // properties
   @property({ type: Boolean }) multiple = false;
   @property({ type: Boolean }) dontshowselected = false;
+  @property({ type: Boolean }) donthideonselect = false;
   @property() placement: Placement = 'bottom-right';
   @property() fixedText?: string;
   @property() placeholder?: string;
@@ -45,6 +47,7 @@ export class Dropdown extends InputTemplate {
 
   // queries
   @query('iz-translate') translateElement!: Translate;
+  @query('iz-popover') popoverElement!: Popover;
 
   // states
   @state() inputtext?: string;
@@ -106,6 +109,7 @@ export class Dropdown extends InputTemplate {
     if (!this.multiple) {
       this.valueMap.clear();
       this.dispatchEvent(new Event('clear-options'));
+      if (!this.donthideonselect) this.popoverElement.closePopover();
     }
     this.valueMap.set(event.detail.value, item);
 

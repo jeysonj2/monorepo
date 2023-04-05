@@ -5,7 +5,9 @@ import '../src/flow-content.js';
 
 describe('FlowContent', () => {
   it('passes the a11y audit', async () => {
-    const el = await fixture<FlowContent>(html`<iz-pmp-flow-content></iz-pmp-flow-content>`);
+    const el = await fixture<FlowContent>(
+      html`<iz-pmp-flow-content></iz-pmp-flow-content>`
+    );
 
     await expect(el).shadowDom.to.be.accessible();
   });

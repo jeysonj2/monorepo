@@ -8,6 +8,6 @@ export const style = css`
   }
 
   iz-popup {
-    --card-width: 25rem;
+    --card-width: var(--flow-option-popup-width, 25rem);
   }
 `;
