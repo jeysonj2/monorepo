@@ -15,8 +15,9 @@ import '@interzero-tools/translate';
 import { style } from './style.css.js';
 
 // types & interfaces
+export type ChangeType = 'home-button' | 'user-menu';
 export interface ChangeEvent {
-  type: 'home-button' | 'user-menu';
+  type: ChangeType;
   value: string;
 }
 
@@ -65,7 +66,7 @@ export class Header extends LitElement {
   render() {
     return html`
       <iz-global-logo size="small"></iz-global-logo>
-      <iz-button variant="icon" @click=${this.handleHomeClick}>
+      <iz-button variant="circle" @click=${this.handleHomeClick}>
         <iz-icon-home></iz-icon-home>
       </iz-button>
       <div class="menus">

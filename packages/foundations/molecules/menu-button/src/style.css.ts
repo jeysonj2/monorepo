@@ -2,19 +2,19 @@ import { css } from 'lit';
 
 export const style = css`
   :host {
-    height: var(--button-height, 40px);
+    height: var(--button-height-large, 40px);
     min-width: var(--menu-button-min-width, 3rem);
     /* padding: var(--button-padding, 0); */
     display: inline-block;
   }
   :host([variant='text']) {
-    --button-height: var(--dropdown-button-height-text, 24px);
-    height: var(--dropdown-button-height-text, 24px);
+    --button-height: var(--button-height-small, 25px);
+    height: var(--button-height-small, 25px);
   }
 
   iz-button {
-    --button-width: var(--menu-button-min-width, 3rem);
-    --button-padding: var(--menu-button-padding, 0 0.5rem 0 1rem);
+    min-width: var(--menu-button-min-width, 3rem);
+    padding: var(--menu-button-padding, 0 0.5rem 0 1rem);
   }
 
   div {

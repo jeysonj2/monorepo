@@ -1,99 +1,97 @@
 import { html, LitElement } from 'lit';
+import { property } from 'lit/decorators.js';
 
 // web-components
-import '@interzero-global/header/wc';
-import '@interzero/menu/wc';
+// atoms
 import '@interzero/typography/wc';
+// molecules
 import '@interzero/menu-item/wc';
+// organisms
+import '@interzero/menu/wc';
+// global
+// atoms
+import '@interzero-global/footer/wc';
+// molecules
+import '@interzero-global/header/wc';
 
 // tools
 import '@interzero-tools/translate/wc';
 
 // classes & types
-import type { ChangeEvent } from '@interzero-global/header';
+import type { ChangeEvent as MenuChangeEvent } from '@interzero/menu-item';
+import type {
+  ChangeEvent as HeaderChangeEvent,
+  ChangeType as HeaderChangeType,
+} from '@interzero-global/header';
 
 // style import
 import { style } from './style.css.js';
 
-export type { ChangeEvent } from '@interzero-global/header';
-
-// type Role = 1|2;
-// interface UserModel {
-//   role: Role;
-//   email: string;
-// }
+type Role = 'user' | 'admin';
+type MenuType = 'administration';
+export type ChangeType = HeaderChangeType | MenuType;
+export type ChangeEvent = {
+  type: ChangeType;
+  value: string;
+};
+export interface UserModel {
+  role: Role;
+}
 export class PageTemplate extends LitElement {
   static styles = style;
 
-  // @property({type:Object}) userData!: UserModel; 
+  @property({ type: Object }) userData?: UserModel;
 
-  private handleChange = (event: CustomEvent<ChangeEvent>) => {
+  private handleHeaderChange = (event: CustomEvent<HeaderChangeEvent>) => {
     this.dispatchEvent(
-      new CustomEvent<ChangeEvent>('header-change', {
+      new CustomEvent<ChangeEvent>('change', {
         detail: event.detail,
         bubbles: true,
       })
     );
   };
 
+  private handleMenuChange(type: MenuType) {
+    return (event: CustomEvent<MenuChangeEvent>) => {
+      this.dispatchEvent(
+        new CustomEvent<ChangeEvent>('change', {
+          detail: {
+            type,
+            value: event.detail.value,
+          },
+          bubbles: true,
+        })
+      );
+    };
+  }
+
   render() {
     return html`
-      <iz-global-header @change=${this.handleChange}>
-        <iz-menu variant="text">
-          <iz-typography slot="text"
-            ><iz-translate>Menu 1</iz-translate></iz-typography
-          >
-          <iz-menu-item value="A"
-            ><iz-translate>Item A</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="B"
-            ><iz-translate>Item B</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="C"
-            ><iz-translate>Item C</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="D"
-            ><iz-translate>Item D</iz-translate></iz-menu-item
-          >
-        </iz-menu>
-        <iz-menu variant="text">
-          <iz-typography slot="text"
-            ><iz-translate>Menu 2</iz-translate></iz-typography
-          >
-          <iz-menu-item value="A"
-            ><iz-translate>Item A</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="B"
-            ><iz-translate>Item B</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="C"
-            ><iz-translate>Item C</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="D"
-            ><iz-translate>Item D</iz-translate></iz-menu-item
-          >
-        </iz-menu>
-        <iz-menu variant="text">
-          <iz-typography slot="text"
-            ><iz-translate>Menu 3</iz-translate></iz-typography
-          >
-          <iz-menu-item value="A"
-            ><iz-translate>Item A</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="B"
-            ><iz-translate>Item B</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="C"
-            ><iz-translate>Item C</iz-translate></iz-menu-item
-          >
-          <iz-menu-item value="D"
-            ><iz-translate>Item D</iz-translate></iz-menu-item
-          >
-        </iz-menu>
+      <iz-global-header @change=${this.handleHeaderChange}>
+        ${this.userData?.role === 'admin'
+          ? html` <iz-menu
+              variant="text"
+              @change=${this.handleMenuChange('administration')}
+            >
+              <iz-typography slot="text">
+                <iz-translate>Administration</iz-translate>
+              </iz-typography>
+              <iz-menu-item value="users">
+                <iz-translate>Users</iz-translate>
+              </iz-menu-item>
+              <iz-menu-item value="list-of-price-list">
+                <iz-translate>List of Price List</iz-translate>
+              </iz-menu-item>
+              <iz-menu-item value="price-flow">
+                <iz-translate>Price Flow</iz-translate>
+              </iz-menu-item>
+            </iz-menu>`
+          : null}
       </iz-global-header>
       <main>
         <slot></slot>
       </main>
+      <iz-global-footer></iz-global-footer>
     `;
   }
 }
