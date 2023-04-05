@@ -2,9 +2,6 @@ import { css } from 'lit';
 
 export const style = css`
 :host {
-  position: fixed;
-  top: var(--flow-roadmap-position-top, 1rem);
-  left: var(--flow-roadmap-position-left, 1rem);
   display: flex;
   flex-direction: column;
   gap: var(--flow-roadmap-gap, 0.5rem);
@@ -27,5 +24,11 @@ span:not(:first-child)::before {
   top: 0;
   left: var(--flow-roadmap-line-left, 3rem);
   transform: translateY(-100%);
+}
+:host(.end) span {
+  text-align: center;
+}
+:host(.end) span:not(:first-child)::before {
+  left: var(--flow-roadmap-line-left-end, 50%);
 }
 `;

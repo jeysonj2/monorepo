@@ -1,21 +1,22 @@
 {
-  "name": "@interzero-pmp/flow-page",
-  "description": "Webcomponent @interzero-pmp/flow-page following open-wc recommendations. HTML Tag: iz-pmp-flow-page",
+  "name": "@interzero-pmp/flow-content",
+  "description": "Webcomponent @interzero-pmp/flow-content following open-wc recommendations. HTML Tag: iz-pmp-flow-content",
   "license": "MIT",
-  "author": "@interzero-pmp/flow-page",
+  "author": "@interzero-pmp/flow-content",
   "version": "0.0.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "exports": {
     ".": "./dist/src/index.js",
-    "./wc": "./dist/src/flow-page.js"
+    "./wc": "./dist/src/flow-content.js"
   },
   "scripts": {
     "analyze": "cem analyze --litelement",
     "movesound": "cp -r src/sound dist/src/sound",
     "start": "tsc && npm run movesound && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist",
+    "build:watch": "rm -rf ./dist && tsc --watch",
     "prepublish": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
@@ -25,9 +26,12 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-pmp/flow-content": "^0.0.0",
-    "@interzero-pmp/page-template": "^1.4.0",
-    "@interzero/button-switch": "^0.0.0",
+    "@interzero-pmp/flow-end": "^0.0.0",
+    "@interzero-pmp/flow-option-popup": "^0.0.0",
+    "@interzero-pmp/flow-roadmap": "^0.0.0",
+    "@interzero-pmp/flow-view": "^0.0.0",
+    "@interzero-tools/translate": "^1.4.0",
+    "@interzero/typography": "^1.4.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

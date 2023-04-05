@@ -6,4 +6,8 @@ export const style = css`
     display: block;
     --dropdown-button-min-width: 100%;
   }
+
+  iz-popup {
+    --card-width: 25rem;
+  }
 `;

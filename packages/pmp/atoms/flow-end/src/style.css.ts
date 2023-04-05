@@ -2,14 +2,17 @@ import { css } from 'lit';
 
 export const style = css`
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   position: relative;
 }
 div {
+  height: 60%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
 iz-button {

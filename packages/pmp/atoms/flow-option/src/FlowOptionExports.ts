@@ -15,7 +15,7 @@ import "@interzero-icons/icon-close/wc";
 import { style } from './style.css';
 
 // type exports
-export type Variant = 'default' | 'edit' | 'add';
+export type Variant = 'default' | 'edit' | 'add' | 'save';
 
 // event type exports
 export type ClickEvent = { id: string; };
@@ -28,14 +28,17 @@ export class FlowButton extends LitElement {
   @property({ type: Boolean }) checked: boolean = false;
 
   // events
-  private handleClick(event:Event) {
+  private handleClick() {
     this.dispatchEvent(new CustomEvent<ClickEvent>("toggle", { detail: { id: this.getAttribute("id") as string } }));
   }
-  private handleEditClick(event:Event) {
+  private handleEditClick() {
     this.dispatchEvent(new CustomEvent<ClickEvent>("edit", { detail: { id: this.getAttribute("id") as string } }));
   }
-  private handleAddClick(event:Event) {
+  private handleAddClick() {
     this.dispatchEvent(new Event("add"));
+  }
+  private handleSaveClick() {
+    this.dispatchEvent(new Event("save"));
   }
 
   render() {
@@ -44,6 +47,15 @@ export class FlowButton extends LitElement {
       return html`
         <iz-button @click=${this.handleAddClick}>
           <iz-icon-close size="large" rotate="45"></iz-icon-close>
+        </iz-button>
+      `;
+    }
+
+    if (this.variant === "save")
+    {
+      return html`
+        <iz-button @click=${this.handleSaveClick}>
+          <iz-translate>save</iz-translate>
         </iz-button>
       `;
     }

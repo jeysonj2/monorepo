@@ -63,7 +63,12 @@ export class FlowView extends LitElement {
             variant=${this.variant}
           ></iz-pmp-flow-option>
         `)}
-        
+        ${this.variant === "edit" && this.data?.options.length === 0 ? html`
+          <iz-pmp-flow-option 
+            variant="save"
+            @save=${this.handleOptionClick('save')}
+          ></iz-pmp-flow-option>
+        ` : null}
         ${this.variant === "edit" ? html`
           <iz-pmp-flow-option 
             variant="add"

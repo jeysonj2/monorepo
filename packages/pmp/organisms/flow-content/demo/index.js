@@ -1,4 +1,4 @@
-import '../dist/src/flow-page.js';
+import '../dist/src/flow-content.js';
 
 const FakeData = [
     {
@@ -4181,12 +4181,7 @@ const FakeData = [
 ]
 
 window.onload = () => {
-  const element = document.querySelector("iz-pmp-flow-page");
-  element.addEventListener('viewport-change', e => console.log(e.detail));
-  element.addEventListener('complete', e => console.log(e.detail));
-  
+  const element = document.querySelector("iz-pmp-flow-content");
   element.data = FakeData;
-  element.userData = {
-    role: element.classList.contains("admin") ? "admin" : "user"
-  }
+  element.root = FakeData[0];
 };

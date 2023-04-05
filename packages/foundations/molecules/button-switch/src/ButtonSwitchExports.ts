@@ -13,6 +13,7 @@ import { style } from './style.css.js';
 
 // types & interfaces
 export type ActiveState = 'left' | 'right';
+export type ChangeEvent = { state: ActiveState };
 export class ButtonSwitch extends LitElement {
   static styles = style;
 
@@ -32,6 +33,7 @@ export class ButtonSwitch extends LitElement {
       if (this.noInternalClick) return;
 
       this.active = state;
+      this.dispatchEvent(new CustomEvent<ChangeEvent>("change", { detail: { state }}))
     };
   }
 
