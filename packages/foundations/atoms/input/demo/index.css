@@ -1,3 +1,4 @@
-li {
-  max-width: 30rem;
+.flex {
+  display: flex;
+  justify-content: space-between;
 }

@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/flow-page.js';
 
 export default {
-  title: 'FlowPage',
+  title: 'pmp/pages/FlowPage',
   component: 'iz-pmp-flow-page',
   argTypes: {
     header: { control: 'text' },

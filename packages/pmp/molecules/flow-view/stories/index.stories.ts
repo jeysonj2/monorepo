@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/flow-view.js';
 
 export default {
-  title: 'FlowView',
+  title: 'pmp/molecules/FlowView',
   component: 'iz-pmp-flow-view',
   argTypes: {
     header: { control: 'text' },

@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/button-switch.js';
 
 export default {
-  title: 'ButtonSwitch',
+  title: 'foundations/molecules/ButtonSwitch',
   component: 'iz-button-switch',
   argTypes: {
     header: { control: 'text' },

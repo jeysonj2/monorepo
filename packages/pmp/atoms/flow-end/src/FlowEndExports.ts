@@ -4,7 +4,7 @@ import { query } from 'lit/decorators.js';
 // web-components
 import '@interzero/confetti/wc';
 import '@interzero/button/wc';
-import '@interzero-tools/translate/wc'
+import '@interzero-tools/translate/wc';
 
 // style import
 import { Confetti } from '@interzero/confetti';

@@ -14,6 +14,13 @@ export class Link extends LitElement {
 
   @property() variant: Variant = 'link';
 
+  connectedCallback(): void {
+    super.connectedCallback();
+
+    if (!this.hasAttribute('variant'))
+      this.setAttribute('variant', this.variant);
+  }
+
   render() {
     return html`
       <a href="#" .href=${this.href} class=${this.variant}><slot></slot></a>

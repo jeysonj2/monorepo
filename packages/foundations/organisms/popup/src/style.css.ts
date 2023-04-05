@@ -1,7 +1,6 @@
 import { css } from 'lit';
 
 export const style = css`
-
   div.wrapper {
     display: none;
     position: absolute;

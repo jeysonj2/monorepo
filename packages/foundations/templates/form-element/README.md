@@ -1,5 +1,32 @@
 # @interzero/form-element
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"disabled"` | `boolean` | `false` | `false` | controls if its disabled or not | 
+## Events
+-
+## CSS variables
+-
+## Types
+-
+## Translations
+- 
+
+
+## Internal Logic 
+this abstract class is ment to help finding the closest form, and to have basic form-attributes such as disabled.
+Classes extending this class should call the function `"findFormElement(selector:string, element:HTMLElement)"`
+selector is the search value for the form while element should simply be the class itself. 
+
+### Example usage of `"findFormElement"`
+```typescript
+connectedCallback(): void {
+  super.connectedCallback();
+  this.findFormElement("form", this);
+}
+```
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

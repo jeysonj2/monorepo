@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/flow-content.js';
 
 export default {
-  title: 'FlowContent',
+  title: 'pmp/organisms/FlowContent',
   component: 'iz-pmp-flow-content',
   argTypes: {
     header: { control: 'text' },

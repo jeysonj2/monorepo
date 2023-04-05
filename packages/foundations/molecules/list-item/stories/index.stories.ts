@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/list-item.js';
 
 export default {
-  title: 'ListItem',
+  title: 'foundations/molecules/ListItem',
   component: 'iz-list-item',
   argTypes: {
     header: { control: 'text' },

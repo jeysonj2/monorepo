@@ -10,8 +10,8 @@ import '@interzero-icons/icon-warning/wc';
 // classes & types
 import { InputTemplate } from '@interzero/input-template';
 import type {
-  InputEventInfo,
-  InputEventChangeInfo,
+  StateEvent as HiddenStateEvent,
+  ChangeEvent as HiddenChangeEvent,
 } from '@interzero/input-template';
 
 import { style } from './style.css.js';
@@ -75,7 +75,7 @@ export class Field extends LitElement {
   }
 
   private handleInputChange = (_event: Event) => {
-    const event = _event as CustomEvent<InputEventChangeInfo>;
+    const event = _event as CustomEvent<HiddenChangeEvent>;
     if (this.counterValue) {
       this.counterValue.innerText = event.detail.value.length.toString();
     }
@@ -83,7 +83,7 @@ export class Field extends LitElement {
 
   private handleInputState(inputState: InputState) {
     return (_event: Event) => {
-      const event = _event as CustomEvent<InputEventInfo>;
+      const event = _event as CustomEvent<HiddenStateEvent>;
       if (inputState === 'success') {
         // NOTE success will remove the previous set states
         this.inputstate = 'help';

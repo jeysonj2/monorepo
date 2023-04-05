@@ -9,7 +9,7 @@ import '@interzero/input/wc';
 import '@interzero-icons/icon-caret/wc';
 
 // classes
-import type { InputEventChangeInfo } from '@interzero/input-template';
+import type { ChangeEvent as HiddenChangeEvent } from '@interzero/input-template';
 
 // style import
 import { style } from './style.css.js';
@@ -31,6 +31,7 @@ export class DropdownButton extends LitElement {
   @property() direction: Direction = 'down';
 
   @property() placeholder?: string;
+
   @property() inputvalue?: string;
 
   // class functions
@@ -38,6 +39,7 @@ export class DropdownButton extends LitElement {
     super();
     this.addEventListener('click', this.handleClick);
   }
+
   attributeChangedCallback(
     name: string,
     _old: string | null,
@@ -79,13 +81,13 @@ export class DropdownButton extends LitElement {
         text = element.innerText;
       }
       this.placeholder = text ?? '';
-      console.log('placeholder',this.placeholder)
+      console.log('placeholder', this.placeholder);
     }, 1);
   };
 
-  private handleInput(event: CustomEvent<InputEventChangeInfo>) {
+  private handleInput(event: CustomEvent<HiddenChangeEvent>) {
     this.dispatchEvent(
-      new CustomEvent<InputEventChangeInfo>('input-change', event)
+      new CustomEvent<HiddenChangeEvent>('input-change', event)
     );
   }
 

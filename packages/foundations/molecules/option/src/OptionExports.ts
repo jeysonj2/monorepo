@@ -33,10 +33,11 @@ export class Option extends LitElement {
   checked: boolean = false;
 
   private text!: string;
+
   private hide = false;
-  
+
   // to not set checked = false on clear
-  private internalTrigger = false; 
+  private internalTrigger = false;
 
   constructor() {
     super();
@@ -48,26 +49,22 @@ export class Option extends LitElement {
     this.internalTrigger = true;
     this.checked = !this.checked;
     this.dispatchChange();
-  }
+  };
 
   private handleSlotChange = (event: Event) => {
     const slot = event.currentTarget as HTMLSlotElement;
     const nodes = slot.assignedNodes();
-    if (nodes.length === 1)
-    {
+    if (nodes.length === 1) {
       const nodetext = nodes[0].textContent;
       if (nodetext != null) {
         // checks also undefined
         this.text = nodetext;
       }
-    }
-    else 
-    { // we assume its with translate ()
+    } else {
+      // we assume its with translate ()
       // TODO extractor function that could extract any text any levels deep? (useful for many cases)
-      for (let node of nodes)
-      {
-        if (node.nodeName.toUpperCase() === 'IZ-TRANSLATE')
-        {
+      for (const node of nodes) {
+        if (node.nodeName.toUpperCase() === 'IZ-TRANSLATE') {
           this.text = (node as HTMLElement).innerText;
           break;
         }
@@ -98,7 +95,7 @@ export class Option extends LitElement {
       setTimeout(() => this.dispatchChange(), 1);
     }
 
-    dropdown.addEventListener('clear-options', (event: Event) => {
+    dropdown.addEventListener('clear-options', () => {
       if (!this.internalTrigger) this.checked = false;
       this.internalTrigger = false;
     });
@@ -111,23 +108,24 @@ export class Option extends LitElement {
       }
     });
 
-    dropdown.addEventListener('search', (_event: Event) => {
-      const event = _event as CustomEvent<DropdownSearchEvent>;
-      if (event.detail.value === '') {
-        // show
-        this.hide = false;
-      } else if (
-        this.text.match(event.detail.value) ||
-        event.detail.value.match(this.text)
-      ) {
-        // show
-        this.hide = false;
-      } else {
-        // hide
-        this.hide = true;
-      }
+    dropdown.addEventListener('search', (event: Event) => {
+      if (event instanceof CustomEvent<DropdownSearchEvent>) {
+        if (event.detail.value === '') {
+          // show
+          this.hide = false;
+        } else if (
+          this.text.match(event.detail.value) ||
+          event.detail.value.match(this.text)
+        ) {
+          // show
+          this.hide = false;
+        } else {
+          // hide
+          this.hide = true;
+        }
 
-      this.requestUpdate();
+        this.requestUpdate();
+      }
     });
   };
 

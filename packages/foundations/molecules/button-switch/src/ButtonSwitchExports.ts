@@ -33,7 +33,9 @@ export class ButtonSwitch extends LitElement {
       if (this.noInternalClick) return;
 
       this.active = state;
-      this.dispatchEvent(new CustomEvent<ChangeEvent>("change", { detail: { state }}))
+      this.dispatchEvent(
+        new CustomEvent<ChangeEvent>('change', { detail: { state } })
+      );
     };
   }
 

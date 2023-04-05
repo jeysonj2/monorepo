@@ -11,7 +11,7 @@ import '@interzero/field/wc';
 import '@interzero-tools/translate/wc';
 
 // types
-import type { InputEventChangeInfo } from '@interzero/input-template';
+import type { ChangeEvent as HiddenChangeEvent } from '@interzero/input-template';
 
 // style import
 import { style } from './style.css';
@@ -29,7 +29,7 @@ export class FlowQuestion extends LitElement {
   @property({ type: String }) description: string = 'Empty Description';
 
   private handleInput(name: NameType) {
-    return (event: CustomEvent<InputEventChangeInfo>) => {
+    return (event: CustomEvent<HiddenChangeEvent>) => {
       this.dispatchEvent(
         new CustomEvent<ChangeEvent>('change', {
           detail: { value: event.detail.value, name },

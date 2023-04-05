@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/table-filter.js';
 
 export default {
-  title: 'TableFilter',
+  title: 'global/atoms/TableFilter',
   component: 'iz-global-table-filter',
   argTypes: {
     header: { control: 'text' },

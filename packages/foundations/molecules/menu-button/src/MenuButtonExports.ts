@@ -44,7 +44,11 @@ export class MenuButton extends LitElement {
     const directionValue = this.direction === 'up' ? -180 : 0;
 
     return html`
-      <iz-button class=${this.variant} variant=${this.variant} size=${this.variant === "text" ? "small" : "large"}>
+      <iz-button
+        class=${this.variant}
+        variant=${this.variant}
+        size=${this.variant === 'text' ? 'small' : 'large'}
+      >
         <div>
           <slot></slot>
           <span class="icon">

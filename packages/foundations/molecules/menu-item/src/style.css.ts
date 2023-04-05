@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export const style = css`
   :host {
-    height:  var(--button-height-large, 40px);
+    height: var(--button-height-large, 40px);
     min-width: var(--menu-button-min-width, 3rem);
     display: inline-block;
   }

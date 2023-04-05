@@ -21,34 +21,61 @@ export class Button extends FormElement {
 
   @property() size: Size = 'large';
 
-  @property({
-    type: Boolean,
-    converter: value =>
-      !!['true', true, ''].includes((value || '').toLowerCase()),
-  })
-  disabled: boolean = false;
-
   private formelement?: HTMLFormElement | null;
 
-  constructor() {
-    super();
-
-    this.addEventListener('click', this.handleClick, true);
-  }
-
-  override connectedCallback() {
+  connectedCallback() {
     super.connectedCallback();
 
-    if (!this.hasAttribute('variant'))
+    this.addEventListener('click', this.handleClick, true);
+
+    if (!this.hasAttribute('variant')) {
       this.setAttribute('variant', this.variant);
-    if (!this.hasAttribute('size')) this.setAttribute('size', this.size);
+    }
+
+    if (!this.hasAttribute('size')) {
+      this.setAttribute('size', this.size);
+    }
 
     if (this.type === 'submit') {
       this.formelement = this.findFormElement('form', this);
+      this.formelement?.addEventListener(
+        'input',
+        this.validateDisabledWithTypeSubmit.bind(this),
+        true
+      );
+      this.validateDisabledWithTypeSubmit();
     }
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.handleClick, true);
+
+    if (this.type === 'submit' && this.formelement) {
+      this.formelement.removeEventListener(
+        'input',
+        this.validateDisabledWithTypeSubmit,
+        true
+      );
+    }
+  }
+
+  private isFormValid() {
+    if (!this.formelement) return false;
+    return this.formelement.checkValidity();
+  }
+
+  private validateDisabledWithTypeSubmit() {
+    if (this.type !== 'submit') return;
+    this.disabled = !this.isFormValid();
+
+    if (this.disabled) this.setAttribute("disabled", "true");
+    else this.removeAttribute("disabled");
+  }
+
   private handleClick(event: Event) {
+    this.validateDisabledWithTypeSubmit();
+
     if (this.disabled) {
       event.stopPropagation();
       event.preventDefault();

@@ -1,5 +1,36 @@
 # @interzero/checkbox
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"label"` | `"string"` | - | `false` | controls the label - this is being translated |
+| `"variant"` | `"Variant"` | `default` | `false` | controls the variant |
+| `"checked"` | `boolean` | `false` | `false` | controls the checked value |
+| `"locked"` | `boolean` | `false` | `false` | controls if the checkbox is in locked modde (means that it would not trigger checked by clicking) |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"change"` | `"CustomEvent<ChangeEvent>"` | triggered when clicked |
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--checkbox-cursor"` | `"CSS cursor"` | `"pointer"`  | default cursor|
+| `"--checkbox-disabled-cursor"` | `"CSS cursor"` | `"not-allowed"` | disabled cursor |
+| `"--checkbox-disabled-color"` | `"Color"` | `"gray"` | disabled color (for label and icon) |
+## Types
+```typescript
+type Variant = 'plain' | 'default';
+type ChangeEvent = {
+  checked: boolean;
+}
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 

@@ -1,5 +1,54 @@
 # @interzero/typography
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"variant"` | `"Variant"` | `body` | `false` | controls the typography variant |
+
+## Events
+-
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--typography-font-family"` | `"CSS font"` | `Inter, sans-serif` | the fallback font for all variants used |
+| `"--typography-color"` | `"Color"` | `black` | controls color of typography |
+| `"--typography-display"` | `"CSS display"` | `block` | controls the display type of inside html element (host is inline-block) |
+| `"--typography-body-font-size"` | `"CSS unit"` | `12px` | controls the font-size for body variant |
+| `"--typography-body-line-height"` | `"CSS unit"` | `15px` | controls the line-height for body variant |
+| `"--typography-body-font-weight"` | `"number"` | `400` | controls the font-weight for body variant |
+| `"--typography-body-font-family"` | `"CSS font"` | `--default-typography-font-family` | controls the font-family for body variant |
+| `"--typography-label-font-size"` | `"CSS unit"` | `13px` | controls the font-size for label variant |
+| `"--typography-label-line-height"` | `"CSS unit"` | `16px` | controls the line-height for label variant |
+| `"--typography-label-font-weight"` | `"number"` | `400` | controls the font-weight for label variant |
+| `"--typography-label-font-family"` | `"CSS font"` | `--default-typography-font-family` | controls the font-family for label variant |
+| `"--typography-help-font-size"` | `"CSS unit"` | `9px` | controls the font-size for help variant |
+| `"--typography-help-line-height"` | `"CSS unit"` | `10px` | controls the line-height for help variant |
+| `"--typography-help-font-weight"` | `"number"` | `400` | controls the font-weight for help variant |
+| `"--typography-help-font-family"` | `"CSS font"` | `--default-typography-font-family` | controls the font-family for help variant |
+| `"--typography-heading-font-size"` | `"CSS unit"` | `20px` | controls the font-size for heading variant |
+| `"--typography-heading-line-height"` | `"CSS unit"` | `24px` | controls the line-height for heading variant |
+| `"--typography-heading-font-weight"` | `"number"` | `400` | controls the font-weight for heading variant |
+| `"--typography-heading-font-family"` | `"CSS font"` | `--default-typography-font-family` | controls the font-family for heading variant |
+| `"--typography-logo-font-size"` | `"CSS unit"` | `36px` | controls the font-size for logo variant |
+| `"--typography-logo-line-height"` | `"CSS unit"` | `44px` | controls the line-height for logo variant |
+| `"--typography-logo-font-weight"` | `"number"` | `400` | controls the font-weight for logo variant |
+| `"--typography-logo-font-family"` | `"CSS font"` | `--default-typography-font-family` | controls the font-family for logo variant |
+| `"--typography-logob-font-size"` | `"CSS unit"` | `14px` | controls the font-size for logob variant |
+| `"--typography-logob-line-height"` | `"CSS unit"` | `17px` | controls the line-height for logob variant |
+| `"--typography-logob-font-weight"` | `"number"` | `400` | controls the font-weight for logob variant |
+| `"--typography-logob-font-family"` | `"CSS font"` | `--default-typography-font-family` | controls the font-family for logob variant |
+| `"--typography-logob-letter-spacing"` | `"CSS unit"` | `0.2rem` | controls the letter-spacing for logob variant |
+
+## Types
+```typescript
+type Variant = 'heading' | 'body' | 'logo' | 'logob' | 'help' | 'label';
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
@@ -17,72 +66,6 @@ npm i @interzero/typography
 
 <iz-typography></iz-typography>
 ```
-
-## CSS variables
-| name | description | default-value | 
-|------|-------------|---------------|
-| `"--typography-color"` | color for the text | `"black"` |
-| `"--typography-font-family"` | font family applied to most cases | `"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"` |
-| `"--typography-logo-font-family"` | font family applied only to the logo variant | same as `"--typography-font-family"` |
-| `"--typography-font-size"` | font size for default variant | `"initial"` |
-| `"--typography-heading-font-size"` | font size for heading variant | `"initial"` |
-| `"--typography-logo-font-size"` | font size for logo variant | `"initial"` |
-¨
-
-| Name                                           | Type    | Default Value | Description                                                                                                                                                        |
-| ---------------------------------------------- | ------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--default-typography-font-family`             | `string` | `'Inter', sans-serif` | Default font family for all typography elements                                                                                                            |
-| `--typography-color`                           | `color` | `black`       | Default text color for all typography elements                                                                                                                     |
-| `--typography-display`                         | `string` | `block`       | Default display value for all typography elements                                                                                                                  |
-| `--typography-body-font-size`                  | `length` | `12px`        | Font size for `body` variant `p` element                                                                                                                     |
-| `--typography-body-line-height`                | `length` | `15px`        | Line height for `body` variant `p` element                                                                                                                  |
-| `--default-typography-body-font-weight`        | `number` | `400`         | Default font weight for `body` variant `p` element                                                                                                          |
-| `--default-typography-body-font-family`        | `string` | `"Inter"`     | Default font family for `body` variant `p` element                                                                                                          |
-| `--typography-label-font-size`                 | `length` | `13px`        | Font size for `label` variant `p` element                                                                                                                    |
-| `--typography-label-line-height`               | `length` | `16px`        | Line height for `label` variant `p` element                                                                                                                 |
-| `--default-typography-label-font-weight`       | `number` | `400`         | Default font weight for `label` variant `p` element                                                                                                         |
-| `--default-typography-label-font-family`       | `string` | `"Inter"`     | Default font family for `label` variant `p` element                                                                                                         |
-| `--typography-help-font-size`                  | `length` | `9px`         | Font size for `help` variant `p` element                                                                                                                     |
-| `--typography-help-line-height`                | `length` | `10px`        | Line height for `help` variant `p` element                                                                                                                  |
-| `--default-typography-help-font-weight`        | `number` | `400`         | Default font weight for `help` variant `p` element                                                                                                          |
-| `--default-typography-help-font-family`        | `string` | `"Inter"`     | Default font family for `help` variant `p` element                                                                                                          |
-| `--typography-heading-font-size`               | `length` | `20px`        | Font size for `heading` variant `h1` element                                                                                                                 |
-| `--typography-heading-line-height`             | `length` | `24px`        | Line height for `heading` variant `h1` element                                                                                                              |
-| `--default-typography-heading-font-weight`     | `number` | `400`         | Default font weight for `heading` variant `h1` element                                                                                                      |
-| `--default-typography-heading-font-family`     | `string` | `"Inter"`     | Default font family for `heading` variant `h1` element                                                                                                      |
-| `--typography-logo-font-size`                  | `length` | `36px`        | Font size for `logo` variant `h1` element                                                                                                                    |
-| `--typography-logo-line-height`                | `length` | `44
-
-
-| Variable Name	| Default Value |	Description |
-|---------------|---------------|-------------|
-| `"--default-typography-font-family"`	| `"'Inter', sans-serif"` |	The default font family for typography |
-| `"--typography-color"`	| `"black"` |	The default color for typography |
-| `"--typography-body-font-size"`	| `"12px"` |	The font size for paragraphs with class "body" |
-| `"--typography-body-line-height"`	| `"15px"` |	The line height for paragraphs with class "body" |
-| `"--default-typography-body-font-weight"`	| `"400"` |	The default font weight for paragraphs with class "body" |
-| `"--default-typography-body-font-family"`	| `""Inter""` |	The default font family for paragraphs with class "body" |
-| `"--typography-label-font-size"`	| `"13px"` |	The font size for paragraphs with class "label" |
-| `"--typography-label-line-height"`	| `"16px"` |	The line height for paragraphs with class "label" |
-| `"--default-typography-label-font-weight"`	| `"400"` |	The default font weight for paragraphs with class "label" |
-| `"--default-typography-label-font-family"`	| `""Inter""` |	The default font family for paragraphs with class "label" |
-| `"--typography-help-font-size"`	| `"9px"` |	The font size for paragraphs with class "help" |
-| `"--typography-help-line-height"`	| `"10px"` |	The line height for paragraphs with class "help" |
-| `"--default-typography-help-font-weight"`	| `"400"` |	The default font weight for paragraphs with class "help" |
-| `"--default-typography-help-font-family"`	| `""Inter""` |	The default font family for paragraphs with class "help" |
-| `"--typography-heading-font-size"`	| `"20px"` |	The font size for headings with class "heading" |
-| `"--typography-heading-line-height"`	| `"24px"` |	The line height for headings with class "heading" |
-| `"--default-typography-heading-font-weight"`	| `"400"` |	The default font weight for headings with class "heading" |
-| `"--default-typography-heading-font-family"`	| `""Inter""` |	The default font family for headings with class "heading" |
-| `"--typography-logo-font-size"`	| `"36px"` |	The font size for headings with class "logo" |
-| `"--typography-logo-line-height"`	| `"44px"` |	The line height for headings with class "logo" |
-| `"--default-typography-logo-font-weight"`	| `"600"` |	The default font weight for headings with class "logo" |
-| `"--default-typography-logo-font-family"`	| `""Inter""` |	The default font family for headings with class "logo" |
-| `"--typography-logob-font-weight"`	| `"400"` |	The font weight for headings with class "logob" |
-| `"--typography-logob-font-family"`	| `""Inter""` |	The font family for headings with class "logob" |
-| `"--typography-logob-font-size"`	| `"14px"` |	The font size for headings with class "logob" |
-| `"--typography-logob-line-height"`	| `"17px"` |	The line height for headings with class "logob" |
-| `"--typography-logob-letter-spacing"`	| `"0.06em"` |	The letter spacing for headings with class "logob" |
 
 ## Linting and formatting
 

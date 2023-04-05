@@ -1,27 +1,24 @@
-import { Vector } from "./Vector";
+import { Vector } from './Vector.js';
 
 export class Rotation {
-  private speed:number;
-  public value:number = 0;
-  
-  constructor(defaultRotation:number) {
+  private speed: number;
+
+  public value: number = 0;
+
+  constructor(defaultRotation: number) {
     this.value = defaultRotation;
     const cos = Math.cos(defaultRotation);
     const sin = Math.sin(defaultRotation);
 
-    if (Math.abs(cos) < Math.abs(sin))
-    {
+    if (Math.abs(cos) < Math.abs(sin)) {
       this.speed = cos * (0.04 + Math.random() * 0.1);
-    } 
-    else 
-    {
+    } else {
       this.speed = sin * (0.04 + Math.random() * 0.1);
     }
-
-    // this.speed = Math.random() * 0.05 - 0.05;
   }
 
-  update(velocity:Vector) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  update(_vector: Vector) {
     this.value += this.speed;
   }
 }

@@ -2,9 +2,10 @@ import { html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 
 import '@interzero-global/logo/wc';
-import '@interzero-global/login-fields/wc';
 import '@interzero-global/login-form/wc';
 import '@interzero-global/login-links/wc';
+
+// types & classes
 import type { SubmitEvent, Variant } from '@interzero-global/login-form';
 
 // style import

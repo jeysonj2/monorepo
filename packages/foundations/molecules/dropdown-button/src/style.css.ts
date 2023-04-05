@@ -4,7 +4,10 @@ export const style = css`
   :host {
     height: var(--button-height-large, 40px);
     /* width: var(--button-width, 160px); */
-    --button-min-width: var(--dropdown-button-min-width, 170px); /* fixing width-issue with text selection on multiple */
+    --button-min-width: var(
+      --dropdown-button-min-width,
+      170px
+    ); /* fixing width-issue with text selection on multiple */
     display: inline-block;
   }
   :host([variant='text']) {
@@ -55,6 +58,6 @@ export const style = css`
   }
 
   iz-button:not(.text):not(.disabled):active iz-icon-caret {
-    color: var(--button-pressed-color, #FFF);
+    color: var(--button-pressed-color, #fff);
   }
 `;

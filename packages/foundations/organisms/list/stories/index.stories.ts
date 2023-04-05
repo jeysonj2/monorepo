@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/list.js';
 
 export default {
-  title: 'List',
+  title: 'foundations/organisms/List',
   component: 'iz-list',
   argTypes: {
     header: { control: 'text' },

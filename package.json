@@ -5,6 +5,7 @@
   "scripts": {
     "new-wc": "cd ./scripts && ./new-wc.sh",
     "storybook": "wds -c .storybook/server.mjs",
+    "prestorybook:build": "npm run build:all",
     "storybook:build": "rm -rf ./storybook-static && build-storybook",
     "storybook:build:all": "lerna run storybook:build",
     "storybook:publish": "",

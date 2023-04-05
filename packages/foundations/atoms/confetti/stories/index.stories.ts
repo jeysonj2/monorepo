@@ -1,13 +1,32 @@
 import { html, TemplateResult } from 'lit';
 import '../src/confetti.js';
+import { Placement } from '../src/ConfettiExports.js';
 
 export default {
-  title: 'Confetti',
+  title: 'foundations/atoms/Confetti',
   component: 'iz-confetti',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    placement: {
+      control: 'select',
+      options: [
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+        'center-right',
+        'top-right',
+        'top-center',
+        'top-left',
+        'center-left',
+        'center-center',
+      ],
+    },
+    particleAmount: { control: 'number' },
+    particleDelay: { control: 'number' },
+    particleSpread: { control: 'number' },
+    width: { control: 'number' },
+    height: { control: 'number' },
+    playPopSound: { control: 'boolean' },
+    playYaySound: { control: 'boolean' },
   },
 };
 
@@ -18,43 +37,52 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  placement?: Placement;
+  particleAmount?: number;
+  particleDelay?: number;
+  particleSpread?: number;
+  width?: number;
+  height?: number;
+  playPopSound?: boolean;
+  playYaySound?: boolean;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  placement = 'center-center',
+  particleAmount = 20,
+  particleDelay = 800,
+  particleSpread = Math.PI / 3,
+  width = 200,
+  height = 200,
+  playPopSound = true,
+  playYaySound = true,
 }: ArgTypes) => html`
-  <iz-confetti
-    style="--confetti-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
+  <button
+    amount=${particleAmount}
+    spread=${particleSpread}
+    delay=${particleDelay}
+    id="shoot"
   >
-    ${slot}
-  </iz-confetti>
+    SHOOT
+  </button>
+  <iz-confetti
+    id="confetti"
+    .placements=${[placement]}
+    .width=${width}
+    .height=${height}
+    .playPopSound=${playPopSound}
+    .playYaySound=${playYaySound}
+  ></iz-confetti>
+
+  <script>
+    window.shoot.onclick = () => {
+      window.confetti.shoot(
+        Number(window.shoot.getAttribute('delay')),
+        Number(window.shoot.getAttribute('amount')),
+        Number(window.shoot.getAttribute('spread'))
+      );
+    };
+  </script>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};

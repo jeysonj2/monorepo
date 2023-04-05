@@ -1,4 +1,4 @@
-import '../dist/src/filter.js';
+import '../dist/src/table-filter.js';
 
 window.onload = () => {
   console.log('window.onload');

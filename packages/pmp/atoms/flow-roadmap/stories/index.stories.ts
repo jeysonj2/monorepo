@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/flow-roadmap.js';
 
 export default {
-  title: 'FlowRoadmap',
+  title: 'pmp/atoms/FlowRoadmap',
   component: 'iz-pmp-flow-roadmap',
   argTypes: {
     header: { control: 'text' },

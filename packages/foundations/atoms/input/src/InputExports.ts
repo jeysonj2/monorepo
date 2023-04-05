@@ -9,6 +9,7 @@ import { style } from './style.css.js';
 // types & interfaces
 export type Types = 'text' | 'number' | 'password' | 'email' | 'url' | 'tel';
 
+export type Size = 'small' | 'medium' | 'large';
 interface IEvent<E = HTMLInputElement> extends Event {
   target: EventTarget & E;
 }
@@ -20,6 +21,8 @@ export class Input extends InputTemplate {
 
   @property() type: Types = 'text';
 
+  @property() size: Size = 'small';
+
   @property({
     type: Boolean,
     converter: value =>
@@ -27,6 +30,12 @@ export class Input extends InputTemplate {
   })
   textarea: boolean = false;
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    if (!this.hasAttribute('size')) this.setAttribute('size', this.size);
+  }
+
+  // event handlers
   private handlechange(event: IEvent<HTMLInputElement>) {
     this.updateHidden(event.target.value, event);
   }
@@ -38,8 +47,8 @@ export class Input extends InputTemplate {
           ?disabled=${this.disabled}
           ?required=${this.required}
           placeholder=${this.placeholder || ''}
-          maxlength=${this.maxlength}
-          minlength=${this.minlength}
+          maxlength=${this.maxlength || Number.MAX_SAFE_INTEGER}
+          minlength=${this.minlength || Number.MIN_SAFE_INTEGER}
           value=${this.value || this.defaultValue || ''}
           @input=${this.handlechange}
         ></textarea>
@@ -50,10 +59,10 @@ export class Input extends InputTemplate {
         ?disabled=${this.disabled}
         ?required=${this.required}
         type=${this.type}
-        min=${this.min}
-        max=${this.max}
-        maxlength=${this.maxlength}
-        minlength=${this.minlength}
+        min=${this.min || Number.MIN_SAFE_INTEGER}
+        max=${this.max || Number.MAX_SAFE_INTEGER}
+        maxlength=${this.maxlength || Number.MAX_SAFE_INTEGER}
+        minlength=${this.minlength || Number.MIN_SAFE_INTEGER}
         placeholder=${this.placeholder || ''}
         .value=${this.value || this.defaultValue || ''}
         @input=${this.handlechange}

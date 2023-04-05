@@ -10,8 +10,7 @@ export default {
       control: 'select',
       options: ['heading', 'body', 'logo', 'logob', 'help', 'label'],
     },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    slot: { control: 'text' },
   },
 };
 
@@ -38,18 +37,35 @@ export const Regular = Template.bind({});
 const AllTemplate: Story<ArgTypes> = ({
   slot = html`Hello World`,
 }: ArgTypes) => html`
-  <h4>#### Body</h4>
-  <iz-typography variant="body">${slot}</iz-typography>
-  <h4>#### heading</h4>
-  <iz-typography variant="heading">${slot}</iz-typography>
-  <h4>#### logo</h4>
-  <iz-typography variant="logo">${slot}</iz-typography>
-  <h4>#### logob</h4>
-  <iz-typography variant="logob">${slot}</iz-typography>
-  <h4>#### help</h4>
-  <iz-typography variant="help">${slot}</iz-typography>
-  <h4>#### label</h4>
-  <iz-typography variant="label">${slot}</iz-typography>
+  <fieldset>
+    <legend>Body (Default)</legend>
+    <iz-typography>${slot}</iz-typography>
+  </fieldset>
+
+  <fieldset>
+    <legend>Help</legend>
+    <iz-typography variant="help">${slot}</iz-typography>
+  </fieldset>
+
+  <fieldset>
+    <legend>Label</legend>
+    <iz-typography variant="label">${slot}</iz-typography>
+  </fieldset>
+
+  <fieldset>
+    <legend>Heading</legend>
+    <iz-typography variant="heading">${slot}</iz-typography>
+  </fieldset>
+
+  <fieldset>
+    <legend>Logo</legend>
+    <iz-typography variant="logo">${slot}</iz-typography>
+  </fieldset>
+
+  <fieldset>
+    <legend>LogoB</legend>
+    <iz-typography variant="logob">${slot}</iz-typography>
+  </fieldset>
 `;
 
 export const All = AllTemplate.bind({});

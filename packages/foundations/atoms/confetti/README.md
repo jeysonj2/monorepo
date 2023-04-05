@@ -1,20 +1,29 @@
 # @interzero/confetti
 
-This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"width"` | `number` | `clientWidth\|\|200` | `false` | controls the viewport width of the component |
+| `"height"` | `number` | `clientHeight\|\|200` | `false` | controls the viewport height of the component |
+| `"placements"` | `Placement[]` | `["top-left"]` | `false` | controls where in the viewbox the confetti should be triggered from |
+| `"playPopSound"` | `boolean` | `true` | `false` | controls if the confetti should play the sound of `"Pop"` |
+| `"playYaySound"` | `boolean` | `true` | `false` | controls if the confetti should play the sound of `"Yay"` |
+## Events
+-
 
-## Property Table
-| name | type | default-value | description |
-|------|------|---------------|-------------|
-| `"width"` | `number` | `clientWidth||200` | controls the viewport width of the component |
-| `"height"` | `number` | `clientHeight||200` | controls the viewport height of the component |
-| `"placements"` | `Placement[]` | `["top-left"]` | controlls where in the viewbox the confetti should be triggered from |
-| `"playPopSound"` | `boolean` | `true` | controls if the confetti should play the sound of `"Pop"` |
-| `"playYaySound"` | `boolean` | `true` | controls if the confetti should play the sound of `"Yay"` |
+## CSS variables
+-
 
 ## Types 
 ```typescript
 type Placement = "top-center" | "top-left" | "top-right" | "center-center" | "center-left" | "center-right" | "bottom-center" | "bottom-left" | "bottom-right"
 ```
+
+## Translations
+- 
+
+
+This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
 

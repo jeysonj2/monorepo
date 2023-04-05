@@ -18,7 +18,8 @@
     "prepublish": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
-    "test": "tsc && wtr --coverage",
+    "build:watch": "rm -rf ./dist && tsc --watch",
+		"test": "tsc && wtr --coverage",
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
@@ -26,6 +27,7 @@
   "dependencies": {
     "@interzero-icons/icon-lock": "^1.4.0",
     "@interzero-icons/icon-mail": "^1.4.0",
+    "@interzero-icons/icon-user": "^1.4.0",
     "@interzero-tools/translate": "^1.4.0",
     "@interzero/button": "^1.4.0",
     "@interzero/field": "^1.4.0",

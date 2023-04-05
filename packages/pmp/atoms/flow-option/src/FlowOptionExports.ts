@@ -2,14 +2,14 @@ import { html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 
 // web-components
-import "@interzero/button/wc";
-import "@interzero/checkbox/wc";
+import '@interzero/button/wc';
+import '@interzero/checkbox/wc';
 
 // tools
-import "@interzero-tools/translate/wc";
+import '@interzero-tools/translate/wc';
 
 // icons
-import "@interzero-icons/icon-close/wc";
+import '@interzero-icons/icon-close/wc';
 
 // style import
 import { style } from './style.css';
@@ -18,37 +18,44 @@ import { style } from './style.css';
 export type Variant = 'default' | 'edit' | 'add' | 'save';
 
 // event type exports
-export type ClickEvent = { id: string; };
+export type ClickEvent = { id: string };
 
 export class FlowButton extends LitElement {
   static styles = style;
 
-  @property() value!:string;
+  @property() value!: string;
 
-  @property() variant:Variant = 'default';
+  @property() variant: Variant = 'default';
 
   @property({ type: Boolean }) checked: boolean = false;
 
   // events
   private handleClick() {
-    this.dispatchEvent(new CustomEvent<ClickEvent>("toggle", { detail: { id: this.getAttribute("id") as string } }));
+    this.dispatchEvent(
+      new CustomEvent<ClickEvent>('toggle', {
+        detail: { id: this.getAttribute('id') as string },
+      })
+    );
   }
 
   private handleEditClick() {
-    this.dispatchEvent(new CustomEvent<ClickEvent>("edit", { detail: { id: this.getAttribute("id") as string } }));
+    this.dispatchEvent(
+      new CustomEvent<ClickEvent>('edit', {
+        detail: { id: this.getAttribute('id') as string },
+      })
+    );
   }
 
   private handleAddClick() {
-    this.dispatchEvent(new Event("add"));
+    this.dispatchEvent(new Event('add'));
   }
 
   private handleSaveClick() {
-    this.dispatchEvent(new Event("save"));
+    this.dispatchEvent(new Event('save'));
   }
 
   render() {
-    if (this.variant === "add")
-    {
+    if (this.variant === 'add') {
       return html`
         <iz-button @click=${this.handleAddClick}>
           <iz-icon-close size="large" rotate="45"></iz-icon-close>
@@ -56,8 +63,7 @@ export class FlowButton extends LitElement {
       `;
     }
 
-    if (this.variant === "save")
-    {
+    if (this.variant === 'save') {
       return html`
         <iz-button @click=${this.handleSaveClick}>
           <iz-translate>save</iz-translate>
@@ -72,7 +78,7 @@ export class FlowButton extends LitElement {
       </iz-button>
     `;
 
-    if (this.variant === "default") return main;
+    if (this.variant === 'default') return main;
 
     return html`
       ${main}

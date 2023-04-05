@@ -13,15 +13,16 @@ export const style = css`
   }
 
   .left {
-    background-color: #838383;
+    background: var(--loginpage-left-background, #c4c4c4);
   }
+
   .right {
     position: relative;
-    background-color: #d9d9d9;
+    background: var(--loginpage-right-background, #e4e4e4);
   }
 
   .right > div {
-    width: 20rem;
+    /*width: 20rem;*/
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/flow-question.js';
 
 export default {
-  title: 'FlowQuestion',
+  title: 'pmp/atoms/FlowQuestion',
   component: 'iz-pmp-flow-question',
   argTypes: {
     header: { control: 'text' },

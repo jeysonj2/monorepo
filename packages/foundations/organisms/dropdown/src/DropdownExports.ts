@@ -17,7 +17,7 @@ import { Popover } from '@interzero/popover';
 import type { Placement } from '@interzero/popover';
 import type { Variant } from '@interzero/dropdown-button';
 import type { ChangeEvent as OptionChangeEvent } from '@interzero/option';
-import type { InputEventChangeInfo } from '@interzero/input-template';
+import type { ChangeEvent as HiddenChangeEvent } from '@interzero/input-template';
 
 // style import
 import { style } from './style.css.js';
@@ -35,10 +35,15 @@ export class Dropdown extends InputTemplate {
 
   // properties
   @property({ type: Boolean }) multiple = false;
+
   @property({ type: Boolean }) dontshowselected = false;
+
   @property({ type: Boolean }) donthideonselect = false;
+
   @property() placement: Placement = 'bottom-right';
+
   @property() fixedText?: string;
+
   @property() placeholder?: string;
 
   @property() variant: Variant = 'default';
@@ -47,14 +52,18 @@ export class Dropdown extends InputTemplate {
 
   // queries
   @query('iz-translate') translateElement!: Translate;
+
   @query('iz-popover') popoverElement!: Popover;
 
   // states
   @state() inputtext?: string;
+
   @state() count!: string;
 
   private fixedtextslot: boolean = false;
+
   private valueMap: Map<string, OptionItem> = new Map();
+
   private size: number = 0;
 
   get Size() {
@@ -169,7 +178,7 @@ export class Dropdown extends InputTemplate {
   };
 
   private handleInputChange(_event: Event) {
-    const event = _event as CustomEvent<InputEventChangeInfo>;
+    const event = _event as CustomEvent<HiddenChangeEvent>;
     this.size = 0;
     this.valueMap.clear();
     this.dispatchEvent(new Event('clear-options'));
@@ -183,11 +192,11 @@ export class Dropdown extends InputTemplate {
         })
       );
     }
-    // else 
+    // else
     // {
     // }
 
-    // FIXME make sure the popover stays open!! 
+    // FIXME make sure the popover stays open!!
 
     this.dispatchEvent(new CustomEvent<SearchEvent>('search', event));
   }
@@ -222,7 +231,7 @@ export class Dropdown extends InputTemplate {
       this.inputtext = this.translateElement.innerText;
       return;
     }
-    
+
     this.translateElement.innerText = text;
     this.inputtext = '';
   }

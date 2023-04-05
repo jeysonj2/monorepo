@@ -11,6 +11,7 @@ import '@interzero/field/wc';
 // icons
 import '@interzero-icons/icon-lock/wc';
 import '@interzero-icons/icon-mail/wc';
+import '@interzero-icons/icon-user/wc';
 
 // classes
 import '@interzero-tools/translate';
@@ -32,7 +33,12 @@ export class LoginForm extends LitElement {
 
   private handleSubmit = (event: Event) => {
     event.preventDefault();
+
     const form = event.target as HTMLFormElement;
+
+    if (!form?.checkValidity()) {
+      throw new Error('Form is not valid');
+    }
 
     const data = new FormData(form);
     this.dispatchEvent(
@@ -68,13 +74,33 @@ export class LoginForm extends LitElement {
           placeholder="example@interzero.de"
           type="email"
           required
-          validateAtStart
           .errors=${{
             typeMismatch: 'Must be a valid E-Mail',
             valueMissing: 'You have to provide a E-Mail',
           }}
         ></iz-input>
         <iz-icon-mail slot="left"></iz-icon-mail>
+      </iz-field>
+    `;
+  }
+
+  static getName(nameType: 'first' | 'last' = 'first') {
+    const isFirstName = nameType === 'first';
+    const label = isFirstName ? 'First Name' : 'Last Name';
+    const name = isFirstName ? 'nameFirst' : 'nameLast';
+
+    return html`
+      <iz-field label="${label}">
+        <iz-input
+          name="${name}"
+          placeholder="example@interzero.de"
+          type="text"
+          required
+          .errors=${{
+            valueMissing: `You have to provide the ${label}`,
+          }}
+        ></iz-input>
+        <iz-icon-user slot="left"></iz-icon-user>
       </iz-field>
     `;
   }
@@ -135,8 +161,10 @@ export class LoginForm extends LitElement {
   }
 
   private getRegisterFields() {
+    // ${LoginForm.getEmail()} ${this.getPassword()} ${LoginForm.getRePassword()}
     return html`
-      ${LoginForm.getEmail()} ${this.getPassword()} ${LoginForm.getRePassword()}
+      ${LoginForm.getEmail()} ${LoginForm.getName()}
+      ${LoginForm.getName('last')}
       <div>
         <iz-button @click=${this.handleLeftClick}>
           <iz-translate>LOGIN</iz-translate>
@@ -160,8 +188,9 @@ export class LoginForm extends LitElement {
   }
 
   private getResetFields() {
+    // ${this.getPassword()} ${LoginForm.getRePassword()}
     return html`
-      ${this.getPassword()} ${LoginForm.getRePassword()}
+      ${LoginForm.getEmail()}
       <div>
         <iz-button type="submit">
           <iz-translate>RESET</iz-translate>

@@ -5,6 +5,7 @@ export const style = css`
     display: flex;
     width: 100%;
     height: var(--header-height, 60px);
+    gap: var(--header-gap, 0.5rem);
     align-items: center;
     position: relative;
     background-color: var(--header-background-color, #fcfcfc);

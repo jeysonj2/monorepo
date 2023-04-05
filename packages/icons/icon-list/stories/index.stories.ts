@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/icon-list.js';
 
 export default {
-  title: 'IconList',
+  title: 'icons/IconList',
   component: 'iz-icon-list',
   argTypes: {
     header: { control: 'text' },

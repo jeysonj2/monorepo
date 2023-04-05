@@ -47,5 +47,11 @@
 		"prefix": "code-quote",
 		"body": "`\"$1\"`",
 		"description": "surround something with the code-quote type"
+	},
+	"disable line lint-rule": {
+		"scope": "typescript,javascript",
+		"prefix": "disable-lint-line",
+		"body": "// eslint-disable-next-line $1",
+		"description": "inserts comment to disable lint rule for the line"
 	}
 }

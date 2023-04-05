@@ -13,7 +13,13 @@ import { style } from './style.css.js';
 
 // types & interfaces
 export type Variant = 'plain' | 'default';
+export type ChangeEvent = {
+  checked: boolean;
+};
 
+function BooleanConverter(value: string | null) {
+  return !!['true', true, ''].includes((value || '').toLowerCase());
+}
 export class Checkbox extends InputTemplate {
   static styles = style;
 
@@ -28,12 +34,15 @@ export class Checkbox extends InputTemplate {
 
   @property({
     type: Boolean,
-    converter: value =>
-      !!['true', true, ''].includes((value || '').toLowerCase()),
+    converter: BooleanConverter,
   })
   checked: boolean = false;
 
-  @property({ type: Boolean }) locked: boolean = false;
+  @property({
+    type: Boolean,
+    converter: BooleanConverter,
+  })
+  locked: boolean = false;
 
   private handleClick(event: Event) {
     event.stopPropagation();
@@ -44,7 +53,9 @@ export class Checkbox extends InputTemplate {
     this.checked = !this.checked;
     this.updateHidden(`${this.checked}`);
     this.dispatchEvent(
-      new CustomEvent('change', { detail: { checked: this.checked } })
+      new CustomEvent<ChangeEvent>('change', {
+        detail: { checked: this.checked },
+      })
     );
   }
 

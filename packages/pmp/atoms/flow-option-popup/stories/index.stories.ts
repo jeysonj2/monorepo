@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/flow-option-popup.js';
 
 export default {
-  title: 'FlowOptionPopup',
+  title: 'pmp/atoms/FlowOptionPopup',
   component: 'iz-pmp-flow-option-popup',
   argTypes: {
     header: { control: 'text' },

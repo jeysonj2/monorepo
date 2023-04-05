@@ -26,19 +26,19 @@ export interface IEvent<E = HTMLInputElement> extends Event {
   target: EventTarget & E;
 }
 
-export interface InputEventInfo {
+export interface StateEvent {
   message: string | null;
   type: 'error' | 'warning' | 'success';
 }
-export interface InputEventChangeInfo {
+export interface ChangeEvent {
   value: string;
 }
 
 export interface InputEventMap {
-  'input-warning': CustomEvent<InputEventInfo>;
-  'input-success': CustomEvent<InputEventInfo>;
-  'input-error': CustomEvent<InputEventInfo>;
-  'input-change': CustomEvent<InputEventChangeInfo>;
+  'input-warning': CustomEvent<StateEvent>;
+  'input-success': CustomEvent<StateEvent>;
+  'input-error': CustomEvent<StateEvent>;
+  'input-change': CustomEvent<ChangeEvent>;
 }
 
 // type OptionsAdd = boolean | AddEventListenerOptions;
@@ -60,7 +60,7 @@ export class InputTemplate extends FormElement {
 
   private otherInput?: HTMLInputElement;
 
-  private suspenseTimer:number = -1;
+  private suspenseTimer: number = -1;
 
   public INPUTTEMPLATE = true;
 
@@ -153,12 +153,15 @@ export class InputTemplate extends FormElement {
     }
   }
 
-  attributeChangedCallback(name: string, _old: string | null, value: string | null): void {
+  attributeChangedCallback(
+    name: string,
+    _old: string | null,
+    value: string | null
+  ): void {
     super.attributeChangedCallback(name, _old, value);
 
-    if (name === "value" || name === "defaultValue")
-    {
-      this.updateHidden(value||'');
+    if (name === 'value' || name === 'defaultValue') {
+      this.updateHidden(value || '');
     }
   }
 
@@ -168,6 +171,11 @@ export class InputTemplate extends FormElement {
     if (this.__hiddeninput) {
       this.__hiddeninput.parentElement?.removeChild(this.__hiddeninput);
       this.__hiddeninput = undefined;
+    }
+
+    if (this.otherInput) {
+      this.otherInput.removeEventListener('change', this.checkError);
+      this.otherInput = undefined;
     }
   }
 
@@ -183,7 +191,7 @@ export class InputTemplate extends FormElement {
     if (event) this.checkError();
 
     this.dispatchEvent(
-      new CustomEvent<InputEventChangeInfo>('input-change', {
+      new CustomEvent<ChangeEvent>('input-change', {
         detail: { value },
       })
     );
@@ -191,7 +199,7 @@ export class InputTemplate extends FormElement {
     clearTimeout(this.suspenseTimer);
     this.suspenseTimer = setTimeout(() => {
       this.dispatchEvent(
-        new CustomEvent<InputEventChangeInfo>('suspended-input-change', {
+        new CustomEvent<ChangeEvent>('suspended-input-change', {
           detail: { value },
         })
       );
@@ -242,7 +250,7 @@ export class InputTemplate extends FormElement {
       if (validity.valid) {
         this.__hiddeninput?.setCustomValidity('');
         this.dispatchEvent(
-          new CustomEvent<InputEventInfo>('input-success', {
+          new CustomEvent<StateEvent>('input-success', {
             detail: { message: null, type: 'success' },
           })
         );
@@ -289,7 +297,7 @@ export class InputTemplate extends FormElement {
         this.__hiddeninput?.setCustomValidity('');
       }
       this.dispatchEvent(
-        new CustomEvent<InputEventInfo>(`input-${type}`, {
+        new CustomEvent<StateEvent>(`input-${type}`, {
           detail: { message, type },
         })
       );

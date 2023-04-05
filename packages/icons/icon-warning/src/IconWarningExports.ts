@@ -6,6 +6,7 @@ import { style } from './style.css.js';
 
 export class IconWarning extends IconBase {
   static style = style;
+
   static styles = [IconBase.style, style];
 
   render() {

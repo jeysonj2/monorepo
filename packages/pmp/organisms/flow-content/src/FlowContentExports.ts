@@ -509,7 +509,9 @@ export class FlowContent extends LitElement {
       ></iz-pmp-flow-roadmap>
 
       <iz-button variant="text" size="small" id="price">
-        <iz-translate price=${Math.floor(this.price * 100) / 100}>Current Price: {price} €</iz-translate>
+        <iz-translate price=${Math.floor(this.price * 100) / 100}
+          >Current Price: {price} €</iz-translate
+        >
       </iz-button>
 
       ${this.questions.map(question => {

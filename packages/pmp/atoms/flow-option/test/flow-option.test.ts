@@ -5,7 +5,9 @@ import '../src/flow-option.js';
 
 describe('FlowButton', () => {
   it('passes the a11y audit', async () => {
-    const el = await fixture<FlowButton>(html`<iz-pmp-flow-button></iz-pmp-flow-button>`);
+    const el = await fixture<FlowButton>(
+      html`<iz-pmp-flow-button></iz-pmp-flow-button>`
+    );
 
     await expect(el).shadowDom.to.be.accessible();
   });

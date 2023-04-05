@@ -1,5 +1,39 @@
 # @interzero/button
 
+## Properties
+### FormElement 
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"disabled"` | `boolean` | `false` | `false` | controls if its disabled or not | 
+### Button
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"type"` | `"Types"` | - | `false` | controls the HTMLButtonElement.type |
+| `"variant"` | `"Variant"` | `default` | `false` | controls the variant of button |
+| `"size"` | `"Size"` | `large` | `false` | controls the size of the button |
+
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"click"` | `Event` | triggered whenever clicked |
+| `"submit"` | `SubmitEvent` | triggered whenever clicked and type = submit | 
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+
+## Types
+```typescript
+type Types = 'button' | 'reset' | 'submit';
+type Variant = 'text' | 'default' | 'circle' | 'square';
+type Size = 'small' | 'medium' | 'large';
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

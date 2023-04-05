@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/flow-end.js';
 
 export default {
-  title: 'FlowEnd',
+  title: 'pmp/atoms/FlowEnd',
   component: 'iz-pmp-flow-end',
   argTypes: {
     header: { control: 'text' },

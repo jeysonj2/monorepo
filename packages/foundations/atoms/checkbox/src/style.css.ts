@@ -1,19 +1,5 @@
 import { css } from 'lit';
 
-// export const style = css`
-//   label, input {
-//     cursor: var(--checkbox-cursor, pointer);
-//   }
-
-//   label.disabled {
-//     cursor: var(--checkbox-disabled-cursor, not-allowed);
-//     color: var(--checkbox-disabled-color, gray);
-//   }
-//   label.disabled > input {
-//     cursor: var(--checkbox-disabled-cursor, not-allowed);
-//   }
-// `;
-
 export const style = css`
   button {
     cursor: var(--checkbox-cursor, pointer);

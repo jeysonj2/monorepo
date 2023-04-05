@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import '../src/footer.js';
 
 export default {
-  title: 'Footer',
+  title: 'global/atoms/Footer',
   component: 'iz-global-footer',
   argTypes: {
     header: { control: 'text' },
