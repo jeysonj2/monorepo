@@ -32,3 +32,7 @@ const Template: Story<ArgTypes> = ({
 `;
 
 export const Regular = Template.bind({});
+Regular.args = {
+  contactLink: '#contact',
+  interzeroLink: '#homepage',
+};

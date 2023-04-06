@@ -5,9 +5,13 @@ export default {
   title: 'pmp/atoms/FlowOptionPopup',
   component: 'iz-pmp-flow-option-popup',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    priceAffection: { control: 'number' },
+    priceAffectionType: {
+      control: 'select',
+      options: ['addition', 'multiplication'],
+    },
+    value: { control: 'text' },
+    edit: { control: 'boolean' },
   },
 };
 
@@ -18,43 +22,60 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  priceAffection?: number;
+  priceAffectionType?: string;
+  value?: string;
+  edit?: boolean;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  priceAffection = 10,
+  priceAffectionType = 'addition',
+  value = 'Value',
+  edit = false,
 }: ArgTypes) => html`
+  <button id="button">open popup</button>
   <iz-pmp-flow-option-popup
-    style="--flow-option-popup-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
+    id="popup"
+    .data=${{
+      id: edit ? 'id' : undefined,
+      value,
+      priceAffectionType,
+      priceAffection,
+    }}
   >
-    ${slot}
   </iz-pmp-flow-option-popup>
+  <script>
+    window.button.onclick = () => window.popup.show();
+  </script>
+`;
+
+const AllTemplate: Story<ArgTypes> = () => html`
+  <fieldset>
+    <legend>Add</legend>
+    <button id="add">open popup</button>
+    <iz-pmp-flow-option-popup id="addpopup"></iz-pmp-flow-option-popup>
+  </fieldset>
+
+  <fieldset>
+    <legend>Edit</legend>
+    <button id="edit">open popup</button>
+    <iz-pmp-flow-option-popup
+      .data=${{
+        value: 'value',
+        priceAffection: 10,
+        priceAffectionType: 'addition',
+        id: 'id',
+      }}
+      id="editpopup"
+    ></iz-pmp-flow-option-popup>
+  </fieldset>
+  <script>
+    window.edit.onclick = () => window.editpopup.show();
+    window.add.onclick = () => window.addpopup.show();
+  </script>
 `;
 
 export const Regular = Template.bind({});
 
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};
+export const All = AllTemplate.bind({});

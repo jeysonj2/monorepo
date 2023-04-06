@@ -8,6 +8,9 @@ export default {
   argTypes: {
     variant: { control: 'select', options: ['plain', 'default', 'empty'] },
     checked: { control: 'boolean' },
+    // style related
+    buttonPadding: { control: 'text' },
+    optionPadding: { control: 'text' },
   },
 };
 
@@ -21,15 +24,25 @@ interface ArgTypes {
   value: string;
   variant: Variant;
   checked: boolean;
+  buttonPadding: string;
+  optionPadding: string;
   slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
   value = 'value',
-  variant = 'default',
-  checked = false,
+  variant,
+  checked,
+  buttonPadding,
+  optionPadding,
   slot = html`Option`,
 }: ArgTypes) => html`
+  <style>
+    iz-option {
+      --button-padding: ${buttonPadding};
+      --option-padding: ${optionPadding};
+    }
+  </style>
   <iz-option .value=${value} .variant=${variant} .checked=${checked}>
     ${slot}
   </iz-option>
@@ -39,3 +52,9 @@ const Template: Story<ArgTypes> = ({
 `;
 
 export const Regular = Template.bind({});
+Regular.args = {
+  variant: 'default',
+  checked: false,
+  buttonPadding: '0',
+  optionPadding: '0 0.5rem',
+};

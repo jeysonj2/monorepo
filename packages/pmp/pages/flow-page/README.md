@@ -109,6 +109,12 @@ type SaveData = {
 type CompleteEvent = SaveData | DoneData;
 ```
 ### FlowPage
+```typescript
+export { Data, CompleteEvent } from FlowContent
+export { PageTemplateChangeEvent, UserModel } from PageTemplate
+```
+
+## Translations
 ### Footer
 - © 2022 - Interzero Circular Solutions Germany GmbH
 ### UserMenu 

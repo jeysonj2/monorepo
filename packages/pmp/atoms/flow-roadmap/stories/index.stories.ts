@@ -1,13 +1,13 @@
 import { html, TemplateResult } from 'lit';
 import '../src/flow-roadmap.js';
+import { Answer } from '../src/FlowRoadmapExports.js';
 
 export default {
   title: 'pmp/atoms/FlowRoadmap',
   component: 'iz-pmp-flow-roadmap',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    answers: { control: 'array' },
+    end: { control: 'boolean' },
   },
 };
 
@@ -18,43 +18,46 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  answers?: Answer[];
+  end?: boolean;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  answers = [
+    {
+      option: 'Option 1',
+      optionid: '1',
+      question: 'First Question',
+      questionId: '0',
+    },
+    {
+      option: 'Option 3',
+      optionid: '3',
+      question: 'Second Question',
+      questionId: '2',
+    },
+    {
+      option: 'Option 4',
+      optionid: '4',
+      question: 'Third Question',
+      questionId: '5',
+    },
+    {
+      option: 'Option 7',
+      optionid: '7',
+      question: 'Fourth Question',
+      questionId: '6',
+    },
+  ],
+  end = false,
 }: ArgTypes) => html`
-  <iz-pmp-flow-roadmap
-    style="--flow-roadmap-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
+  <iz-pmp-flow-roadmap .answers=${answers} class=${end ? 'end' : ''}>
   </iz-pmp-flow-roadmap>
 `;
 
 export const Regular = Template.bind({});
 
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+export const End = Template.bind({});
+End.args = {
+  end: true,
 };

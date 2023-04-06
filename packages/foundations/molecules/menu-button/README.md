@@ -1,5 +1,46 @@
 # @interzero/menu-button
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"direction"` | `Direction` | `"down"` | `false` | controls the direction where the caret icon should point towards | 
+| `"variant"` | `Variant` | `"default"` | `false` | controls the button variant | 
+| `"open"` | `boolean` | `false` | `false` | controls the open state | 
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"menu-state"` | `CustomEvent<StateEvent>` | triggered when button is clicked or open attribute is changed | 
+
+## CSS variables
+### external
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--button-height-large"` | `CSS unit` | `40px` | controls the height of the |
+| `"--button-height-small"` | `CSS unit` | `25px` | controls the height of the |
+| `"--button-pressed-color"` | `Color` | `white` | controls the color when pressed (which also sets the color of the caret icon) |
+### internal
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--menu-button-min-width"` | `CSS unit` | `3rem` | controls the min width | 
+| `"--menu-button-padding"` | `CSS padding` | `0.2rem` | controls the padding | 
+| `"--menu-button-gap"` | `CSS unit` | `0.2rem` | controls the gap | 
+
+## Types
+### Button
+```typescript 
+type Variant = 'text' | 'default' | 'circle' | 'square';
+```
+### MenuButton
+```typescript
+type Direction = 'up' | 'down';
+type StateEvent = { open: boolean };
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

@@ -1,5 +1,28 @@
 # @interzero-global/logo
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|¨
+| `"size"` | `Size` | `"medium"` | `false` | controls the size of logo |
+
+## Events
+--
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--logo-size-width"` | `CSS unit` | `176px` | controls the container width |
+| `"--logo-size-height"` | `CSS unit` | `65px` | controls the container height |
+| `"--logo-size-percentage"` | `numeric` | `1` | controls the scale of the logo |
+
+## Types
+```typescript
+type Size = 'small' | 'medium' | 'large';
+```
+
+## Translations
+--
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

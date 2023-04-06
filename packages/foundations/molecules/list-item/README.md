@@ -1,5 +1,40 @@
 # @interzero/list-item
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"isDeletable"` | `boolean` | `true` | `false` | sets whether if item should be deletable or not |
+| `"isDraggable"` | `boolean` | `true` | `false` | sets whether if item should be draggable or not |
+| `"dragged"` | `boolean` | `false` | `false` | sets whether if item is being dragged or not |
+| `"size"` | `Size` | `"medium"` | `false` | sets the size of the item (from button size) |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"remove"` | `Event` | triggered whenever remove button is pressed (`isDeletable` = true) |
+| `"drag-start"` | `CustomEvent<DragStartEvent>` | triggered whenever the item is clicked (not the content) | 
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--list-item-background-color"` | `Color` | `white` | controls the background color of item | 
+| `"--list-item-list-icon-margin-right"` | `CSS unit` | `0.5rem` | `false` | controls the list-icon margin-right | 
+| `"--list-item-padding"` | `CSS padding` | `0.5rem` | `false` | controls the padding of the list-item | 
+
+## Types
+### Button 
+```typescript
+type Size = 'small' | 'medium' | 'large';
+```
+### ListItem 
+```typescript
+type DragStartEvent = { target: ListItem; pageX: number; pageY: number };
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

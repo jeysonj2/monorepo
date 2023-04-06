@@ -10,6 +10,7 @@ export default {
       control: 'select',
       options: ['success', 'error', 'warning', 'info', 'default'],
     },
+    slot: { control: 'text' }
   },
 };
 
@@ -25,8 +26,21 @@ interface ArgTypes {
 }
 
 const Template: Story<ArgTypes> = ({
-  variant = 'success',
+  variant = 'default',
   slot = html`Badge`,
-}: ArgTypes) => html` <iz-badge variant=${variant}> ${slot} </iz-badge> `;
+}: ArgTypes) => html`<iz-badge variant=${variant}>${slot}</iz-badge>`;
+
+const AllTemplate: Story<{}> = () => html`
+  <iz-badge variant="success">success</iz-badge>
+  <iz-badge variant="error">error</iz-badge>
+  <iz-badge variant="warning">warning</iz-badge>
+  <iz-badge variant="info">info</iz-badge>
+  <iz-badge>default</iz-badge>
+`
 
 export const Regular = Template.bind({});
+Regular.args = {
+  variant: 'default'
+}
+
+export const All = AllTemplate.bind({});

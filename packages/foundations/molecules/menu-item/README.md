@@ -1,5 +1,38 @@
 # @interzero/menu-item
 
+NOTE: this class will change by extending Button instead -
+so change will become clicked most likekly!
+
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"value"` | `string` | - | `true` | this value is being included in the change-event |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"change"` | `CustomEvent<ChangeEvent>` | triggeres when clicked |
+
+## CSS variables
+### external
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--button-height-large"` | `CSS unit` | `40px` | sets the height of menu-item | 
+| `"--menu-button-min-width"` | `CSS unit` | `3rem` | sets the min-width of menu-item |
+### internal
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--menu-item-padding"` | `CSS padding` | `0 0.5rem` | controls the padding |
+
+## Types
+```typescript
+type ChangeEvent = { value: string };
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

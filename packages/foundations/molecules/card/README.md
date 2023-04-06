@@ -1,5 +1,34 @@
 # @interzero/card
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"header"` | `boolean` | `false` | `false` | sets if header is present in the card |
+| `"footer"` | `boolean` | `false` | `false` | sets if footer is present in the card |
+| `"headerTitle"` | `string` | `"Title"` | `false` | sets the card header |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--card-background-color"` | `Color` | var(--colors-neutral-white, white) | controls the background color |
+| `"--card-radius"` | `CSS unit` | `0.5rem` | controls the card border-radius |
+| `"--card-width"` | `CSS unit` | `15rem` | controls the card min-width |
+| `"--card-padding"` | `CSS padding` | `1rem` | controls the padding |
+| `"--card-footer-padding"` | `CSS padding` | `1.2rem 1rem` | controls the padding for the footer |
+| `"--card-min-height"` | `CSS unit` | `5rem` | controls the min-height of the main |
+| `"--card-border-width"` | `CSS unit` | `1px` | controls the border-width |
+| `"--card-border-color"` | `Color` | `var(--colors-neutral-gray2, #c6c6c6)` | controls the border-color |
+## Types
+-
+
+## Translations
+- Title 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

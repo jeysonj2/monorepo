@@ -33,6 +33,12 @@ export default {
     fixedText: { control: 'text' },
     placeholder: { control: 'text' },
     variant: { control: 'select', options: ['text', 'default', 'icon'] },
+    // style related
+    buttonMinWidth: { control: 'text' },
+    dropdownMenuHeight: { control: 'text' },
+    dropdownMenuColor: { control: 'color' },
+    dropdownMenuShadow: { control: 'text' },
+    dropdownGap: { control: 'text' },
   },
 };
 
@@ -49,31 +55,71 @@ interface ArgTypes {
   fixedText?: string;
   placeholder?: string;
   variant: Variant;
+  buttonMinWidth: string;
+  dropdownMenuHeight: string;
+  dropdownMenuColor: string;
+  dropdownMenuShadow: string;
+  dropdownGap: string;
   slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
-  multiple = false,
-  dontshowselected = false,
-  placement = 'bottom-right',
+  multiple,
+  dontshowselected,
+  placement,
   fixedText,
-  placeholder = 'placeholder',
-  variant = 'default',
+  placeholder,
+  variant,
+  buttonMinWidth,
+  dropdownMenuHeight,
+  dropdownMenuColor,
+  dropdownMenuShadow,
+  dropdownGap,
 }: ArgTypes) => html`
-  <iz-dropdown
-    .multiple=${multiple}
-    .dontshowselected=${dontshowselected}
-    .placement=${placement}
-    .fixedText=${fixedText}
-    .placeholder=${placeholder}
-    .variant=${variant}
-  >
-    <iz-option value="1">Item 1</iz-option>
-    <iz-option value="2">Item 2</iz-option>
-    <iz-option value="3">Item 3</iz-option>
-    <iz-option value="4">Item 4</iz-option>
-    <iz-option value="5">Item 5</iz-option>
-  </iz-dropdown>
+  <style>
+    iz-dropdown {
+      --button-min-width: ${buttonMinWidth};
+      --dropdown-menu-height: ${dropdownMenuHeight};
+      --dropdown-menu-color: ${dropdownMenuColor};
+      --dropdown-menu-shadow: ${dropdownMenuShadow};
+      --dropdown-gap: ${dropdownGap};
+    }
+    div {
+      display: flex;
+      min-height: 300px;
+      justify-content: center;
+      align-items: flex-end;
+    }
+  </style>
+  <div>
+    <iz-dropdown
+      .multiple=${multiple}
+      .dontshowselected=${dontshowselected}
+      .placement=${placement}
+      .fixedText=${fixedText}
+      .placeholder=${placeholder}
+      .variant=${variant}
+    >
+      <iz-option value="1">Item 1</iz-option>
+      <iz-option value="2">Item 2</iz-option>
+      <iz-option value="3">Item 3</iz-option>
+      <iz-option value="4">Item 4</iz-option>
+      <iz-option value="5">Item 5</iz-option>
+    </iz-dropdown>
+  </div>
 `;
 
 export const Regular = Template.bind({});
+Regular.args = {
+  multiple: false,
+  dontshowselected: false,
+  placement: 'bottom-right',
+  placeholder: 'placeholder',
+  variant: 'default',
+  // styles
+  buttonMinWidth: '100%',
+  dropdownMenuHeight: '18rem',
+  dropdownMenuColor: 'white',
+  dropdownMenuShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
+  dropdownGap: '0.2rem',
+};

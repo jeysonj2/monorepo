@@ -28,7 +28,7 @@ export class Popup extends LitElement {
 
   @property() state: State = 'hide';
 
-  @property() minWidth?: string;
+  // @property() minWidth?: string;
 
   private showDelay = false;
 

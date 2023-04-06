@@ -7,17 +7,19 @@ import '@interzero-pmp/flow-content/wc';
 import '@interzero-pmp/page-template/wc';
 
 // types & classes
-
-// style import
-
-// types & interfaces
 import type {
   UserModel,
   ChangeEvent as PageTemplateChangeEvent,
 } from '@interzero-pmp/page-template';
 import type { Variant, Data, CompleteEvent } from '@interzero-pmp/flow-content';
 import type { ChangeEvent as SwitchChangeEvent } from '@interzero/button-switch';
+
+// style import
 import { style } from './style.css.js';
+
+// types & interfaces
+export type { Data, CompleteEvent } from '@interzero-pmp/flow-content';
+export type { UserModel, ChangeEvent as PageTemplateChangeEvent } from '@interzero-pmp/page-template';
 
 export class FlowPage extends LitElement {
   static styles = style;

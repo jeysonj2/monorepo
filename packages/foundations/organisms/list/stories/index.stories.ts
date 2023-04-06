@@ -1,14 +1,11 @@
 import { html, TemplateResult } from 'lit';
+import '@interzero/list-item/wc';
 import '../src/list.js';
 
 export default {
   title: 'foundations/organisms/List',
   component: 'iz-list',
-  argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
-  },
+  argTypes: {},
 };
 
 interface Story<T> {
@@ -17,44 +14,21 @@ interface Story<T> {
   argTypes?: Record<string, unknown>;
 }
 
-interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
-}
+interface ArgTypes {}
 
-const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
-}: ArgTypes) => html`
-  <iz-list
-    style="--list-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
-  </iz-list>
+const Template: Story<ArgTypes> = () => html`
+  <fieldset>
+    <legend>Regular</legend>
+    <iz-list>
+      <iz-list-item>item 1</iz-list-item>
+      <iz-list-item>item 2</iz-list-item>
+      <iz-list-item>item 3</iz-list-item>
+      <iz-list-item>item 4</iz-list-item>
+      <iz-list-item>item 5</iz-list-item>
+      <iz-list-item>item 6</iz-list-item>
+      <iz-list-item>item 7</iz-list-item>
+    </iz-list>
+  </fieldset>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};

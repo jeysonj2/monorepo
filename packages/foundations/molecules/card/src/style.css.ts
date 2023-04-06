@@ -4,7 +4,7 @@ export const style = css`
   :host {
     display: block;
     background-color: var(
-      --card-background,
+      --card-background-color,
       var(--colors-neutral-white, white)
     );
     border-radius: var(--card-radius, 0.5rem);

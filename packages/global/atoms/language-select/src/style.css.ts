@@ -2,6 +2,7 @@ import { css } from 'lit';
 
 export const style = css`
   iz-menu {
+    /** TODO this is not necessary ? */
     --menu-button-width: 3rem;
   }
 

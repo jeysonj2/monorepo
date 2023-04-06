@@ -6,7 +6,7 @@
 | `"variant"` | `Variant` | "default" | `"false"` | controls the variant of the `FlowOption` |
 | `"value"` | `string`| "Empty Descriiption" | `"true"` | the description-value |
 | `"checked"` | `boolean` | `false` | `"false"` | control if default-button is checked or not |
-| `"id"` | `HTMLAttribute` | - | `"true"` | This should always be present as all events will send this id-value when dispatched |
+| `"id"` | `HTMLAttribute` | - | `"false"` | This should always be present as all events will send this id-value when dispatched |
 
 ## Events 
 | name | Type | description |

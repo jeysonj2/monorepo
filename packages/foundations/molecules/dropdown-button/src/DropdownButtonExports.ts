@@ -18,6 +18,7 @@ import { style } from './style.css.js';
 type BaseVariant = 'default' | 'text';
 export type Variant = BaseVariant | 'input';
 export type Direction = 'up' | 'down';
+export type StateEvent = { open: boolean };
 
 export class DropdownButton extends LitElement {
   static styles = style;
@@ -63,7 +64,9 @@ export class DropdownButton extends LitElement {
   private handleClick() {
     this.open = !this.open;
     this.dispatchEvent(
-      new CustomEvent('dropdown-state', { detail: { open: this.open } })
+      new CustomEvent<StateEvent>('dropdown-state', {
+        detail: { open: this.open },
+      })
     );
   }
 
@@ -81,7 +84,6 @@ export class DropdownButton extends LitElement {
         text = element.innerText;
       }
       this.placeholder = text ?? '';
-      console.log('placeholder', this.placeholder);
     }, 1);
   };
 

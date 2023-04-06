@@ -4,7 +4,6 @@ export const style = css`
   :host {
     display: block;
     width: 100%;
-    outline: 2px solid cornflowerblue;
     position: relative;
   }
 

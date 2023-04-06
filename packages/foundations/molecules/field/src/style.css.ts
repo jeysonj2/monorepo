@@ -26,7 +26,7 @@ export const style = css`
     grid-area: content;
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-template-rows: 2rem var(--input-height, 2rem) 2rem;
+    grid-template-rows: 2rem minmax(auto, 2rem) 2rem;
     grid-template-areas:
       'label label'
       'target target'

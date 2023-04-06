@@ -1,27 +1,58 @@
 # @interzero-global/loginpage
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"variant"` | `Variant` | "login" | `false` | controls which view should be displayed |
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--loginpage-left-background"` | `CSS background` | "#c4c4c4" | controls the left background |
+| `"--loginpage-right-background"` | `CSS background` | "#e4e4e4" | controls the right background |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"submit"` | `CustomEvent<SubmitEvent>` | dispatched whenever Form is submitted | 
+
+## Types 
+```typescript 
+type Variant = "login"|"register"|"update"|"reset";
+type SubmitEvent = { 
+  data: FormData; 
+  variant: Variant;
+}
+```
 ## Translations 
-| key | component | use-case |
-|-----|-----------|----------|
-| `"Must be a valid E-Mail"` | LoginForm | validation message of valid email for `"Email-Field"` |
-| `"You have to provide a E-Mail"` | LoginForm | validation message of require for `"Email-Field"` |
-| `"Email"` | LoginForm | label for `"Email-Field"` |
-| `"example@interzero.de"` | LoginForm | placeholder for `"Email-Field"` |
-| `"Password is too short minimum 5 charactures"` | LoginForm | validation message when too short for `"Password-Field"` |
-| `"Passwords must match"` | LoginForm | validation message when not matching `"Password-Field"` for `"Re-Password-Field"` |
-| `"You must provide a password"` | LoginForm | validation message of require for both `"Password-Field"` & `"Re-Password-Field"` |
-| `"Password"` | LoginForm | label for `"Password-Field"` |
-| `"Re-enter Password"` | LoginForm | label for `"Re-Password-Field"` |
-| `"type password"` | LoginForm | placeholder for both `"Password-Field"` & `"Re-Password-Field"` |
-| `"REGISTER"` | LoginForm | button text for register button |
-| `"LOGIN"` | LoginForm | button text for login button |
-| `"UPDATE"` | LoginForm | button text for update button (when passwords are updating) |
-| `"RESET"` | LoginForm | button text for reset button (when forgot password) |
-| `"Forgot Password?"` | LoginForm | link text for forget password (from login variant) |
-| `"Remembered it?"` | LoginForm | link text for login form (from reset variant) |
-| `"INTERZERO"` | LoginLinks | link text for interzero official website |
-| `"KONTAKT"` | LoginLinks | link text for interzero contact page |
-| `"© 2022 - Interzero Circular Solutions Germany GmbH"` | LoginLinks | trademark text |
+### LoginForm  
+| key | description |
+|-----|-------------|
+| `"Must be a valid E-Mail"` | validation message of valid email for `"Email-Field"` |
+| `"You have to provide a E-Mail"` | validation message of require for `"Email-Field"` |
+| `"Email"` | label for `"Email-Field"` |
+| `"You have to provide the First Name"` | when value missing field of first name |
+| `"You have to provide the Last Name"` | when value missing field of last name |
+| `"example@interzero.de"` | placeholder for `"Email-Field"` |
+| `"Password is too short minimum 5 charactures"` | validation message when too short for `"Password-Field"` |
+| `"Passwords must match"` | validation message when not matching `"Password-Field"` for `"Re-Password-Field"` |
+| `"You must provide a password"` | validation message of require for both `"Password-Field"` & `"Re-Password-Field"` |
+| `"Password"` | label for `"Password-Field"` |
+| `"Re-enter Password"` | label for `"Re-Password-Field"` |
+| `"type password"` | placeholder for both `"Password-Field"` & `"Re-Password-Field"` |
+| `"REGISTER"` | button text for register button |
+| `"LOGIN"` | button text for login button |
+| `"UPDATE"` | button text for update button (when passwords are updating) |
+| `"RESET"` | button text for reset button (when forgot password) |
+| `"Forgot Password?"` | link text for forget password (from login variant) |
+| `"Remembered it?"` | link text for login form (from reset variant) |
+
+## LoginLinks
+| key | description |
+|-----|-------------|
+| "INTERZERO" | used for the interzero homepage |
+| "KONTAKT" | used for the interzero contact page |
+| "© 2022 - Interzero Circular Solutions Germany GmbH" trademark text |
 
 ### Complete Use case (english)
 Retared use case:
@@ -34,6 +65,8 @@ window.izTranslations.load({
     "Must be a valid E-Mail": "Must be a valid E-Mail",
     "You have to provide a E-Mail": "You have to provide a E-Mail",
     "Email": "Email",
+    "You have to provide the First Name": "You have to provide the First Name",
+    "You have to provide the Last Name": "You have to provide the Last Name",
     "example@interzero.de": "example@interzero.de",
     "Password is too short minimum 5 charactures": "Password is too short minimum 5 charactures",
     "Passwords must match": "Passwords must match",
@@ -61,24 +94,6 @@ window.izTranslations.load({
   flag: "🇬🇧",
   translations: {}
 });
-```
-
-## Events
-| name | type | description |
-|------|------|-------------|
-| `"submit"` | SubmitEvent | dispatched whenever Form is submitted | 
-
-## Types 
-### Variant 
-```typescript 
-  type Variant = "login"|"register"|"update"|"reset";
-```
-### SubmitEvent
-```typescript 
-type SubmitEvent = { 
-  data: FormData; 
-  variant: Variant;
-}
 ```
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.

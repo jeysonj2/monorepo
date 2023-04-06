@@ -8,10 +8,10 @@ import { style } from './style.css';
 // types & interfaces
 type TB = 'top' | 'bottom';
 type LR = 'left' | 'right';
-type Reveals = 'hover' | 'click';
 type GlobalOpenEvent = { id: string };
 type Offset = { x: number; y: number };
 
+export type Reveals = 'hover' | 'click';
 export type Placement = `${TB}-${LR | 'center'}` | `${LR}-${TB | 'center'}`;
 interface Rectangle {
   top: number;

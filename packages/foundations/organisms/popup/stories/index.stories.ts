@@ -1,13 +1,19 @@
 import { html, TemplateResult } from 'lit';
 import '../src/popup.js';
+import { State, Variant } from '../src/PopupExports.js';
 
 export default {
   title: 'foundations/organisms/Popup',
   component: 'iz-popup',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    headerTitle: { control: 'text' },
+    hideonoutsideclick: { control: 'boolean' },
+    variant: { control: 'select', options: ['parent','global'] },
+    state: { control: 'select', options: ['show','hide'] },
+
+    // style
+    backdropBackground: { control: 'color' },
+    backdropFilter: { control: 'text' },
   },
 };
 
@@ -18,43 +24,62 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  headerTitle: string;
+  hideonoutsideclick: boolean;
+  variant: Variant;
+  state: State;
+  // style
+  backdropBackground: string;
+  backdropFilter: string;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  headerTitle,
+  hideonoutsideclick,
+  variant,
+  state,
+  // style
+  backdropBackground,
+  backdropFilter,
 }: ArgTypes) => html`
-  <iz-popup
-    style="--popup-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
-  </iz-popup>
+  <style>
+    iz-popup {
+      --popup-backdrop-background: ${backdropBackground};
+      --popup-backdrop-filter: ${backdropFilter};
+    }
+
+    fieldset {
+      height: 400px;
+      width: 500px;
+      display: block;
+      position: relative;
+
+      margin: auto;
+    }
+  </style>
+  <fieldset>
+    <legend>Parent Element</legend>
+    <iz-popup
+      .headerTitle=${headerTitle}
+      .hideonoutsideclick=${hideonoutsideclick}
+      .variant=${variant}
+      state=${state}
+    >
+      <p>Some popup content</p>
+      <footer slot="footer">
+        <p>Oh look im a footer</p>
+      </footer>
+    </iz-popup>
+  </fieldset>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};
+Regular.args = {
+  headerTitle: "Popup title",
+  hideonoutsideclick: false,
+  variant: "global",
+  state: "show",
+  // style
+  backdropBackground: "rgba(0, 0, 0, 0.1)",
+  backdropFilter: "blur(0px)",
+}

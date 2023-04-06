@@ -1,13 +1,32 @@
 import { html, TemplateResult } from 'lit';
 import '../src/popover.js';
+import { Placement, Reveals } from '../src/PopoverExports.js';
 
 export default {
   title: 'foundations/atoms/Popover',
   component: 'iz-popover',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    placement: {
+      control: 'select',
+      options: [
+        'top-left',
+        'top-right',
+        'top-center',
+        'bottom-left',
+        'bottom-right',
+        'bottom-center',
+        'left-top',
+        'left-bottom',
+        'left-center',
+        'right-top',
+        'right-bottom',
+        'right-center',
+      ],
+    },
+    revealby: { control: 'select', options: ['click', 'hover'] },
+    open: { control: 'boolean' },
+    matchwidth: { control: 'boolean' },
+    hideonoutsideclick: { control: 'boolean' },
   },
 };
 
@@ -18,43 +37,53 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  placement?: Placement;
+  revealby?: Reveals;
+  open?: boolean;
+  matchwidth?: boolean;
+  hideonoutsideclick?: boolean;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  placement,
+  revealby,
+  open,
+  matchwidth,
+  hideonoutsideclick,
 }: ArgTypes) => html`
-  <iz-popover
-    style="--popover-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
-  </iz-popover>
+  <style>
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      min-height: 300px;
+    }
+    p {
+      outline: 1px solid cornflowerblue;
+    }
+  </style>
+  <div>
+    <button id="target">im the target</button>
+
+    <iz-popover
+      target="#target"
+      .placement=${placement}
+      .revealby=${revealby}
+      .open=${open}
+      .matchwidth=${matchwidth}
+      .hideonoutsideclick=${hideonoutsideclick}
+    >
+      <p>Im some content of the popup</p>
+    </iz-popover>
+  </div>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+Regular.args = {
+  placement: 'bottom-center',
+  hideonoutsideclick: true,
+  matchwidth: false,
+  open: true,
+  revealby: 'click',
 };

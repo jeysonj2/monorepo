@@ -1,13 +1,13 @@
 import { html, TemplateResult } from 'lit';
 import '../src/table-filter.js';
+import { Column } from '../src/TableFilterExports.js';
 
 export default {
   title: 'global/atoms/TableFilter',
   component: 'iz-global-table-filter',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    columns: { control: 'array' },
+    cssGap: { control: 'text' },
   },
 };
 
@@ -18,43 +18,27 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  columns?: Column[];
+  cssGap?: string;
 }
 
-const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
-}: ArgTypes) => html`
-  <iz-global-table-filter
-    style="--table-filter-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
-  </iz-global-table-filter>
+const Template: Story<ArgTypes> = ({ columns, cssGap }: ArgTypes) => html`
+  <style>
+    iz-global-table-filter {
+      --table-filter-gap: ${cssGap};
+    }
+  </style>
+  <iz-global-table-filter .columns=${columns}> </iz-global-table-filter>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+Regular.args = {
+  columns: [
+    { name: 'Column A', id: '0' },
+    { name: 'Column B', id: '1' },
+    { name: 'Column C', id: '2' },
+    { name: 'Column D', id: '3' },
+    { name: 'Column E', id: '4' },
+  ],
+  cssGap: '1rem',
 };

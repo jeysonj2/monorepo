@@ -4,7 +4,7 @@
 | name | type | default-value | required | description |
 |------|------|---------------|----------|-------------|
 | `"variant"` | `Variant` | "default" | `false` | controls the variant of question-view |
-| `"data"` | `Data` | - | `true` |required field, contains all data to display question-view |
+| `"data"` | `Data` | - | `true` | required field, contains all data to display question-view |
 
 ## Events 
 | name | Type | description |

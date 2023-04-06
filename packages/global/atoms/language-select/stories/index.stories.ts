@@ -1,13 +1,29 @@
 import { html, TemplateResult } from 'lit';
+import type { Placement } from '@interzero/popover';
+
 import '../src/language-select.js';
 
 export default {
   title: 'global/atoms/LanguageSelect',
   component: 'iz-global-language-select',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    placement: {
+      control: 'select',
+      options: [
+        'top-left',
+        'top-right',
+        'top-center',
+        'bottom-left',
+        'bottom-right',
+        'bottom-center',
+        'left-top',
+        'left-bottom',
+        'left-center',
+        'right-top',
+        'right-bottom',
+        'right-center',
+      ],
+    },
   },
 };
 
@@ -18,43 +34,75 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  placement?: Placement;
 }
 
-const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
-}: ArgTypes) => html`
-  <iz-global-language-select
-    style="--language-select-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
-  </iz-global-language-select>
+const Template: Story<ArgTypes> = ({ placement }: ArgTypes) => html`
+  <script>
+    const translations = [
+      {
+        id: 'en',
+        name: 'english',
+        flag: '🇬🇧',
+        translations: {},
+      },
+      {
+        id: 'se',
+        name: 'swedish',
+        flag: '🇸🇪',
+        translations: {
+          'Hello World': '[SE] Hello World',
+          'Hello Fantastic World': '[SE] Hello Fantastic World',
+          'Hello Interzero': '[SE] Hello Interzero',
+          'I like potatoes': '[SE] I like potatoes',
+          'select language': '[SE] select language',
+        },
+      },
+      {
+        id: 'es',
+        name: 'spanish',
+        flag: '🇪🇸',
+        translations: {
+          'Hello World': '[ES] Hello World',
+          'Hello Fantastic World': '[ES] Hello Fantastic World',
+          'Hello Interzero': '[ES] Hello Interzero',
+          'I like potatoes': '[ES] I like potatoes',
+          'select language': '[ES] select language',
+        },
+      },
+      {
+        id: 'de',
+        name: 'german',
+        flag: '🇩🇪',
+        translations: {
+          'Hello World': '[DE] Hello World',
+          'Hello Fantastic World': '[DE] Hello Fantastic World',
+          'Hello Interzero': '[DE] Hello Interzero',
+          'I like potatoes': '[DE] I like potatoes',
+          'select language': '[DE] select language',
+        },
+      },
+    ];
+
+    window.izTranslation.loadAll(translations);
+    window.izTranslation.change('en');
+  </script>
+  <style>
+    div {
+      min-height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <div>
+    <iz-global-language-select
+      .placement=${placement}
+    ></iz-global-language-select>
+  </div>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+Regular.args = {
+  placement: 'bottom-left',
 };

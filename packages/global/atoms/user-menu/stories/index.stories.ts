@@ -1,13 +1,29 @@
 import { html, TemplateResult } from 'lit';
+import type { Placement } from '@interzero/popover';
 import '../src/user-menu.js';
 
 export default {
   title: 'global/atoms/UserMenu',
   component: 'iz-global-user-menu',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    placement: {
+      control: 'select',
+      options: [
+        'top-left',
+        'top-right',
+        'top-center',
+        'bottom-left',
+        'bottom-right',
+        'bottom-center',
+        'left-top',
+        'left-bottom',
+        'left-center',
+        'right-top',
+        'right-bottom',
+        'right-center',
+      ],
+    },
+    cssMenuButtonWidth: { control: 'text' },
   },
 };
 
@@ -18,43 +34,32 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  placement?: Placement;
+  cssMenuButtonWidth?: string;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  placement,
+  cssMenuButtonWidth,
 }: ArgTypes) => html`
-  <iz-global-user-menu
-    style="--user-menu-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
-  </iz-global-user-menu>
+  <style>
+    iz-global-user-menu {
+      --user-menu-button-width: ${cssMenuButtonWidth};
+    }
+    div {
+      min-height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <div>
+    <iz-global-user-menu .placement=${placement}> </iz-global-user-menu>
+  </div>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+Regular.args = {
+  placement: 'bottom-left',
+  cssMenuButtonWidth: '3rem',
 };

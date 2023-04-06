@@ -1,5 +1,48 @@
 # @interzero-global/table-filter
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"columns"` | `Column[]` | `[]` | `false` | displayes the available columns to filter on | 
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"change"` | `CustomEvent<ChangeEvent>` | triggered when all 3 inputs have value (column, filter & value) |
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--table-filter-gap"` | `CSS unit` | `1rem` | controls the gap between inputs |
+
+## Types
+### HiddenInput 
+```typescript
+interface HiddenChangeEvent {
+  value: string;
+}
+```
+### TableFilter
+```typescript
+type FilterType = 'equal-to' | 'contains' | 'begins-with' | 'in-between' | 'not-equal-to' | 'greater-then' | 'less-then';
+type ChangeEvent = { value: string; column: string; filter: FilterType };
+type Column = { id: string; name: string };
+type InputType = 'column' | 'filter' | 'value';
+```
+
+## Translations
+| key | description |
+|-----|-------------|
+| "equal to" | used in filter dropdown |
+| "contains" | used in filter dropdown |
+| "begins with" | used in filter dropdown |
+| "in between" | used in filter dropdown |
+| "not equal to" | used in filter dropdown |
+| "greater then" | used in filter dropdown |
+| "less then" | used in filter dropdown |
+| "Type value" | placeholder of value |
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

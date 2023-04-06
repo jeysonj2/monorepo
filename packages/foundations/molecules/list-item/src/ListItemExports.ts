@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 
 // web-components
 import '@interzero/button/wc';
@@ -30,14 +30,16 @@ export class ListItem extends LitElement {
 
   @property({ type: Boolean, converter: booleanConvert }) isDraggable = true;
 
-  @property() size: Size = 'medium';
+  @property({ type: Boolean }) dragged: boolean = false;
 
-  @state() dragged: boolean = false;
+  @property() size: Size = 'medium';
 
   // class functions
   connectedCallback(): void {
     super.connectedCallback();
 
+    if (!this.hasAttribute('isDraggable'))
+      this.setAttribute('isDraggable', 'true');
     if (!this.hasAttribute('size')) this.setAttribute('size', this.size);
   }
 

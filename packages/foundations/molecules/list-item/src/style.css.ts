@@ -13,15 +13,6 @@ export const style = css`
     z-index: 1;
   }
 
-  :host([dragged]) {
-    transition: transform ease 200ms;
-  }
-
-  :host(.dragged) {
-    transition: none;
-    /* z-index: 2; */
-  }
-
   :host([size='small']) {
     height: var(--button-height-small, 25px);
   }
@@ -33,7 +24,7 @@ export const style = css`
   }
 
   iz-icon-list {
-    margin-right: var(--list-item-list-margin, 0.5rem);
+    margin-right: var(--list-item-list-icon-margin-right, 0.5rem);
   }
 
   div.item {
@@ -47,6 +38,9 @@ export const style = css`
     user-select: none; /* Standard syntax */
   }
 
+  /* :host([isDraggable]) div.item:active {
+    
+  } */
   div.item.dragged {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   }

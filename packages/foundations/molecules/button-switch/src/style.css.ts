@@ -5,13 +5,16 @@ export const style = css`
     display: inline-block;
     padding: var(--buttonswitch-padding, 0.3rem);
     background-color: var(--buttonswitch-background, #d9d9d9);
-    border-radius: var(--border-radius-max, 1000px);
+    border-radius: var(
+      --buttonswitch-border-radius,
+      var(--border-radius-max, 1000px)
+    );
   }
 
   iz-button {
+    border-radius: inherit;
     min-width: var(--buttonswitch-button-min-width, 80px);
     padding: var(--buttonswitch-button-padding, 0 2rem);
-    border-radius: var(--border-radius-max, 1000px);
     --button-background-color: var(
       --buttonswitch-button-active-background,
       white

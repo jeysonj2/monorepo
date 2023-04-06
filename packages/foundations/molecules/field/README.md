@@ -1,5 +1,40 @@
 # @interzero/field
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"label"` | `string` | - | `false` | controls the label text (translated) |
+| `"help"` | `string` | - | `false` | sets the help text which is displayed if no error or warning (translated) |
+| `"counter"` | `boolean` | `false` | controls if counter should be disabled or not (would reveal a counter next to input) |
+
+## Events
+-
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--field-gap"` | `CSS unit` | `0.4rem` | controls the gap | 
+
+## Types (all internal)
+### InputTemplate
+```typescript
+interface HiddenStateEvent {
+  message: string | null;
+  type: 'error' | 'warning' | 'success';
+}
+interface HiddenChangeEvent {
+  value: string;
+}
+```
+### Field
+```typescript
+type InputState = 'warning' | 'error' | 'success'; 
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

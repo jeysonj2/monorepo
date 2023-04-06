@@ -31,7 +31,7 @@ type Size = 'small' | 'medium' | 'large';
 ```
 
 ## Translations
-- 
+--
 
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.

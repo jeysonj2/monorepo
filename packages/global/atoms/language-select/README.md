@@ -1,5 +1,26 @@
 # @interzero-global/language-select
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"placement"` | `Placement` | `"bottom-left"` | `false` | controls the placement of popover |
+
+## Events
+--
+
+## CSS variables
+--
+
+## Types
+### Popover
+```typescript
+type Placement = "top-left" | "top-right" | "top-center" | "bottom-left" | "bottom-right" | "bottom-center" | "left-top" | "left-bottom" | "left-center" | "right-top" | "right-bottom" | "right-center";
+```
+
+## Translations
+--
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

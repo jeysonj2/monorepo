@@ -13,6 +13,7 @@ import { style } from './style.css.js';
 
 // types & interfaces
 export type Direction = 'up' | 'down';
+export type StateEvent = { open: boolean };
 
 export class MenuButton extends LitElement {
   static styles = style;
@@ -36,7 +37,7 @@ export class MenuButton extends LitElement {
   private handleClick() {
     this.open = !this.open;
     this.dispatchEvent(
-      new CustomEvent('menu-state', { detail: { open: this.open } })
+      new CustomEvent<StateEvent>('menu-state', { detail: { open: this.open } })
     );
   }
 

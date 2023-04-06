@@ -1,13 +1,13 @@
 import { html, TemplateResult } from 'lit';
 import '../src/flow-view.js';
+import { Data, Variant } from '../src/FlowViewExports.js';
 
 export default {
   title: 'pmp/molecules/FlowView',
   component: 'iz-pmp-flow-view',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    variant: { control: 'select', options: ['default', 'edit'] },
+    data: { control: 'object' },
   },
 };
 
@@ -18,43 +18,37 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  variant?: Variant;
+  data?: Data;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  variant = 'default',
+  data,
 }: ArgTypes) => html`
   <iz-pmp-flow-view
-    style="--flow-view-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
+    .variant=${variant}
+    .data=${data}
   >
-    ${slot}
   </iz-pmp-flow-view>
 `;
 
 export const Regular = Template.bind({});
+Regular.args = {
+  data: {
+    question: "Main Questoin",
+    description: "Some description wow",
+    id: "0",
+    options: [
+      { id: "1", value: "Option 1", checked: false },
+      { id: "1", value: "Option 2", checked: false },
+      { id: "1", value: "Option 3", checked: false },
+    ]
+  }
+}
 
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};
+export const Edit = Template.bind({});
+Edit.args = {
+  ...Regular.args,
+  variant: "edit"
+}

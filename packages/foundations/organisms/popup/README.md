@@ -1,5 +1,37 @@
 # @interzero/popup
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"headerTitle"` | `string` | `"Popup Title"` | `false` | sets  the title in the card |
+| `"hideonoutsideclick"` | `boolean` | `false` | `false` | controls if the popup should be hidden if you click outside the card area | 
+| `"variant"` | `Variant` | controls the variant, parent means it would be shown iside its parent while global would put it over screen and lock scrolling |
+| `"state"` | `State` | `"hide"` | `false` | controls the show/hide state |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"popup-show"` | `Event` | triggered whenever popup is shown |
+| `"popup-hide"` | `Event` | triggered whenever popup is hidden |
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--popup-backdrop-background"` | `Color` | `rgba(0, 0, 0, 0.1)` | controls the color of backdrop |
+| `"--popup-backdrop-filter"` | `CSS filter` | `blur(0px)` | controls the backdop filter effect | 
+
+## Types
+```typescript
+type State = 'show' | 'hide';
+type Variant = 'global' | 'parent';
+```
+
+## Translations
+| key | description | 
+|-----|-------------|
+| "Popup Title" | default header title text |
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

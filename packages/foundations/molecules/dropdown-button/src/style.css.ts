@@ -15,7 +15,7 @@ export const style = css`
   }
 
   span.input {
-    display: block;
+    /* display: block; */
     position: relative;
     /* height: var(--button-height-small, 25px); */
     height: var(--button-height-large, 40px);

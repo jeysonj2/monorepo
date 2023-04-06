@@ -1,5 +1,44 @@
 # @interzero-global/user-menu
 
+
+Category: `Global/Atom`
+
+## Property Table
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"placement"` | `Placement` | "bottom-left" | controls placement of menu-menu |
+
+## Event Table
+| name | type | description |
+|------|-------------|------|-------------|
+| `"change"` | `CustomEvent<ChangeEvent>` | dispatched whenever option is selected |
+
+## CSS variables Table
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--user-menu-button-width"` | `CSS unit` | `"3rem"` | controls the width of the menu button |
+
+## Translation
+| text | description |
+|------|-------------|
+| *"Logout"* | Used inside option 1 |
+| *"User Profile"* | Used inside option 2 |
+
+
+## Types 
+### Popover
+```typescript
+type Placement = "top-left" | "top-right" | "top-center" | "bottom-left" | "bottom-right" | "bottom-center" | "left-top" | "left-bottom" | "left-center" | "right-top" | "right-bottom" | "right-center"
+```
+
+### MenuItem
+```typescript
+type ChangeEvent = {
+    value: "logout" | "user-profile";
+    name: "user-menu";
+};
+```
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
@@ -16,44 +55,6 @@ npm i @interzero-global/user-menu
 </script>
 
 <iz-global-user-menu></iz-global-user-menu>
-```
-
-Category: `Global/Atom`
-
-## Property Table
-| name | type | default-value | description |
-|------|------|---------------|-------------|
-| placement | Placement | "bottom-left" | controls placement of menu-menu |
-
-## Event Table
-| name | CustomEvent | Data | description |
-|------|-------------|------|-------------|
-| change | true | ChangeEvent | dispatched whenever option is selected |
-
-## CSS variables Table
-| name | type | default-value | description |
-|------|------|---------------|-------------|
-| `"--user-menu-button-width"` | unit | `"3rem"` | controls the width of the menu button |
-
-## Translation
-| text | description |
-|------|-------------|
-| *"Logout"* | Used inside option 1 |
-| *"User Profile"* | Used inside option 2 |
-
-
-## Types 
-### Placement (Popover Placement)
-```typescript
-type Placement = "top-left" | "top-right" | "top-center" | "bottom-left" | "bottom-right" | "bottom-center" | "left-top" | "left-bottom" | "left-center" | "right-top" | "right-bottom" | "right-center"
-```
-
-### ChangeEvent (Extended Dropdown ChangeEvent)
-```typescript
-type ChangeEvent = {
-    value: "logout" | "user-profile";
-    name: "user-menu";
-};
 ```
 
 ## Linting and formatting

@@ -1,5 +1,45 @@
 # @interzero/dropdown-button
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"open"` | `boolean` | `false` | `false` | controls the open state of dropdown (which rotates the caret) |
+| `"disabled"` | `boolean` | `false` | `false` | controls the disabled state |
+| `"variant"` | `Variant` | `"default"` | `false` | controls the variant |
+| `"direction"` | `Direction` | `"down"` | `false` | controls the direction of the caret (which side to rotate to) |
+| `"placeholder"` | `text` | - | `false` | sets the placeholder value when variant = "input" |
+| `"inputvalue"` | `text` | - | `false` | controls the input type (when variant = input) |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"dropdown-state"` | `CustomEvent<StateEvent>` | triggered when button is clicked or open attribute is changed | 
+| `"input-change"` | `CustomEvent<HiddenChangeEvent>` | triggered when input is triggering `suspended-input-change` (variant=input) | 
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--dropdown-button-min-width"` | `CSS unit` | `170px` | overrides the button min-width value | 
+| `"--dropdown-button-padding"` | `CSS padding` | `0 0.2rem` | sets the padding for the div inside the dropdown (variant != input) |
+
+## Types
+### InputTemplate
+```typescript
+interface HiddenChangeEvent {
+  value: string;
+}
+```
+### DropdownButton
+```typescript
+type Variant = 'default' | 'text' | 'input';
+type Direction = 'up' | 'down';
+type StateEvent = { open: boolean };
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

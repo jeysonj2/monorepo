@@ -1,5 +1,48 @@
 # @interzero/popover
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"placement"` | `Placement` | `"bottom-center"` | `false` | controls the placement of the popover |
+| `"target"` | `string` | - | `true` | sets the target the popover should attatch itself to, this via CSS selector |
+| `"revealby"` | `Reveals` | `"hover"` | `false` | controls the reveal type |
+| `"open"` | `boolean` | `false` | controls the open state of popover |
+| `"matchwidth"` | `boolean` | `false` | controls whether the popover should match the width of the target |
+| `"hideonoutsideclick"` | `boolean` | `false` | controls if the popover should close if client clicks outside of the popover or targret |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"popover-open"` | `Event` | triggered whenever the popover is opened |
+| `"popover-close"` | `Event` | triggered whenever the popover is closed |
+| `"all-popover-open"` | `CustomEvent<GlobalOpenEvent>` | triggers on windows level that a popover has opened (to control z-index within other popovers) |
+
+
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--popover-gap"` | `"CSS unit"` | `1rem` | controls the gap between target and popover |
+## Types
+```typescript
+type Reveals = 'hover' | 'click';
+type GlobalOpenEvent = { id: string };
+type Offset = { x: number; y: number };
+
+type Placement = "top-left" | "top-right" | "top-center" | "bottom-left" | "bottom-right" | "bottom-center" | "left-top" | "left-bottom" | "left-center" | "right-top" | "right-bottom" | "right-center";
+interface Rectangle {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+}
+
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

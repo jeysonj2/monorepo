@@ -5,9 +5,8 @@ export default {
   title: 'global/atoms/Footer',
   component: 'iz-global-footer',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    height: { control: 'text' },
+    backgroundColor: { control: 'color' },
   },
 };
 
@@ -18,43 +17,25 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  height?: string;
+  backgroundColor?: string;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  height,
+  backgroundColor,
 }: ArgTypes) => html`
-  <iz-global-footer
-    style="--footer-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
-  </iz-global-footer>
+  <style>
+    iz-global-footer {
+      --footer-height: ${height};
+      --footer-background-color: ${backgroundColor};
+    }
+  </style>
+  <iz-global-footer></iz-global-footer>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+Regular.args = {
+  height: '35px',
+  backgroundColor: '#fcfcfc',
 };

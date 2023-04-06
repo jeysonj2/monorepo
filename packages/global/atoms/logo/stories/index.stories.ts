@@ -1,13 +1,16 @@
 import { html, TemplateResult } from 'lit';
 import '../src/logo.js';
+import { Size } from '../src/LogoExports.js';
 
 export default {
   title: 'global/atoms/Logo',
   component: 'iz-global-logo',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    size: { control: 'select', options: ['small', 'medium', 'large'] },
+    // style related
+    cssWidth: { control: 'text' },
+    cssHeight: { control: 'text' },
+    cssSizePercentage: { control: 'text' },
   },
 };
 
@@ -18,43 +21,46 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  size: Size;
+  // style related
+  cssWidth: string;
+  cssHeight: string;
+  cssSizePercentage: string;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  size,
+  // style related
+  cssWidth,
+  cssHeight,
+  cssSizePercentage,
 }: ArgTypes) => html`
-  <iz-global-logo
-    style="--logo-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
-  >
-    ${slot}
-  </iz-global-logo>
+  <style>
+    iz-global-logo {
+      --logo-size-width: ${cssWidth};
+      --logo-size-height: ${cssHeight};
+      --logo-size-percentage: ${cssSizePercentage};
+    }
+  </style>
+  <iz-global-logo size=${size}> </iz-global-logo>
 `;
 
-export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
+export const Small = Template.bind({});
+Small.args = {
+  size: 'small',
+  cssWidth: '176px',
+  cssHeight: '65px',
+  cssSizePercentage: '1',
 };
 
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
+export const Medium = Template.bind({});
+Medium.args = {
+  ...Small.args,
+  size: 'medium',
 };
 
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+export const Large = Template.bind({});
+Large.args = {
+  ...Small.args,
+  size: 'large',
 };

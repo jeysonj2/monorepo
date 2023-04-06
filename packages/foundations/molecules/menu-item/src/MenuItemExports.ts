@@ -10,6 +10,7 @@ import { style } from './style.css.js';
 // types & interfaces
 export type ChangeEvent = { value: string };
 
+// TODO extend Button instead ? (keep size and all button properties)
 export class MenuItem extends LitElement {
   static styles = style;
 

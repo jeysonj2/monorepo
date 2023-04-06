@@ -25,7 +25,7 @@ import { style } from './style.css.js';
 const TEXT_THRESHOLD = 22;
 
 // types & interfaces
-export type DropdownMode = 'strict' | 'loose';
+export type DropdownInputMode = 'strict' | 'loose';
 export type SearchEvent = { value: string };
 export type ChangeEvent = { value: string; name?: string };
 type OptionItem = { checked: boolean; text: string };
@@ -48,7 +48,7 @@ export class Dropdown extends InputTemplate {
 
   @property() variant: Variant = 'default';
 
-  @property() dropdownMode: DropdownMode = 'strict';
+  @property() dropdownInputMode: DropdownInputMode = 'strict';
 
   // queries
   @query('iz-translate') translateElement!: Translate;
@@ -171,7 +171,7 @@ export class Dropdown extends InputTemplate {
       button.open = false;
     }
 
-    // if (this.dropdownMode === 'strict')
+    // if (this.dropdownInputMode === 'strict')
     // {
     //   // this.inputtext = '';
     // }
@@ -183,7 +183,7 @@ export class Dropdown extends InputTemplate {
     this.valueMap.clear();
     this.dispatchEvent(new Event('clear-options'));
 
-    if (this.dropdownMode === 'loose') {
+    if (this.dropdownInputMode === 'loose') {
       // choose value
       this.updateHidden(event.detail.value);
       this.dispatchEvent(

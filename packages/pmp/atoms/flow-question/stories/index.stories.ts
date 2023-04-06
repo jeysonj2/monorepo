@@ -5,9 +5,9 @@ export default {
   title: 'pmp/atoms/FlowQuestion',
   component: 'iz-pmp-flow-question',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    question: { control: 'text' },
+    description: { control: 'text' },
+    editMode: { control: 'boolean' },
   },
 };
 
@@ -18,43 +18,22 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  question?: string;
+  description?: string;
+  editMode?: boolean;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  question = 'The Question',
+  description = 'Some description goes here',
+  editMode = false,
 }: ArgTypes) => html`
   <iz-pmp-flow-question
-    style="--flow-question-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
+    .question=${question}
+    .description=${description}
+    .editMode=${editMode}
   >
-    ${slot}
   </iz-pmp-flow-question>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};

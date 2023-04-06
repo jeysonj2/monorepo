@@ -1,5 +1,27 @@
 # @interzero-global/login-links
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"contactLink"` | `string` | "https://www.interzero.de/kontakt/" | `false` | controls the link of the contact page of interzero |
+| `"interzeroLink"` | `string` | "https://www.interzero.de/" | `false` | controls the link of the homepage of interzero |
+
+## Events
+--
+
+## CSS variables
+--
+## Types
+--
+
+## Translations
+| key | description |
+|-----|-------------|
+| "INTERZERO" | used for the interzero homepage |
+| "KONTAKT" | used for the interzero contact page |
+| "© 2022 - Interzero Circular Solutions Germany GmbH" trademark text |
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

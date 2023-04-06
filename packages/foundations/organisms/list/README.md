@@ -1,5 +1,21 @@
 # @interzero/list
 
+## Properties
+--
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"item-remove"` | `Event` | triggered whenever an list-item is removed | 
+
+## CSS variables
+--
+## Types
+--
+
+## Translations
+--
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

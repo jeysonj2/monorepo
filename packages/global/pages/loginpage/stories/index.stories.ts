@@ -10,6 +10,8 @@ export default {
       control: 'select',
       options: ['login', 'register', 'reset', 'update'],
     },
+    cssLeftBackground: { control: 'text' },
+    cssRightBackground: { control: 'text' },
   },
 };
 
@@ -21,10 +23,27 @@ interface Story<T> {
 
 interface ArgTypes {
   variant?: Variant;
+  cssLeftBackground: string;
+  cssRightBackground: string;
 }
 
-const Template: Story<ArgTypes> = ({ variant = 'login' }: ArgTypes) => html`
+const Template: Story<ArgTypes> = ({
+  variant,
+  cssLeftBackground,
+  cssRightBackground,
+}: ArgTypes) => html`
+  <style>
+    iz-global-loginpage {
+      --loginpage-left-background: ${cssLeftBackground};
+      --loginpage-right-background: ${cssRightBackground};
+    }
+  </style>
   <iz-global-loginpage .variant=${variant}></iz-global-loginpage>
 `;
 
 export const Regular = Template.bind({});
+Regular.args = {
+  variant: 'login',
+  cssLeftBackground: '#c4c4c4',
+  cssRightBackground: '#e4e4e4',
+};

@@ -107,3 +107,5 @@ export class TableFilter extends LitElement {
     `;
   }
 }
+
+// placeholder="Select filter"

@@ -1,5 +1,42 @@
 # @interzero/option
 
+## Properties
+| name | type | default-value | required | description |
+|------|------|---------------|----------|-------------|
+| `"variant"` | `Variant` | `"default"` | `false` | controls the variant of the option | 
+| `"value"` | `string` | - | `trye` | sets the value of the option (used in change event) |
+| `"checked"` | `boolean` | `false` | controls the options checked state, if checked change event will be triggered |
+
+## Events
+| name | type | description |
+|------|------|-------------|
+| `"change"` | `CustomEvent<ChangeEvent>` | triggered whenever clicked or property "checked" is updated |
+
+## CSS variables
+### External 
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--button-padding"` | `CSS padding` | `0` | controls the padding for the button | 
+### Internal
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--option-padding"` | `CSS padding` | `0 0.5rem` | controls the padding for the option | 
+
+## Types
+```typescript
+type ChangeEvent = { checked: boolean; value: string; text: string };
+type Variant = 'plain' | 'default' | 'empty';
+type DropdownSearchEvent = { value: string };
+type DropdownValueChangeEvent = {
+  value: string | null;
+  values: string[] | undefined;
+};
+```
+
+## Translations
+- 
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation

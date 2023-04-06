@@ -1,13 +1,17 @@
 import { html, TemplateResult } from 'lit';
+import type { Size } from '@interzero/button';
 import '../src/button-switch.js';
+import type { ActiveState } from '../src/ButtonSwitchExports.js';
 
 export default {
   title: 'foundations/molecules/ButtonSwitch',
   component: 'iz-button-switch',
   argTypes: {
-    header: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    left: { control: 'text' },
+    right: { control: 'text' },
+    size: { control: 'select', options: ['small', 'medium', 'large'] },
+    active: { control: 'seledt', options: ['left', 'right'] },
+    noInternalClick: { control: 'boolan' },
   },
 };
 
@@ -18,43 +22,28 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  header?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: TemplateResult;
+  left: string;
+  right: string;
+  size: Size;
+  active: ActiveState;
+  noInternalClick: boolean;
 }
 
 const Template: Story<ArgTypes> = ({
-  header = 'Hello world',
-  counter = 1,
-  textColor,
-  slot,
+  left = 'Left',
+  right = 'Right',
+  size = 'medium',
+  active,
+  noInternalClick,
 }: ArgTypes) => html`
   <iz-button-switch
-    style="--button-switch-text-color: ${textColor || 'black'}"
-    .header=${header}
-    .counter=${counter}
+    .left=${left}
+    .right=${right}
+    .size=${size}
+    .active=${active}
+    .noInternalClick=${noInternalClick}
   >
-    ${slot}
   </iz-button-switch>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  header: 'My header',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 3105,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};

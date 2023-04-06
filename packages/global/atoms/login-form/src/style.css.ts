@@ -15,8 +15,8 @@ export const style = css`
     grid-template-areas:
       'button submit'
       'empty link';
-    grid-column-gap: 2rem;
-    grid-row-gap: 1rem;
+    grid-column-gap: var(--login-form-column-gap, 2rem);
+    grid-row-gap: var(--login-form-row-gap, 1rem);
   }
 
   iz-button {

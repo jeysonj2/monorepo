@@ -14,6 +14,12 @@ export class Logo extends LitElement {
 
   @property() size: Size = 'medium';
 
+  connectedCallback(): void {
+    super.connectedCallback();
+
+    if (!this.hasAttribute('size')) this.setAttribute('size', this.size);
+  }
+
   render() {
     return html`
       <div class="logo ${this.size}">

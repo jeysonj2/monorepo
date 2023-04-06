@@ -1,5 +1,40 @@
 # @interzero-global/header
 
+## Properties
+--
+## Event table 
+| name | type | description | 
+|------|------|-------------|
+| `"change"` | `ChangeEvent` | triggers when clicking on home button or when some of the user-options has been pressed |
+
+
+## CSS variables
+| name | type | default-value | description |
+|------|------|---------------|-------------|
+| `"--header-height"` | `CSS unit` | `60px` | controls the height of header |
+| `"--header-gap"` | `CSS unit` | `0.5rem` | controls the flex-gap of header |
+| `"--header-background-color"` | `Color` | `#fcfcfc` | controls the background-color of header |
+| `"--header-padding"` | `CSS padding` | `1rem` | controls the padding of the header | 
+| `"--header-color"` | `Color` | var(--colors-neutral-black, black) | controls the icon-home color | 
+
+
+## Types 
+```typescript
+interface ChangeEvent {
+  type: "home-button"|"user-menu";
+  value: string;
+}
+```
+
+## Translations
+### UserMenu
+| text | description |
+|------|-------------|
+| *"Logout"* | Used inside option 1 |
+| *"User Profile"* | Used inside option 2 |
+
+
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
@@ -16,19 +51,6 @@ npm i @interzero-global/header
 </script>
 
 <iz-global-header></iz-global-header>
-```
-
-## Event table 
-| name | type | description | 
-|------|------|-------------|
-| `"change"` | ClickEvent | triggers when clicking on home button or when some of the user-options has been pressed |
-
-## Types 
-```typescript
-interface ChangeEvent {
-  type: "home-button"|"user-menu";
-  value: string;
-}
 ```
 
 ## Linting and formatting
