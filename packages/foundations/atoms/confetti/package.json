@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero/confetti following open-wc recommendations. HTML Tag: iz-confetti",
   "license": "MIT",
   "author": "@interzero/confetti",
-  "version": "0.0.0",
+  "version": "1.6.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",

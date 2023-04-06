@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-pmp/flow-view following open-wc recommendations. HTML Tag: iz-pmp-flow-view",
   "license": "MIT",
   "author": "@interzero-pmp/flow-view",
-  "version": "0.0.0",
+  "version": "1.6.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -19,14 +19,14 @@
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
     "build:watch": "rm -rf ./dist && tsc --watch",
-		"test": "tsc && wtr --coverage",
+    "test": "tsc && wtr --coverage",
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-pmp/flow-option": "^0.0.0",
-    "@interzero-pmp/flow-question": "^0.0.0",
+    "@interzero-pmp/flow-option": "^1.6.0",
+    "@interzero-pmp/flow-question": "^1.6.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

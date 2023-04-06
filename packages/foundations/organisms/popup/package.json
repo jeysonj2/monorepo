@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero/popup following open-wc recommendations. HTML Tag: iz-popup",
   "license": "MIT",
   "author": "@interzero/popup",
-  "version": "1.4.0",
+  "version": "1.6.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -19,15 +19,15 @@
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
     "build:watch": "rm -rf ./dist && tsc --watch",
-		"test": "tsc && wtr --coverage",
+    "test": "tsc && wtr --coverage",
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-icons/icon-close": "^1.4.0",
-    "@interzero/button": "^1.4.0",
-    "@interzero/card": "^1.4.0",
+    "@interzero-icons/icon-close": "^1.6.0",
+    "@interzero/button": "^1.6.0",
+    "@interzero/card": "^1.6.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

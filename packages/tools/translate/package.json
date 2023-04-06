@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-tools/translate following open-wc recommendations. HTML Tag: iz-translate",
   "license": "MIT",
   "author": "@interzero-tools/translate",
-  "version": "1.4.0",
+  "version": "1.6.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -19,7 +19,7 @@
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
     "build:watch": "rm -rf ./dist && tsc --watch",
-		"test": "tsc && wtr --coverage",
+    "test": "tsc && wtr --coverage",
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",
-    "@interzero/typography": "^1.4.0",
+    "@interzero/typography": "^1.6.0",
     "@open-wc/eslint-config": "^9.2.1",
     "@open-wc/testing": "^3.1.6",
     "@typescript-eslint/eslint-plugin": "^5.48.0",

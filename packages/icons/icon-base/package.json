@@ -3,7 +3,7 @@
   "description": "Webcomponent @interzero-icons/icon-base following open-wc recommendations. HTML Tag: iz-global-icon-base",
   "license": "MIT",
   "author": "@interzero-icons/icon-base",
-  "version": "1.4.0",
+  "version": "1.6.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
