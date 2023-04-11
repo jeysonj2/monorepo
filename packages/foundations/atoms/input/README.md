@@ -103,6 +103,7 @@ interface InputEventMap {
 ### Input 
 ```typescript
 type Types = 'text' | 'number' | 'password' | 'email' | 'url' | 'tel';
+type Size = 'small' | 'medium' | 'large';
 
 interface IEvent<E = HTMLInputElement> extends Event {
   target: EventTarget & E;
