@@ -1,0 +1,76 @@
+#Docker Vorgehensweise: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-socket-binding
+
+image: node:${NODE_VERSION}-alpine
+
+stages:
+  - install_dependencies
+  - Test
+  - deploy
+
+variables:
+  CONTAINER_IMAGE_ENTW_QAT: nexus:5000/pmp-frontend:${CI_COMMIT_REF_NAME}
+  CONTAINER_IMAGE_PROD: nexus:6000/pmp-frontend:${CI_COMMIT_REF_NAME}
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+Installing Dependencies:
+  only:
+    - develop
+    - gitlab-ci-test
+    - staging
+    - main
+    - merge_requests
+  # only:
+  #   changes:
+  #     - "*.json"
+  stage: install_dependencies
+  script:
+    - node -v
+    - npm -v
+    - npm ci # install dependencies
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 48h
+
+Code Quality:
+  stage: Test
+  only:
+    changes:
+      - "*.json"
+  only:
+    - develop
+    - gitlab-ci-test
+    - staging
+    - main
+    - merge_requests
+  script:
+    - node -v
+    - npm -v
+
+eslint-iz-wc:
+  stage: Test
+  needs: ["Installing Dependencies"]
+  only:
+    - merge_requests
+  script:
+    - npm run lint:all
+
+test-iz-wc:
+  stage: Test
+  needs: ["Installing Dependencies"]
+  only:
+    - merge_requests
+  script:
+    - npm run test:all
+
+production:
+  stage: deploy
+  only:
+    - merge_requests
+  script:
+    - node -v
+    - npm -v

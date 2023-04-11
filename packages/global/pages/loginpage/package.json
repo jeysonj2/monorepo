@@ -25,7 +25,6 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-global/login-fields": "^1.4.0",
     "@interzero-global/login-form": "^1.6.0",
     "@interzero-global/login-links": "^1.6.0",
     "@interzero-global/logo": "^1.6.0",

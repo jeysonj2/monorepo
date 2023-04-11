@@ -11,12 +11,15 @@
     "storybook:publish": "",
     "format:all": "npm run build:all && lerna run format",
     "lint:all": "lerna run lint",
+    "test:all": "lerna run test",
     "build:all": "lerna run build",
     "lint-build": "npm run format:all && npm run lint:all && npm run build:all",
     "version:all": "lerna version",
     "publish:all": "lerna publish",
     "force-publish": "lerna publish --force-publish --ignore-changes --ignore-scripts --no-commit-hooks --no-git-tag-version",
-    "nx-graph": "nx graph"
+    "nx-graph": "nx graph",
+    "postinstall": "if [ -x \"$(command -v git)\" ] && [ -d git-hooks ]; then git config core.hooksPath ./git-hooks; fi",
+    "lint-staged": "lint-staged"
   },
   "private": true,
   "author": {
@@ -33,6 +36,7 @@
     "@nrwl/cli": "^15.8.6",
     "dotenv": "^16.0.3",
     "lerna": "^6.5.1",
+    "lint-staged": "^13.2.1",
     "nx": "15.7.1",
     "prettier": "^2.6.2",
     "prompts": "^2.4.2"
