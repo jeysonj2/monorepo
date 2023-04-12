@@ -9,6 +9,7 @@ import { style } from './style.css.js';
 import { CumulativeOffset } from './util.js';
 
 type Position = { x: number; y: number };
+export type OrderCompleteEvent = { children: ListItem[] };
 interface DistanceInfo {
   item: ListItem | null;
   sign: number;
@@ -30,6 +31,8 @@ export class List extends LitElement {
   private offsettop = 0;
 
   private dragInfo: DragInfo | null = null;
+
+  private hasshifted = false;
 
   // class functions
   connectedCallback(): void {
@@ -123,6 +126,21 @@ export class List extends LitElement {
     this.dragInfo.item.classList.remove('hidden');
     this.removeChild(this.dragInfo.clone);
     this.dragInfo = null;
+
+    const children: ListItem[] = [];
+    for (let i = 0; i < this.children.length; i += 1) {
+      const item = this.children[i];
+      if (item instanceof ListItem)
+      {
+        children.push(item);
+      }
+    }
+
+    if (this.hasshifted)
+    {
+      this.hasshifted = false;
+      this.dispatchEvent(new CustomEvent<OrderCompleteEvent>("order-complete", { detail: { children } }));
+    }
   };
 
   private handleMouseMove = (event: MouseEvent) => {
@@ -205,6 +223,8 @@ export class List extends LitElement {
       }
 
       this.insertBefore(this.dragInfo.item, target);
+
+      this.hasshifted = true;
     }
   }
 

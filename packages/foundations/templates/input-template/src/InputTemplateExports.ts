@@ -180,16 +180,18 @@ export class InputTemplate extends FormElement {
   }
 
   public updateHidden(value: string, event?: IEvent<HTMLInputElement>) {
+    this.value = value;
+
     if (this.__hiddeninput) {
       this.__hiddeninput.setAttribute('value', value);
 
       // dispatch change event (mainly for the "matchOther")
       this.__hiddeninput.dispatchEvent(new Event('change'));
-      this.value = value;
     }
 
     if (event) this.checkError();
 
+    // TODO should this be rather (event.target.value ?)
     this.dispatchEvent(
       new CustomEvent<ChangeEvent>('input-change', {
         detail: { value },

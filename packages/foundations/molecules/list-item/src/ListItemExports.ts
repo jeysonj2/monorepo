@@ -50,11 +50,16 @@ export class ListItem extends LitElement {
   // event functions
   private handleMouseDown(event: MouseEvent) {
     if (!this.isDraggable) return;
-    this.dispatchEvent(
-      new CustomEvent<DragStartEvent>('drag-start', {
-        detail: { target: this, pageX: event.pageX, pageY: event.pageY },
-      })
-    );
+
+    if (event.target instanceof HTMLElement && event.target.classList.contains('clickable'))
+    {
+      event.stopPropagation();
+      this.dispatchEvent(
+        new CustomEvent<DragStartEvent>('drag-start', {
+          detail: { target: this, pageX: event.pageX, pageY: event.pageY },
+        })
+      );
+    }
   }
 
   private handleRemove(event: Event) {
@@ -68,9 +73,9 @@ export class ListItem extends LitElement {
     return html`
       <div
         @mousedown=${this.handleMouseDown}
-        class=${['item', this.dragged ? 'dragged' : ''].join(' ')}
+        class=${['item clickable', this.dragged ? 'dragged' : ''].join(' ')}
       >
-        <div><slot></slot></div>
+        <div id='clickable'><slot></slot></div>
         ${this.dragged
           ? html`<iz-icon-list size="large" density="medium"></iz-icon-list>`
           : null}

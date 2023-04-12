@@ -23,11 +23,6 @@ function BooleanConverter(value: string | null) {
 export class Checkbox extends InputTemplate {
   static styles = style;
 
-  constructor() {
-    super();
-    this.addEventListener('click', this.handleClick);
-  }
-
   @property() label?: string;
 
   @property() variant: Variant = 'default';
@@ -44,6 +39,16 @@ export class Checkbox extends InputTemplate {
   })
   locked: boolean = false;
 
+  constructor() {
+    super();
+    this.addEventListener('click', this.handleClick);
+  }
+  connectedCallback():void {
+    super.connectedCallback();
+
+    if (!this.hasAttribute('checked')) this.setAttribute('checked', this.checked.toString());
+  }
+
   private handleClick(event: Event) {
     event.stopPropagation();
     if (this.disabled || this.locked) {
@@ -51,6 +56,8 @@ export class Checkbox extends InputTemplate {
     }
 
     this.checked = !this.checked;
+    this.setAttribute("checked", this.checked.toString());
+
     this.updateHidden(`${this.checked}`);
     this.dispatchEvent(
       new CustomEvent<ChangeEvent>('change', {

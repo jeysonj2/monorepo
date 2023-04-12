@@ -6,11 +6,15 @@
 | name | type | description |
 |------|------|-------------|
 | `"item-remove"` | `Event` | triggered whenever an list-item is removed | 
+| `"order-complete"` | `CustomEvent<OrderCompleteEvent>` | triggered whenever a ordering of list-item has stopped |
 
 ## CSS variables
 --
 ## Types
---
+```typescript
+// where ListItem is the class of <iz-list-item>
+type OrderCompleteEvent = { children: ListItem[] };
+```
 
 ## Translations
 --
