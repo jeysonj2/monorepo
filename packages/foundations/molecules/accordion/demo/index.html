@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <fieldset>
+    <legend>Regular</legend>
+    <button>TOGGLE</button>
+    <iz-accordion>
+      <p slot="title">Hello im a title</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus rem repellat quasi dicta facere ducimus, fugiat eos quia deserunt totam consequuntur pariatur recusandae aliquam eveniet. Corporis cumque odit nam ex?</p>
+      <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+      </ul>
+    </iz-accordion>
+  </fieldset>
+  
+  <fieldset>
+    <legend>ExpandMode Full</legend>
+    <button>TOGGLE</button>
+    <iz-accordion expandMode="full">
+      <p slot="title">Hello im a title</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus rem repellat quasi dicta facere ducimus, fugiat eos quia deserunt totam consequuntur pariatur recusandae aliquam eveniet. Corporis cumque odit nam ex?</p>
+      <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+      </ul>
+    </iz-accordion>
+  </fieldset>
+
+  <fieldset>
+    <legend>Direction Up</legend>
+    <button>TOGGLE</button>
+    <iz-accordion direction="up">
+      <p slot="title">Hello im a title</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus rem repellat quasi dicta facere ducimus, fugiat eos quia deserunt totam consequuntur pariatur recusandae aliquam eveniet. Corporis cumque odit nam ex?</p>
+      <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+      </ul>
+    </iz-accordion>
+  </fieldset>
+
+  <fieldset>
+    <legend>Direction Up + ExpandMode Full</legend>
+    <button>TOGGLE</button>
+    <iz-accordion direction="up" expandMode="full">
+      <p slot="title">Hello im a title</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus rem repellat quasi dicta facere ducimus, fugiat eos quia deserunt totam consequuntur pariatur recusandae aliquam eveniet. Corporis cumque odit nam ex?</p>
+      <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+      </ul>
+    </iz-accordion>
+  </fieldset>
+</body>
+</html>
