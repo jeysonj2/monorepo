@@ -90,11 +90,9 @@ export class Button extends FormElement {
   render() {
     // NOTE the text is the same as typography.body
     return html`
-      <div>
-        <slot name="left"></slot>
-        <slot></slot>
-        <slot name="right"></slot>
-      </div>
+      <slot name="left"></slot>
+      <slot></slot>
+      <slot name="right"></slot>
     `;
   }
 }

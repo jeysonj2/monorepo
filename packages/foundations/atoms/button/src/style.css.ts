@@ -8,6 +8,10 @@ export const style = css`
     /* padding: 1rem; */
     box-sizing: border-box;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     /* without specifing size will be large */
   }
 
@@ -79,15 +83,5 @@ export const style = css`
   }
   :host([disabled]:is([variant='default'])) {
     background-color: var(--button-disabled-background-color, #d2d2d2);
-  }
-
-  /** in house components *****************/
-  div {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `;

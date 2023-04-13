@@ -14,13 +14,13 @@ export const style = css`
   }
 
   :host([size='small']) {
-    height: var(--input-height-small, 2rem);
+    height: var(--input-height-small, 25px);
   }
   :host([size='medium']) {
-    height: var(--input-height-medium, 3rem);
+    height: var(--input-height-medium, 30px);
   }
   :host([size='large']) {
-    height: var(--input-height-large, 4rem);
+    height: var(--input-height-large, 40px);
   }
 
   :host([disabled]) {

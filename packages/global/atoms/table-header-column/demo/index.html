@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/demo/index.css" />
+  <script defer type="module" src="/demo/index.js"></script>
+</head>
+<body>
+  <fieldset>
+    <legend>Regular</legend>
+    <iz-global-table-header-column>Column Header</iz-global-table-header-column>
+  </fieldset>
+
+  <fieldset>
+    <legend>Sortable</legend>
+    <iz-global-table-header-column sortable="true">Column Header</iz-global-table-header-column>
+  </fieldset>
+
+  <fieldset>
+    <legend>Searchable</legend>
+    <iz-global-table-header-column searchable="true">Column Header</iz-global-table-header-column>
+  </fieldset>
+
+  <fieldset>
+    <legend>Full</legend>
+    <iz-global-table-header-column sortable="true" searchable="true">Column Header</iz-global-table-header-column>
+  </fieldset>
+</body>
+</html>
