@@ -27,6 +27,7 @@ export type SearchEvent = { value: string };
 ## Global Functions
 | name | return-type | parameters | description |
 |------|-------------|------------|-------------|
+| `"reset"` | `void` | - | resets the sort + search | 
 
 
 ## Translations

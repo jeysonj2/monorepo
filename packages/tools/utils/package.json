@@ -1,15 +1,14 @@
 {
-  "name": "@interzero/accordion",
-  "description": "Webcomponent @interzero/accordion following open-wc recommendations. HTML Tag: iz-accordion",
+  "name": "@interzero-tools/utils",
+  "description": "Webcomponent @interzero-tools/utils following open-wc recommendations. HTML Tag: iz-utils",
   "license": "MIT",
-  "author": "@interzero/accordion",
+  "author": "@interzero-tools/utils",
   "version": "0.0.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "exports": {
-    ".": "./dist/src/index.js",
-    "./wc": "./dist/src/accordion.js"
+    ".": "./dist/src/index.js"
   },
   "scripts": {
     "analyze": "cem analyze --litelement",
@@ -25,9 +24,6 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-icons/icon-arrow": "^1.6.0",
-    "@interzero-tools/decorators": "^0.0.0",
-    "@interzero/button": "^1.6.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

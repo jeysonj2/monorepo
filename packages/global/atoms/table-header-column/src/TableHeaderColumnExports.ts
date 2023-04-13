@@ -1,10 +1,13 @@
 import { html, LitElement } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 
 // web-components 
 import "@interzero-icons/icon-caret/wc";
 import "@interzero/button/wc";
 import "@interzero/input/wc";
+
+// classes
+import { Input } from '@interzero/input';
 
 // style import
 import { style } from './style.css.js';
@@ -26,6 +29,9 @@ export class TableHeaderColumn extends LitElement {
   @property({ type: Boolean, converter: BooleanConverter }) sortable: boolean = false;
 
   @state() sortDirection: SortDirection = 'default';
+  @query('iz-input') inputElement?: Input;
+
+  private internalChange: boolean = false;
 
   // event handlers 
   private handleClick() {
@@ -48,8 +54,20 @@ export class TableHeaderColumn extends LitElement {
   }
 
   private handleSearch(event:Event) {
+    if (this.internalChange) {
+      this.internalChange = false;
+      return;
+    }
+
     const { value } = event.target as HTMLInputElement;
     this.dispatchEvent(new CustomEvent<SearchEvent>("search", { detail: { value }}));
+  }
+
+  // public function
+  public reset() {
+    this.internalChange = true;
+    this.sortDirection = 'default';
+    if (this.inputElement) this.inputElement.reset();
   }
 
   render() {

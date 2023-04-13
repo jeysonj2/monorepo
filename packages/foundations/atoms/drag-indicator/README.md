@@ -12,7 +12,7 @@
 ## Events
 | name | type | description |
 |------|------|-------------|
-| `"pressed"` | `Event` | triggered when pressed (with mobile support) |
+| `"pressed"` | `CustomEvent<PressEvent>` | triggered when pressed (with mobile support) |
 | `"released"` | `Event` | triggered when released (with mobile support) |
 
 ## CSS variables
@@ -29,6 +29,7 @@
 ## Types
 ```typescript
 export type Alignment = "horizontal" | "vertical";
+export type PressEvent = { clientX: number; clientY: number; pageX: number; pageY: number; screenX: number; screenY: number; };
 ```
 ## Global Functions
 | name | return-type | parameters | description |

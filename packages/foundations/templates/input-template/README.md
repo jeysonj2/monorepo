@@ -29,9 +29,6 @@
 | `"input-warning"` | `"CustomEvent<StateEvent>"` | triggered whenever there's an error in input and a matching warning statement |
 | `"input-success"` | `"CustomEvent<StateEvent>"` | triggered whenever input is valid |
 
-## CSS variables
--
-
 ## Types
 ```typescript
 type BaseErrorTypes =
@@ -71,8 +68,17 @@ interface InputEventMap {
 }
 ```
 
+## Global Functions
+| name | return-type | parameters | description |
+|------|-------------|------------|-------------|
+| `"reset"` | `void` | - | resets the value |
+| `"updateHidden"` | `void` | `value:string`, `event:IEvent<HTMLInputElement>` | updates the value + the hidden_input if exists |
+
+
 ## Translations
-- 
+| key | description |
+|-----|-------------|
+
 
 
 This is a TypeScript class `"InputTemplate"` which extends the FormElement class. It represents an input element that can be added to an HTML form.

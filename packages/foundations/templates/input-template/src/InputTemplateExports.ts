@@ -208,6 +208,11 @@ export class InputTemplate extends FormElement {
     }, this.suspenseDelay) as unknown as number;
   }
 
+  public reset() {
+    if (this.defaultValue) this.updateHidden(this.defaultValue);
+    else this.updateHidden('');
+  }
+
   private checkError = () => {
     let message: string | null = null;
     let type: 'warning' | 'error' | 'success' = 'success';

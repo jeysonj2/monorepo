@@ -17,12 +17,23 @@
 ## Events
 | name | type | description |
 |------|------|-------------|
+| `"open-change"` | `CustomEvent<{value:boolean}>` | triggered whenever open is triggered (logic from ReactiveProperty) |
 
-## CSS variables
-| name | type | default-value | description |
-|------|------|---------------|-------------|
-| `"--accordion-padding-header"` | `CSS padding` | '0' | controls the padding of the header component |
-| `"--accordion-padding-main"` | `CSS padding` | '0 1rem' | controls the padding of the main component |
+## CSS Variables
+| Name                             | Type         | Default Value | Description                                              |
+|----------------------------------|--------------|---------------|----------------------------------------------------------|
+| `--accordion-max-height`         | CSS unit   | '0px'         | Controls the max-height of the accordion, this intendet to be use only within the component itself |
+| `--accordion-header-padding`     | CSS padding  | '0'           | Controls the padding of the header component             |
+| `--accordion-main-padding`       | CSS padding  | '0 1rem'      | Controls the padding of the main component               |
+| `--accordion-animate-property`   | CSS property | 'max-height'  | Controls the property to be animated in the expand mode  |
+| `--accordion-animate-duration`   | CSS time     | '200ms'       | Controls the duration of the animation in the expand mode |
+| `--accordion-animate-timing-function` | CSS timing function | 'ease-in' | Controls the timing function of the animation in the expand mode |
+| `--accordion-animate-delay`      | CSS time     | '0s'          | Controls the delay of the animation in the expand mode   |
+| `--accordion-main-animate-property` | CSS property | 'max-height, padding' | Controls the properties to be animated for the main component in partial expand mode |
+| `--accordion-main-animate-duration` | CSS time   | '200ms, 1ms'  | Controls the duration of the animation for the main component in partial expand mode |
+| `--accordion-main-animate-timing-function` | CSS timing function | 'ease-in, linear' | Controls the timing function of the animation for the main component in partial expand mode |
+| `--accordion-main-animate-delay` | CSS time     | '0s, 200ms'   | Controls the delay of the animation for the main component in partial expand mode |
+
 
 ## Types
 ```typescript

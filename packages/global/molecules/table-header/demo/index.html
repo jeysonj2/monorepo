@@ -12,23 +12,23 @@
 <body>
   <fieldset>
     <legend>Regular</legend>
-    <iz-global-table-header-column>Column Header</iz-global-table-header-column>
+    <iz-global-table-header resizable id="regular"></iz-global-table-header>
   </fieldset>
-
   <fieldset>
     <legend>Sortable</legend>
-    <iz-global-table-header-column sortable="true">Column Header</iz-global-table-header-column>
+    <iz-global-table-header id="sortable"></iz-global-table-header>
   </fieldset>
-
   <fieldset>
     <legend>Searchable</legend>
-    <iz-global-table-header-column searchable="true">Column Header</iz-global-table-header-column>
+    <iz-global-table-header id="searchable"></iz-global-table-header>
   </fieldset>
-
   <fieldset>
-    <button id="resetbtn">RESET</button>
     <legend>Full</legend>
-    <iz-global-table-header-column id="reset" sortable="true" searchable="true">Column Header</iz-global-table-header-column>
+    <iz-global-table-header resizable id="full"></iz-global-table-header>
+  </fieldset>
+  <fieldset>
+    <legend>Random</legend>
+    <iz-global-table-header id="random"></iz-global-table-header>
   </fieldset>
 </body>
 </html>

@@ -1,76 +1,78 @@
-#Docker Vorgehensweise: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-socket-binding
+# NOTE disabled this as it never worked really..
 
-image: node:${NODE_VERSION}-alpine
+# #Docker Vorgehensweise: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-socket-binding
 
-stages:
-  - install_dependencies
-  - Test
-  - deploy
+# image: node:${NODE_VERSION}-alpine
 
-variables:
-  CONTAINER_IMAGE_ENTW_QAT: nexus:5000/pmp-frontend:${CI_COMMIT_REF_NAME}
-  CONTAINER_IMAGE_PROD: nexus:6000/pmp-frontend:${CI_COMMIT_REF_NAME}
+# stages:
+#   - install_dependencies
+#   - Test
+#   - deploy
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules/
+# variables:
+#   CONTAINER_IMAGE_ENTW_QAT: nexus:5000/pmp-frontend:${CI_COMMIT_REF_NAME}
+#   CONTAINER_IMAGE_PROD: nexus:6000/pmp-frontend:${CI_COMMIT_REF_NAME}
 
-Installing Dependencies:
-  only:
-    - develop
-    - gitlab-ci-test
-    - staging
-    - main
-    - merge_requests
-  # only:
-  #   changes:
-  #     - "*.json"
-  stage: install_dependencies
-  script:
-    - node -v
-    - npm -v
-    - npm ci # install dependencies
-  artifacts:
-    paths:
-      - node_modules/
-    expire_in: 48h
+# cache:
+#   key: ${CI_COMMIT_REF_SLUG}
+#   paths:
+#     - node_modules/
 
-Code Quality:
-  stage: Test
-  only:
-    changes:
-      - "*.json"
-  only:
-    - develop
-    - gitlab-ci-test
-    - staging
-    - main
-    - merge_requests
-  script:
-    - node -v
-    - npm -v
+# Installing Dependencies:
+#   only:
+#     - develop
+#     - gitlab-ci-test
+#     - staging
+#     - main
+#     - merge_requests
+#   # only:
+#   #   changes:
+#   #     - "*.json"
+#   stage: install_dependencies
+#   script:
+#     - node -v
+#     - npm -v
+#     - npm ci # install dependencies
+#   artifacts:
+#     paths:
+#       - node_modules/
+#     expire_in: 48h
 
-eslint-iz-wc:
-  stage: Test
-  needs: ["Installing Dependencies"]
-  only:
-    - merge_requests
-  script:
-    - npm run lint:all
+# Code Quality:
+#   stage: Test
+#   only:
+#     changes:
+#       - "*.json"
+#   only:
+#     - develop
+#     - gitlab-ci-test
+#     - staging
+#     - main
+#     - merge_requests
+#   script:
+#     - node -v
+#     - npm -v
 
-test-iz-wc:
-  stage: Test
-  needs: ["Installing Dependencies"]
-  only:
-    - merge_requests
-  script:
-    - npm run test:all
+# eslint-iz-wc:
+#   stage: Test
+#   needs: ["Installing Dependencies"]
+#   only:
+#     - merge_requests
+#   script:
+#     - npm run lint:all
 
-production:
-  stage: deploy
-  only:
-    - merge_requests
-  script:
-    - node -v
-    - npm -v
+# test-iz-wc:
+#   stage: Test
+#   needs: ["Installing Dependencies"]
+#   only:
+#     - merge_requests
+#   script:
+#     - npm run test:all
+
+# production:
+#   stage: deploy
+#   only:
+#     - merge_requests
+#   script:
+#     - node -v
+#     - npm -v

@@ -1,15 +1,15 @@
 {
-  "name": "@interzero/accordion",
-  "description": "Webcomponent @interzero/accordion following open-wc recommendations. HTML Tag: iz-accordion",
+  "name": "@interzero-global/table-header",
+  "description": "Webcomponent @interzero-global/table-header following open-wc recommendations. HTML Tag: iz-global-table-header",
   "license": "MIT",
-  "author": "@interzero/accordion",
+  "author": "@interzero-global/table-header",
   "version": "0.0.0",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "exports": {
     ".": "./dist/src/index.js",
-    "./wc": "./dist/src/accordion.js"
+    "./wc": "./dist/src/table-header.js"
   },
   "scripts": {
     "analyze": "cem analyze --litelement",
@@ -25,9 +25,13 @@
     "storybook:build": "rm -rf ./dist && tsc && npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "@interzero-icons/icon-arrow": "^1.6.0",
+    "@interzero-global/table-header-column": "^0.0.0",
+    "@interzero-icons/icon-cog": "^1.6.0",
     "@interzero-tools/decorators": "^0.0.0",
+    "@interzero-tools/utils": "^0.0.0",
+    "@interzero/accordion": "^0.0.0",
     "@interzero/button": "^1.6.0",
+    "@interzero/drag-indicator": "^0.0.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

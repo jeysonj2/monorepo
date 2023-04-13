@@ -1,17 +1,14 @@
 import { html, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 
 // web-components
 import '@interzero-icons/icon-arrow/wc';
 import '@interzero/button/wc';
 
+import { ReactiveProperty } from '@interzero-tools/decorators';
+
 // style import
 import { style } from './style.css.js';
-
-// helper functions
-function BooleanConverter(value: string | null) {
-  return !!['true', true, ''].includes((value || '').toLowerCase());
-}
 
 // types & interfaces
 export type Direction = 'up' | 'down';
@@ -20,33 +17,13 @@ export type ExpandMode = 'partial' | 'full';
 export class Accordion extends LitElement {
   static styles = style;
 
-  private inneropen = false;
-
   @property({ type: String }) direction: Direction = 'down';
 
   @property({ type: String }) expandMode: ExpandMode = 'partial';
 
-  // TODO should create a custom decorator with booleanconverter and this logic embedded !
-  @property({ type: Boolean, converter: BooleanConverter })
-  set open(value: boolean) {
-    if (this.inneropen) {
-      // to avoid setting twice
-      this.inneropen = false;
-      return;
-    }
-    if (this.getAttribute('open') !== value.toString()) {
-      // this will cause another fire
-      this.inneropen = true;
-      this.setAttribute('open', value.toString());
-    }
-    this._open = value;
-  }
+  @query('main') mainElement!: HTMLElement;
 
-  get open() {
-    return this._open;
-  }
-
-  _open: boolean = false;
+  @ReactiveProperty({ type: Boolean, trigger: true }) open: boolean = false;
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -58,6 +35,28 @@ export class Accordion extends LitElement {
       this.setAttribute('direction', this.direction);
   }
 
+  constructor() {
+    super();
+
+    this.addEventListener('open-change', this.handleOpenChange);
+  }
+
+  private handleOpenChange() {
+    let value = '0px';
+    if (this.open)
+    {
+      if (this.expandMode === 'full') 
+      {
+        value = this.scrollHeight+"px";
+      }
+      else if (this.mainElement) 
+      {
+        value = this.mainElement.scrollHeight+"px";
+      }
+    }
+    this.style.setProperty("--accordion-max-height", value);
+  }
+
   public toggle() {
     this.open = !this.open;
   }
@@ -65,7 +64,7 @@ export class Accordion extends LitElement {
   render() {
     return html`
       <header>
-        <slot name="title"></slot>
+        <slot name="title"><span></span></slot>
         <iz-button @click=${this.toggle} size="medium" variant="square">
           <slot name="icon"><iz-icon-arrow size="medium"></iz-icon-arrow></slot>
         </iz-button>
