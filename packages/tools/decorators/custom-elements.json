@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "EnhancedProperty",
+          "parameters": [
+            {
+              "name": "options",
+              "type": {
+                "text": "PropertyDeclaration"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "ReactiveProperty",
+          "parameters": [
+            {
+              "name": "options",
+              "type": {
+                "text": "Options"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "EnhancedProperty",
+          "declaration": {
+            "name": "EnhancedProperty",
+            "module": "src/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ReactiveProperty",
+          "declaration": {
+            "name": "ReactiveProperty",
+            "module": "src/index.ts"
+          }
+        }
+      ]
+    }
+  ]
+}
